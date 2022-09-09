@@ -1,6 +1,7 @@
-import React, { useEffect,useContext, useState } from 'react';
+import React, { useEffect,useContext,useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 export default function UserDetails() {
 
@@ -22,8 +23,9 @@ export default function UserDetails() {
   return (
     <div>
         <p>Hello {user.username}</p>
+        <NavLink to="/editUser">Edit user</NavLink>
         <p>{user.biography}</p>
-
+        <h5>My votes</h5>
         <h5>My reviews</h5>
         {reviews && reviews.map(el =>{
             return(
