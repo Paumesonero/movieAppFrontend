@@ -1,3 +1,17 @@
 .selected {
   color: red;
 }
+
+/**** User Details view ***/
+
+.user-vote-list {
+  display: flex;
+}
+
+.liked-movie {
+  border: 1px solid green;
+}
+
+.disLiked-movie {
+  border: 1px solid red;
+}
