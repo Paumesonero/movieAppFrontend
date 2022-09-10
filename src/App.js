@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './views/Home';
+import Search from "./views/Search"
 import Footer from './components/Footer';
 import ErrorPage from './views/ErrorPage';
 import Signup from './views/auth/Signup';
@@ -17,6 +18,7 @@ function App() {
       <Toaster/>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/private" element={<IsPrivate><PrivateView/></IsPrivate>}/>
