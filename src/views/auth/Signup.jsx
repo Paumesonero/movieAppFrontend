@@ -8,8 +8,6 @@ export default function Signup() {
   const [user, setUser] = useState({
     username: '',
     email: '',
-    imageUrl: '',
-    biography: ''
   })
   //const [imageUrl, setImageUrl] = useState('')
   const [password, setPassword] = useState('');
@@ -35,39 +33,17 @@ export default function Signup() {
     // eslint-disable-next-line
   }, [passwordControl])
 
-  // image attempts here
-  // const handleFiles = (e) =>{
-  //   setImageUrl(e.target.files[0])
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const formData = new FormData()
-    // formData.append('imageUrl', imageUrl)
     try {
       
-      await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, { username: user.username, email: user.email, biography: user.biography, imageUrl: user.imageUrl, password });
+      await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, { username: user.username, email: user.email, password });
       navigate('/login');
     } catch (error) {
       setErrorMessage(error.response.data.error)
     }
   }
   
-  
-  
-  // const handleFileUpload = (e) =>{
-  //   const uploadData = new FormData();
-  //   uploadData.append('imageUrl', e.target.files[0]);
-
-  //   service
-  //   .uploadImage(uploadData)
-  //   .then(response =>{
-  //     setImageUrl(response.fileUrl)
-      
-  //   })
-  //   .catch(err => console.log("Error while uploading the file", err))
-  // }
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -84,14 +60,6 @@ export default function Signup() {
         <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
 
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-        <label>About me:</label>
-        <textarea name="biography" value={user.biography} cols="25" rows="5" onChange={handleChange} />
-
-        <label> Choose a photo</label>
-        {/* <input type="file" name="imageUrl" value={user.imageUrl} />
-        <input type="text" name='existingImage' hidden value={profilePng} /> */}
-
         <button type="submit">Register</button>
       </form>
       <p>Already have an Account? click {<NavLink to='/login'>Here</NavLink>}</p>

@@ -1,5 +1,5 @@
 import React, { useEffect,useContext,useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
@@ -7,12 +7,12 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 export default function UserDetails() {
+    const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
     const {  user } = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
     const [votes, setVotes] = useState(null)
 
-    console.log('This is USER ID',user._id)
     useEffect(() => {
         const getReviews = async () =>{
             try {
@@ -29,8 +29,6 @@ export default function UserDetails() {
         const getVotes = async () =>{
             try {
                 const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } })
-                //console.log(votesFromApi.data.data[0].movieId.name)
-                console.log(votesFromApi)
                 setVotes(votesFromApi.data.data)
             } catch (error) {
                 console.log(error)
@@ -42,8 +40,9 @@ export default function UserDetails() {
 
   return (
     <div>
-        <p>Hello {user.username}</p>
-        <NavLink to="/editUser">Edit user</NavLink>
+
+        <NavLink to="/edit-user">Edit user</NavLink>
+        {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
         <p>{user.biography}</p>
         <h5>My votes</h5>
         <div className='user-vote-list'>
@@ -53,12 +52,12 @@ export default function UserDetails() {
                     {el.vote &&
                     
                     ( <div className='poster-and-icon'>
-                        <img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image'></img>
+                        <img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image' />
                         <FontAwesomeIcon icon={faHeart} className='heart-icon'/>
                     </div>)}
                     {(!el.vote && !el.ignore)  && 
-                    (<div>
-                    <img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px'></img>
+                    (<div className='poster-and-icon'>
+                    <img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px' />
                     <FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon' />
                     </div>)}
                 </div>
@@ -79,3 +78,7 @@ export default function UserDetails() {
     </div>
   )
 }
+// PENDING: div appears when ignored, making movie posters not be equally separated.
+// loading not appearing when user doest have any reviews or votes.
+
+

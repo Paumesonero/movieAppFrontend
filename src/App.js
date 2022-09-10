@@ -7,9 +7,9 @@ import Footer from './components/Footer';
 import ErrorPage from './views/ErrorPage';
 import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
-import PrivateView from './views/PrivateView';
 import IsPrivate from './components/IsPrivate';
-import UserDetails from './views/UserDetails';
+import UserDetails from './views/user/UserDetails';
+import EditUser from './views/user/EditUser';
 
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private" element={<IsPrivate><PrivateView/></IsPrivate>}/>
         <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>} />
+        <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

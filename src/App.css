@@ -6,7 +6,7 @@
 
 .user-vote-list {
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 
 .liked-movie {
@@ -16,8 +16,6 @@
 .disLiked-movie {
   border: 1px solid red;
 }
-
-
 
 .poster-and-icon {
   position: relative;
@@ -35,6 +33,6 @@
   color: red;
   font-size: 30px;
   position: absolute;
-  top: 250px;
-  left: 140px;
+  top: 88px;
+  left: 50px;
 }

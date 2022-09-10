@@ -3,12 +3,11 @@ import { NavLink} from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Navbar() {
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   //const navigate = useNavigate();
   return (
     <div>
       {isLoggedIn ? <NavLink to="/user">User</NavLink> : <NavLink to='/signup'>signup</NavLink>}
-      {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
       <NavLink to='/'>Home</NavLink>
       {/* {user && <p>Hello {user.username}</p> }
       <ul>
