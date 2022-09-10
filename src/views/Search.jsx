@@ -1,22 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from "axios";
+import { AuthContext } from '../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-const handleSearch = () => {
-    try {
-        const searchedMovie = axios.get("/")
-    } catch (error) {
-        
-    }
-};
-
 export default function Search() {
-  return (
-    <div>
-        <form method="GET" className="searchForm">
-        <input type="text" placeholder="Search"/>
-        <button onClick={handleSearch}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
-      </form>
-    </div>
-  )
+    const [search, setSearch] = setSearch("");
+    const handleSubmit = async () => {
+    
+        try {
+            const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search`, movieSearchString);
+        } catch (error) {
+            
+        }
+    };
+
+
+    return (
+        <div>
+            <form onSubmit={handleSubmit} method="GET" className="searchForm">
+                <input type="text" placeholder="Search"/>
+                <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
+                <input type="checkbox"/>
+            </form>
+        </div>
+    )
 }
