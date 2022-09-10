@@ -1,5 +1,8 @@
 import React, { useEffect,useContext,useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
@@ -43,13 +46,21 @@ export default function UserDetails() {
         <NavLink to="/editUser">Edit user</NavLink>
         <p>{user.biography}</p>
         <h5>My votes</h5>
-        <div>
+        <div className='user-vote-list'>
         {votes && votes.map(el =>{
             return(
                 <div key={el._id}>
-                    <h1>{el.movieId.vote}</h1>
-                    {el.vote && <img src={el.movieId.translations[0].poster.og} alt="movie" className='liked-movie' width='70px'></img>}
-                    {(!el.vote && !el.ignore)  && <img src={el.movieId.translations[0].poster.og} alt="movie" className='disLiked-movie' width='70px'></img>}
+                    {el.vote &&
+                    
+                    ( <div className='poster-and-icon'>
+                        <img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image'></img>
+                        <FontAwesomeIcon icon={faHeart} className='heart-icon'/>
+                    </div>)}
+                    {(!el.vote && !el.ignore)  && 
+                    (<div>
+                    <img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px'></img>
+                    <FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon' />
+                    </div>)}
                 </div>
             )
         })}

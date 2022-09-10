@@ -6,6 +6,7 @@
 
 .user-vote-list {
   display: flex;
+  gap: 20px;
 }
 
 .liked-movie {
@@ -14,4 +15,26 @@
 
 .disLiked-movie {
   border: 1px solid red;
+}
+
+
+
+.poster-and-icon {
+  position: relative;
+}
+
+.heart-icon {
+  color: green;
+  font-size: 30px;
+  position: absolute;
+  top: 90px;
+  left: 50px;
+}
+
+.crack-heart-icon {
+  color: red;
+  font-size: 30px;
+  position: absolute;
+  top: 250px;
+  left: 140px;
 }
