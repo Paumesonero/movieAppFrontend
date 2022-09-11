@@ -19,7 +19,6 @@ export default function UserDetails() {
         const getReviews = async () => {
             try {
                 const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                console.log(reviewsFromApi)
                 setReviews(reviewsFromApi.data.data);
             } catch (error) {
                 console.log(error);

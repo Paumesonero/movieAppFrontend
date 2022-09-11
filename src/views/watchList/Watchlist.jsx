@@ -10,7 +10,6 @@ export default function Watchlist() {
         const getMovies = async() =>{
             try {
                 const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchlist/myWatchList`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                console.log(moviesFromApi.data.data)
                 setMyWatchList(moviesFromApi.data.data);
             } catch (error) {
                 console.error(error);
