@@ -1,4 +1,4 @@
-import React, { useEffect,useContext,useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +9,12 @@ import { NavLink } from 'react-router-dom';
 export default function UserDetails() {
     const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
-    const {  user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
     const [votes, setVotes] = useState(null)
 
     useEffect(() => {
-        const getReviews = async () =>{
+        const getReviews = async () => {
             try {
                 const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setReviews(reviewsFromApi.data.data);
@@ -28,8 +28,8 @@ export default function UserDetails() {
     useEffect(() => {
         const getVotes = async () =>{
             try {
-                const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setVotes(votesFromApi.data.data)
+                const votesFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setVotes(votesFromDB.data.data)
             } catch (error) {
                 console.log(error)
             }
@@ -40,7 +40,6 @@ export default function UserDetails() {
 
   return (
     <div>
-
         <NavLink to="/edit-user">Edit user</NavLink>
         {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
         <p>{user.biography}</p>

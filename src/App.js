@@ -10,7 +10,11 @@ import Login from './views/auth/Login';
 import IsPrivate from './components/IsPrivate';
 import UserDetails from './views/user/UserDetails';
 import EditUser from './views/user/EditUser';
+import Movie from './views/movies/Movie';
+import Overview from './views/movies/Overview';
+import Reviews from './views/movies/Reviews';
 import Watchlist from './views/watchList/Watchlist';
+
 
 
 function App() {
@@ -24,6 +28,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>} />
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>} />
+        <Route path='/movies/:movieId' element={<Movie />}>
+          <Route path='overview' element={<Overview />} />
+          <Route path='reviews' element={<Reviews />} />
+        </Route>
         <Route path='/watchlist' element={<IsPrivate><Watchlist/></IsPrivate>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
