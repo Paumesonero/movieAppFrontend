@@ -33,7 +33,7 @@ export default function Watchlist() {
                         <p>{el.movieId.premiere}</p>
                         <p><strong>Average Rating:</strong></p>
                         <p>{el.movieId.imdb_rating}</p>
-                        <Link to=''>Read more</Link>
+                        <Link to={`/movies/${el.movieId._id}`}>Read more</Link>
                     </div>
                 </div>
             )
