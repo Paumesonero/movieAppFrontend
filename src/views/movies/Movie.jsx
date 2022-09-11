@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 // import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +15,7 @@ export default function Movie() {
         const getMovie = async () => {
             try {
                 const movieFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setMovie(movieFromDB.data.data);
+                setMovie(movieFromDB.data.data)
             } catch (error) {
                 console.log(error);
             }
@@ -51,7 +52,9 @@ export default function Movie() {
                     </form> */}
                     <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
                 </div>
-                <p>{movie.translations[0].overview}</p>
+                <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>Overview</NavLink>
+                <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+                <Outlet context={[movie, setMovie]}/>
             </div>}
         </div>
     )
