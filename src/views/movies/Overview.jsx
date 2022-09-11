@@ -1,7 +1,7 @@
 import React from 'react'
 import { useOutletContext } from 'react-router-dom';
 
-export default function Overview(props) {
+export default function Overview() {
     const [movie] = useOutletContext();
     return (
         <div>
