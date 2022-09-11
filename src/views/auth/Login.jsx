@@ -21,7 +21,6 @@ export default function Login() {
       }
     })
   }
-
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
@@ -34,7 +33,6 @@ export default function Login() {
       setErrorMessage(error.response.data.error)
     }
   }
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
