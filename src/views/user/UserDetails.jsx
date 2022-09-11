@@ -1,4 +1,4 @@
-import React, { useEffect,useContext,useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 export default function UserDetails() {
     const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
-    const {  user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
     const [votes, setVotes] = useState(null)
 
