@@ -14,6 +14,7 @@ import Movie from './views/movies/Movie';
 import Overview from './views/movies/Overview';
 import Reviews from './views/movies/Reviews';
 import Watchlist from './views/watchList/Watchlist';
+import VoteList from './views/votes/VoteList';
 
 
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='overview' element={<Overview />} />
           <Route path='reviews' element={<Reviews />} />
         </Route>
+        <Route path='/vote-list' element={<IsPrivate><VoteList/></IsPrivate>} />
         <Route path='/watchlist' element={<IsPrivate><Watchlist/></IsPrivate>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
