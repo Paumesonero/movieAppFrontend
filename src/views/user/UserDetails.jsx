@@ -28,8 +28,8 @@ export default function UserDetails() {
     useEffect(() => {
         const getVotes = async () =>{
             try {
-                const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setVotes(votesFromApi.data.data)
+                const votesFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setVotes(votesFromDB.data.data)
             } catch (error) {
                 console.log(error)
             }

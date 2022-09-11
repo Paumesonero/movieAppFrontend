@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 import axios from "axios";
-// import { AuthContext } from '../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
     const [search, setSearch] = useState("");
     const [errorMessage, setErrorMessage] = useState(undefined);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const handleChange = (e) => {
         setSearch(e.target.value)
     };    
@@ -19,7 +18,7 @@ export default function Search() {
         e.preventDefault();
         try {
             const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search}`, {params});
-            // navigate(`/movies/${searchedMovie.data.movieId}`)
+            navigate(`/movies/${searchedMovie.data.movieId}`)
         } catch (error) {
             setErrorMessage(error.response.data.error);
         }

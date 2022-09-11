@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-// import { AuthContext } from '../../context/AuthContext';
 import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -10,25 +9,30 @@ export default function Movie() {
     const [movie, setMovie] = useState("");
     const {movieId} = useParams();
     const storedToken = localStorage.getItem('authToken');
+    const [errorMessage, setErrorMessage] = useState(undefined);
     useEffect(() => {
         const getMovie = async () => {
             try {
                 const movieFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setMovie(movieFromDB.data.data);
-                console.log(movie);
             } catch (error) {
                 console.log(error);
             }
         }
         getMovie();
-    },[storedToken, movieId, movie]);
-    const handleIgnore = () => {
-
+    },[storedToken, movieId]);
+    const handleLike = async () => {
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/like`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            // const nextMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/next`, { headers: { Authorization: `Bearer ${storedToken}` } });
+        } catch (error) {
+            setErrorMessage(error.response.data.error);
+        }
     };
-
     return (
         <div>
             {movie && <div>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 <div>
                     <img src={movie.translations[0].poster.og} alt="poster" />
                 </div>
@@ -45,14 +49,9 @@ export default function Movie() {
                         <button type="submit" className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/>
                         </button>
                     </form> */}
-                    <form onSubmit={handleIgnore}>
-                        <button type="submit" className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/>
-                        </button>
-                    </form> */}
-
+                    <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
                 </div>
-                {/* <p>{movie.translations[0].overview}</p> */}
-                <h4></h4>
+                <p>{movie.translations[0].overview}</p>
             </div>}
         </div>
     )
