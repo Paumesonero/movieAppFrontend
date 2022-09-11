@@ -4,19 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function UserDetails() {
     const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
     const {  user } = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
+    const [reviewLikes, setReviewLikes] = useState(null)
     const [votes, setVotes] = useState(null)
+    const{reviewId} = useParams();
 
     useEffect(() => {
         const getReviews = async () =>{
             try {
                 const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                console.log(reviewsFromApi)
                 setReviews(reviewsFromApi.data.data);
             } catch (error) {
                 console.log(error);
@@ -29,14 +32,28 @@ export default function UserDetails() {
         const getVotes = async () =>{
             try {
                 const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setVotes(votesFromApi.data.data)
+                setVotes(votesFromApi.data.data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
         getVotes();
-    },[storedToken])
+    },[storedToken]);
+
+    // useEffect(() => {
+    //     const getNumLikes = async () =>{
+    //         try {
+    //             const reviewLikesApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/likeAmmount`, { headers: { Authorization: `Bearer ${storedToken}` } });
+    //             console.log(reviewLikes)
+    //             setReviewLikes(reviewLikesApi.data.data);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    //     getNumLikes();
+    // },[reviewLikes]);
     
+
 
   return (
     <div>
