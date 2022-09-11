@@ -14,7 +14,7 @@ export default function UserDetails() {
     const [votes, setVotes] = useState(null)
 
     useEffect(() => {
-        const getReviews = async () =>{
+        const getReviews = async () => {
             try {
                 const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setReviews(reviewsFromApi.data.data);
