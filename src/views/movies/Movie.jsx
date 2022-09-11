@@ -38,23 +38,11 @@ export default function Movie() {
                     <img src={movie.translations[0].poster.og} alt="poster" />
                 </div>
                 <div id="voteButtons">
-                    {/* <form onSubmit={handleWatchList}>
-                        <button type="submit" className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/>
-                        </button>
-                    </form> */}
-                    {/* {/* <form onSubmit={handleLike}>
-                        <button type="submit" className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/>
-                        </button>
-                    </form> */}
-                    {/* <form onSubmit={handleDisike}>
-                        <button type="submit" className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/>
-                        </button>
-                    </form> */}
                     <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
                 </div>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>Overview</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-                <Outlet context={[movie, setMovie]}/>
+                <Outlet context={[movie]}/>
             </div>}
         </div>
     )
