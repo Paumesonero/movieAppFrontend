@@ -8,6 +8,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Movie() {
     const [movie, setMovie] = useState("");
+    const [reviews, setReviews] = useState("");
     const {movieId} = useParams();
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
@@ -21,6 +22,17 @@ export default function Movie() {
             }
         }
         getMovie();
+    },[storedToken, movieId]);
+    useEffect(() => {
+        const getReviews = async () => {
+            try {
+                const reviewsFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/${movieId}/recent`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setReviews(reviewsFromDB.data.data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getReviews();
     },[storedToken, movieId]);
     const handleLike = async () => {
         try {
@@ -40,9 +52,11 @@ export default function Movie() {
                 <div id="voteButtons">
                     <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
                 </div>
-                <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>Overview</NavLink>
+                <img src={movie.image.og} alt="movie-frame" />
+                <h1>{movie.name}</h1>
+                <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-                <Outlet context={[movie]}/>
+                <Outlet context={[movie, reviews]}/>
             </div>}
         </div>
     )
