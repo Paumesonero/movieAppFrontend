@@ -40,7 +40,6 @@ export default function UserDetails() {
 
   return (
     <div>
-
         <NavLink to="/edit-user">Edit user</NavLink>
         {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
         <p>{user.biography}</p>
