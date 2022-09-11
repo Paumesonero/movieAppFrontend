@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
 
 export default function Watchlist() {
     const[myWatchList, setMyWatchList] = useState(null)
