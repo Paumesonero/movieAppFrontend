@@ -37,9 +37,9 @@ export default function EditUser() {
         <p>Hello {user.username}</p>
         <form onSubmit={handleSubmit}>
             <input type="text" name='username' defaultValue={user.username} onChange={handleChange} />
-            <input type="email" name='email' value={user.email} onChange={handleChange} />
-            <textarea name="biography"  cols="30" rows="7" value={user.biography} onChange={handleChange}></textarea>
-            <input type="file" name='imageUrl' value={user.imageUrl} onChange={handleChange} />
+            <input type="email" name='email' defaultValue={user.email} onChange={handleChange} />
+            <textarea name="biography"  cols="30" rows="7" defaultValue={user.biography} onChange={handleChange}></textarea>
+            <input type="file" name='imageUrl' defaultValue={user.imageUrl} onChange={handleChange} />
             <input type="text" name='existingImage' hidden  onChange={handleChange} />
             <button type="submit">Edit</button>
 
@@ -47,3 +47,5 @@ export default function EditUser() {
     </div>
   )
 }
+
+// PENDING: need to update user somehow so changes are seen without having to logout.
