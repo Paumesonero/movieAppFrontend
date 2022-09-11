@@ -36,3 +36,15 @@
   top: 88px;
   left: 50px;
 }
+
+/*** watchlist ***/
+
+.watchlist-movie {
+  display: flex;
+
+}
+
+.movie-info {
+  line-height: 2px;
+  margin-bottom: 10px;
+}

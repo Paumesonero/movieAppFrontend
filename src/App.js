@@ -10,6 +10,7 @@ import Login from './views/auth/Login';
 import IsPrivate from './components/IsPrivate';
 import UserDetails from './views/user/UserDetails';
 import EditUser from './views/user/EditUser';
+import Watchlist from './views/watchList/Watchlist';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>} />
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>} />
+        <Route path='/watchlist' element={<IsPrivate><Watchlist/></IsPrivate>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

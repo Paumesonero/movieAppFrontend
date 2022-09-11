@@ -16,10 +16,10 @@ export default function UserDetails() {
     useEffect(() => {
         const getReviews = async () =>{
             try {
-                const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } })
-                setReviews(reviewsFromApi.data.data)
+                const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setReviews(reviewsFromApi.data.data);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
         getReviews();
@@ -28,7 +28,7 @@ export default function UserDetails() {
     useEffect(() => {
         const getVotes = async () =>{
             try {
-                const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } })
+                const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setVotes(votesFromApi.data.data)
             } catch (error) {
                 console.log(error)

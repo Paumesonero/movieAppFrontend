@@ -9,7 +9,7 @@ export default function Search() {
     const handleSubmit = async () => {
     
         try {
-            const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search`, movieSearchString);
+            const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search`, );
         } catch (error) {
             
         }
