@@ -5,9 +5,11 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import SearchBar from '../../components/SearchBar';
 
 export default function VoteList() {
     const[myVotes, setMyVotes] = useState(null)
+    const[filteredVotes, setFilteredVotes] = useState(null)
     const[ignored, setIgnored] = useState(false)
     const storedToken = localStorage.getItem('authToken');
 
@@ -17,6 +19,7 @@ export default function VoteList() {
                 const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/votes/myVotes`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 console.log(votesFromApi)
                 setMyVotes(votesFromApi.data.data);
+                setFilteredVotes(votesFromApi.data.data)
             } catch (error) {
                 console.error(error);
             }
@@ -29,13 +32,23 @@ export default function VoteList() {
             return !prev
         })
     }
+
+    const handleSearch = (searchValue) =>{
+        if(searchValue === ''){
+            setFilteredVotes(myVotes)
+        } else{
+            const filtered = myVotes.filter(el => el.movieId.name.toLowerCase().includes((searchValue).toLowerCase()))
+            setFilteredVotes(filtered)
+        }
+    }
     
   return (
     <div>
         <h2>Vote List</h2>
+        <SearchBar onSearch={handleSearch} />
         <label > See ignored</label>
         <input type="checkbox" name='ignored' onChange={(e) => {handleCheck(e)}} />
-        {myVotes && myVotes.map(el =>{
+        {filteredVotes && filteredVotes.map(el =>{
             return(
                 <div key={el._id}>
                     {(el.vote || el.vote === false) &&(
