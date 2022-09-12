@@ -25,8 +25,7 @@ export default function UserDetails() {
             }
         }
         getReviews();
-    },[storedToken])
-
+    },[storedToken]);
     useEffect(() => {
         const getVotes = async () =>{
             try {
@@ -38,7 +37,6 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
-
     // useEffect(() => {
     //     const getNumLikes = async () =>{
     //         try {
@@ -51,9 +49,6 @@ export default function UserDetails() {
     //     }
     //     getNumLikes();
     // },[reviewLikes]);
-    
-
-
   return (
     <div>
         <NavLink to="/edit-user">Edit user</NavLink>

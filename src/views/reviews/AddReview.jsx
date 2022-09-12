@@ -9,10 +9,8 @@ export default function AddReview() {
     const[review, setReview] = useState({
         titleReview: '',
         review: ''
-    })
-
+    });
     const navigate = useNavigate()
-
     const handleChange = (e) =>{
         setReview(prev =>{
             return{
@@ -20,7 +18,7 @@ export default function AddReview() {
                 [e.target.name] : e.target.value
             }
         })
-    }
+    };
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try {
@@ -30,21 +28,20 @@ export default function AddReview() {
            console.log(error)
         } 
     }
-
-  return (
-    <div>
-        <h2>Add a review.</h2>
-        <form onSubmit={handleSubmit}>
-            <div>
-            <label> Title</label>
-            <input type="text" name='titleReview' placeholder='Title' value={review.titleReview} onChange={handleChange} />
-            </div>
-            <div>
-            <label> Description</label>
-            <textarea name="review"  cols="30" rows="7" defaultValue={review.review} onChange={handleChange} />
-            </div>
-            <button type='submit'>Post</button>
-        </form>
-    </div>
-  )
-}
+    return (
+        <div>
+            <h2>Add a review.</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                <label> Title</label>
+                <input type="text" name='titleReview' placeholder='Title' value={review.titleReview} onChange={handleChange} />
+                </div>
+                <div>
+                <label> Description</label>
+                <textarea name="review"  cols="30" rows="7" defaultValue={review.review} onChange={handleChange} />
+                </div>
+                <button type='submit'>Post</button>
+            </form>
+        </div>
+    );
+};

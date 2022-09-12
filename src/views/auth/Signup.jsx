@@ -3,18 +3,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import profilePng from '../../images/profile-icon.png'
 
-
 export default function Signup() {
   const [user, setUser] = useState({
     username: '',
     email: '',
-  })
+  });
   //const [imageUrl, setImageUrl] = useState('')
   const [password, setPassword] = useState('');
   const [passwordControl, setPasswordControl] = useState('');
   const [errorMessage, setErrorMessage] = useState(undefined);
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     setUser(prev => {
       return {
@@ -23,7 +21,6 @@ export default function Signup() {
       }
     })
   }
-
   useEffect(() => {
     if (password !== passwordControl) {
       setErrorMessage("Passwords don't match")
@@ -31,8 +28,7 @@ export default function Signup() {
       setErrorMessage(undefined)
     }
     // eslint-disable-next-line
-  }, [passwordControl])
-
+  }, [passwordControl]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -42,23 +38,18 @@ export default function Signup() {
     } catch (error) {
       setErrorMessage(error.response.data.error)
     }
-  }
-  
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input required type="text" name="username" value={user.username} onChange={handleChange} />
-
         <label>Email</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
-
         <label>Password</label>
         <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
-
         <label>Repeat the password</label>
         <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
-
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <button type="submit">Register</button>
       </form>
