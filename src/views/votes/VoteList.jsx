@@ -42,29 +42,30 @@ export default function VoteList() {
         console.log(filteredVotes)
     }
 
-    // const handleSelect = (e) =>{
-    //     if(e.target.value === 'date'){
-    //         const orderedByDate = [...filteredVotes].sort((a,b) => b.movieId.year - a.movieId.premiere)
-    //         setFilteredVotes(orderedByDate)
-    //     } else if( e.target.value === 'name'){
-    //         const orderedByName = [...filteredVotes].sort((a,b) => a.movieId.name - b.movieId.name)
-    //         setFilteredVotes(orderedByName)
-    //     } else if( e.target.value === 'rating'){
-    //         const orderedByRating = [...filteredVotes].sort((a,b) => a.movieId.imdb_rating - b.movieId.imdb_rating)
-    //         setFilteredVotes(orderedByRating)
-    //     }
-    //     console.log('this is my filtered votes', filteredVotes)
-    // }
+    const handleSelect = (e) =>{
+        if(e.target.value === 'date'){
+            const orderedByDate = [...filteredVotes].sort((a,b) => (b.movieId.year > a.movieId.year) ? 1 : -1)
+            setFilteredVotes(orderedByDate)
+        } else if( e.target.value === 'name'){
+            const orderedByName = [...filteredVotes].sort((a,b) => (a.movieId.name > b.movieId.name)? 1 : -1)
+            setFilteredVotes(orderedByName)
+        } else if( e.target.value === 'rating'){
+            const orderedByRating = [...filteredVotes].sort((a,b) => a.movieId.imdb_rating - b.movieId.imdb_rating)
+            setFilteredVotes(orderedByRating)
+        }
+        console.log('this is my filtered votes', filteredVotes)
+    }
     
   return (
     <div>
         <h2>Vote List</h2>
         <SearchBar onSearch={ handleSearch} />
-        {/* <select >
+        <select onChange={handleSelect} >
+            <option>Sort By:</option>
             <option value='date' >By Date</option>
             <option value='name'>By Name</option>
             <option value='rating'>By Rating</option>
-        </select> */}
+        </select>
         <label > See ignored</label>
         <input type="checkbox" name='ignored' onChange={(e) => {handleCheck(e)}} />
 
