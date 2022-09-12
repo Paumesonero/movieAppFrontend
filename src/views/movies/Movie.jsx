@@ -54,7 +54,7 @@ export default function Movie() {
                 </div>
                 <img src={movie.image.og} alt="movie-frame" />
                 <h1>{movie.name}</h1>
-                <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
+                <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
                 <Outlet context={[movie, reviews]}/>
             </div>}
