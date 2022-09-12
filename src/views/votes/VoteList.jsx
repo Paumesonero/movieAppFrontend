@@ -50,7 +50,7 @@ export default function VoteList() {
             const orderedByName = [...filteredVotes].sort((a,b) => (a.movieId.name > b.movieId.name)? 1 : -1)
             setFilteredVotes(orderedByName)
         } else if( e.target.value === 'rating'){
-            const orderedByRating = [...filteredVotes].sort((a,b) => a.movieId.imdb_rating - b.movieId.imdb_rating)
+            const orderedByRating = [...filteredVotes].sort((a,b) => b.movieId.imdb_rating - a.movieId.imdb_rating)
             setFilteredVotes(orderedByRating)
         }
         console.log('this is my filtered votes', filteredVotes)
@@ -93,7 +93,7 @@ export default function VoteList() {
                             <p>{el.movieId.premiere}</p>
                             <p><strong>Average Rating:</strong></p>
                             <p>{el.movieId.imdb_rating}</p>
-                            <Link to=''>Add Review</Link>
+                            <Link to={`/addReview/${el.movieId._id}`}>Add Review</Link>
                         </div>
                     </div>
                     )}
