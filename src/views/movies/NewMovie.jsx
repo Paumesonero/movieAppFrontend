@@ -1,32 +1,29 @@
 import axios from 'axios';
 import React, {useState} from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
-export default function EditMovie() {
-    const location = useLocation();
-    const {movie} = location.state;
-    const {movieId} = useParams();
+export default function NewMovie() {
     const navigate = useNavigate();
     const storedToken = localStorage.getItem('authToken');
     const [movieToDB, setMovieToDB] = useState({
-        imdb_id:movie.imdb_id,
-        name: movie.name,
-        year: movie.year,
-        image1: movie.image.og,
-        premiere: movie.premiere,
-        genre1:movie.genres[0],
-        genre2:movie.genres[1],
-        genre3:movie.genres[2],
-        department1: movie.people[0].department,
-        people1: movie.people[0].name,
-        department2: movie.people[1].department,
-        people2: movie.people[1].name,
-        department3: movie.people[2].department,
-        people3: movie.people[2].name,
-        imdb_rating: movie.imdb_rating,
-        imdb_vote: movie.imdb_vote,
-        poster1: movie.translations[0].poster.og,
-        overview: movie.translations[0].overview,
+        imdb_id:undefined,
+        name: "",
+        year: undefined,
+        image1: "",
+        premiere: "",
+        genre1:undefined,
+        genre2:undefined,
+        genre3:undefined,
+        department1: "",
+        people1: "",
+        department2: "",
+        people2: "",
+        department3: "",
+        people3: "",
+        imdb_rating: undefined,
+        imdb_vote: undefined,
+        poster1: "",
+        overview: "",
     });
     const handleChange = (e) => {
         setMovieToDB(prev => {
@@ -39,8 +36,8 @@ export default function EditMovie() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${process.env.REACT_APP_API_URL}/movies/${movieId}/edit`, movieToDB, { headers: { Authorization: `Bearer ${storedToken}` } });
-            navigate(`/movies/${movieId}`);
+            const newMovie = await axios.post(`${process.env.REACT_APP_API_URL}/movies/create`, movieToDB, { headers: { Authorization: `Bearer ${storedToken}` } });
+            navigate(`/movies/${newMovie.data.data._id}`);
         } catch (error) {
             console.log(error)
         }
@@ -85,7 +82,7 @@ export default function EditMovie() {
                     <img src={movieToDB.poster1} alt="movie-poster" />
                     <label>Overview</label>
                     <textarea name="overview" cols="30" rows="7" value={movieToDB.overview?movieToDB.overview:""} onChange={handleChange}></textarea>
-                    <button type="submit">Edit movie</button>
+                    <button type="submit">Create movie</button>
                 </form>
             </div>}
         </div>

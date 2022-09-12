@@ -89,6 +89,7 @@ export default function UserDetails() {
                 </div>
             )
         })}
+        <NavLink to={`/movies/create`}>Create new Movie</NavLink>
         {!reviews && <p>Loading...</p>}
     </div>
   )
