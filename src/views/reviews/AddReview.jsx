@@ -35,8 +35,14 @@ export default function AddReview() {
     <div>
         <h2>Add a review.</h2>
         <form onSubmit={handleSubmit}>
+            <div>
+            <label> Title</label>
             <input type="text" name='titleReview' placeholder='Title' value={review.titleReview} onChange={handleChange} />
+            </div>
+            <div>
+            <label> Description</label>
             <textarea name="review"  cols="30" rows="7" defaultValue={review.review} onChange={handleChange} />
+            </div>
             <button type='submit'>Post</button>
         </form>
     </div>
