@@ -9,7 +9,7 @@ export default function Overview() {
                 <h4>Overview</h4>
                 <p>{movie.translations[0].overview}</p>
                 {movie.people && movie.people.map(person => {
-                    return (<div key={`${person.imdb_id}, ${person.department}`}>
+                    return (<div key={`${person.name}, ${person.department}`}>
                         <h4>{person.department}</h4>
                         <p>{person.name}</p>
                     </div>)
