@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import toast from 'react-hot-toast';
 // import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 
 export default function Movie() {
@@ -12,6 +13,7 @@ export default function Movie() {
     const {movieId} = useParams();
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
+    const navigate = useNavigate();
     useEffect(() => {
         const getMovie = async () => {
             try {
@@ -42,6 +44,15 @@ export default function Movie() {
             setErrorMessage(error.response.data.error);
         }
     };
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/movies/${movieId}/delete`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            toast.error(`${movie.name} was deleted!`);
+            navigate("/");
+        } catch (error) {
+            setErrorMessage(error.response.data.error);
+        }
+    };
     return (
         <div>
             {movie && <div>
@@ -57,6 +68,8 @@ export default function Movie() {
                 <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
                 <Outlet context={[movie, reviews]}/>
+                <NavLink to={`/movies/${movieId}/edit`}>Edit</NavLink>
+                <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
             </div>}
         </div>
     )
