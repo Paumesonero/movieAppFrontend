@@ -17,7 +17,6 @@ export default function VoteList() {
         const getVotes = async() =>{
             try {
                 const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/votes/myVotes`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                console.log(votesFromApi)
                 setMyVotes(votesFromApi.data.data);
                 setFilteredVotes(votesFromApi.data.data)
             } catch (error) {
@@ -40,31 +39,32 @@ export default function VoteList() {
             const filtered = myVotes.filter(el => el.movieId.name.toLowerCase().includes((searchValue).toLowerCase()))
             setFilteredVotes(filtered)
         }
+        console.log(filteredVotes)
     }
 
-    const handleSelect = (e) =>{
-        if(e.target.value === 'date'){
-            const orderedByDate = [...filteredVotes].sort((a,b) => b.movieId.year - a.movieId.premiere)
-            setFilteredVotes(orderedByDate)
-        } else if( e.target.value === 'name'){
-            const orderedByName = [...filteredVotes].sort((a,b) => a.movieId.name - b.movieId.name)
-            setFilteredVotes(orderedByName)
-        } else if( e.target.value === 'rating'){
-            const orderedByRating = [...filteredVotes].sort((a,b) => a.movieId.imdb_rating - b.movieId.imdb_rating)
-            setFilteredVotes(orderedByRating)
-        }
-        console.log('this is my filtered votes', filteredVotes)
-    }
+    // const handleSelect = (e) =>{
+    //     if(e.target.value === 'date'){
+    //         const orderedByDate = [...filteredVotes].sort((a,b) => b.movieId.year - a.movieId.premiere)
+    //         setFilteredVotes(orderedByDate)
+    //     } else if( e.target.value === 'name'){
+    //         const orderedByName = [...filteredVotes].sort((a,b) => a.movieId.name - b.movieId.name)
+    //         setFilteredVotes(orderedByName)
+    //     } else if( e.target.value === 'rating'){
+    //         const orderedByRating = [...filteredVotes].sort((a,b) => a.movieId.imdb_rating - b.movieId.imdb_rating)
+    //         setFilteredVotes(orderedByRating)
+    //     }
+    //     console.log('this is my filtered votes', filteredVotes)
+    // }
     
   return (
     <div>
         <h2>Vote List</h2>
-        <SearchBar onSearch={(e) => handleSearch} />
-        <select onChange={handleSelect}>
+        <SearchBar onSearch={ handleSearch} />
+        {/* <select >
             <option value='date' >By Date</option>
             <option value='name'>By Name</option>
             <option value='rating'>By Rating</option>
-        </select>
+        </select> */}
         <label > See ignored</label>
         <input type="checkbox" name='ignored' onChange={(e) => {handleCheck(e)}} />
 
