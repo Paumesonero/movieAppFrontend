@@ -2,11 +2,7 @@ import React from 'react'
 import { useOutletContext } from 'react-router-dom'
 
 export default function AllReviews() {
-<<<<<<< HEAD
-  const[allReviews] = useOutletContext();
-=======
     const[allReviews, handleDelete] = useOutletContext()
->>>>>>> delete-review
   return (
     <div>
         {allReviews && allReviews.map(el =>{

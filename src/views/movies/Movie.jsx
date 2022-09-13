@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import toast from 'react-hot-toast';
-// import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 const colage = require("colage");
 
 export default function Movie() {
@@ -37,11 +37,20 @@ export default function Movie() {
         }
         getReviews();
     },[storedToken, movieId]);
-
     const handleLike = async () => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/like`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
-            // const nextMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/next`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const nextMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/next`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            navigate(`/movies/${nextMovie.data.data._id}`)
+        } catch (error) {
+            setErrorMessage(error.response.data.error);
+        }
+    };
+    const handleDislike = async () => {
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/dislike`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const nextMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/next`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            navigate(`/movies/${nextMovie.data.data._id}`)
         } catch (error) {
             setErrorMessage(error.response.data.error);
         }
@@ -64,6 +73,7 @@ export default function Movie() {
                 </div>
                 <div id="voteButtons">
                     <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
+                    <button onClick={() => handleDislike()} className="voteButtons"><FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon'/></button>
                 </div>
                 <img src={movie.image.og} alt="movie-frame" />
                 <h1>{movie.name}</h1>
