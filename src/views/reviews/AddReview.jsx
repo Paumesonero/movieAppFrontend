@@ -24,6 +24,7 @@ export default function AddReview() {
         }
         getMovie();
     },[movieId, storedToken]);
+
     const handleChange = (e) =>{
         setReview(prev =>{
             return{
@@ -32,14 +33,14 @@ export default function AddReview() {
             }
         })
     };
-    console.log(movie)
+    
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try {
              await axios.post(`${process.env.REACT_APP_API_URL}/reviews/${movieId}/create`, review, { headers: { Authorization: `Bearer ${storedToken}` } });
-             navigate('/vote-list')
+             navigate('/vote-list');
         } catch (error) {
-           console.log(error)
+           console.log(error);
         } 
     }
     return (
