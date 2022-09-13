@@ -14,7 +14,7 @@ const [userData, setUserData] = useState({
     email: user.email,
     biography: user.biography,
     imageUrl: user.imageUrl
-})
+});
 
 const handleChange = (e) => {
   setUserData(prev =>{

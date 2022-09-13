@@ -23,7 +23,7 @@ export default function Movie() {
         const getMovie = async () => {
             try {
                 const movieFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setMovie(movieFromDB.data.data)
+                setMovie(movieFromDB.data.data);
             } catch (error) {
                 console.log(error);
             }
