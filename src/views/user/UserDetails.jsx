@@ -5,6 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function UserDetails() {
     const { isLoggedIn, logOutUser } = useContext(AuthContext);
@@ -14,6 +15,7 @@ export default function UserDetails() {
     const [allReviews, setAllReviews] = useState(null)
     const [votes, setVotes] = useState(null)
     const [showMore, setShowMore] = useState(false)
+   // const [errorMessage, setErrorMessage] = useState(undefined);
    
     // gets user's most recent reviews
     useEffect(() => {
@@ -26,7 +28,7 @@ export default function UserDetails() {
             }
         }
         getReviews();
-    },[storedToken]);
+    },[storedToken, reviews]);
 
     // gets all user's reviews.
     useEffect(() => {
@@ -39,7 +41,7 @@ export default function UserDetails() {
             }
         }
         getReviews();
-    },[storedToken]);
+    },[storedToken, allReviews]);
 
     // gets users votes
     useEffect(() => {
@@ -60,6 +62,23 @@ export default function UserDetails() {
         });
     };
 
+    const handleDelete = async (reviewId, titleReview) => {
+        try {
+            const filteredAllReviews = allReviews.filter(el =>{
+                return el.titleReview !== titleReview
+            })
+            setAllReviews(filteredAllReviews)
+            const filteredReviews = reviews.filter(el =>{
+                return el.titleReview !== titleReview
+            })
+            setReviews(filteredReviews)
+            await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}/delete`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            
+            toast.error(' Review deleted!');
+        } catch (error) {
+            console.log(error)
+        }
+    };
   return (
     <div>
         <NavLink to="/edit-user">Edit user</NavLink>
@@ -92,13 +111,14 @@ export default function UserDetails() {
                 <div key={el._id}>
                 <p><strong>{el.titleReview}</strong></p>
                 <p>{el.review}</p>
+                <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
                 </div>
             )
         })}
         <button onClick={handleCheck}><Link to='/user/allReviews'>Show more reviews</Link></button>
         {(allReviews && showMore) &&(
             <div>
-            <Outlet context={[allReviews]}/> 
+            <Outlet context={[allReviews, handleDelete]}/> 
             </div>
         )}
 
