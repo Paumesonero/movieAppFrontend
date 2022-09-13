@@ -37,6 +37,14 @@
   left: 50px;
 }
 
+.eye-slash-icon {
+  color: yellow;
+  font-size: 30px;
+  position: absolute;
+  top: 220px;
+  left: 50px;
+}
+
 
 
 /*** watchlist ***/
