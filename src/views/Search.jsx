@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useQuery} from 'react'
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -12,15 +12,13 @@ export default function Search() {
         setSearch(e.target.value)
     };    
     const handleSubmit = async (e) => {
-        const params = {
-            movieSearchString: {toJSON: () => search}
-        };
         e.preventDefault();
         try {
-            const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search}`, {params});
-            navigate(`/movies/${searchedMovie.data.data.movieId}`);
+            const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/${search}`);
+            navigate(`/movies/${searchedMovie.data.data[0]._id}`);
+            console.log(searchedMovie.data.data)
         } catch (error) {
-            setErrorMessage(error.response.data.error);
+            console.log(error)
         }
     };
     return (
