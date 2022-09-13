@@ -18,6 +18,7 @@ import EditMovie from './views/movies/EditMovie'
 import Watchlist from './views/watchList/Watchlist';
 import VoteList from './views/votes/VoteList';
 import AddReview from './views/reviews/AddReview';
+import AllReviews from './views/user/AllReviews';
 
 function App() {
   return (
@@ -28,7 +29,9 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>} />
+        <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>}>
+          <Route path='allReviews' element={<AllReviews/>} />
+        </Route>
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>} />
         <Route path='/movies/:movieId' element={<Movie />}>
           <Route path='overview' element={<Overview />} />

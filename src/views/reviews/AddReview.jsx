@@ -1,16 +1,29 @@
 import React,{useState} from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function AddReview() {
     const {movieId} = useParams();
+    const [movie, setMovie] = useState(null)
     const storedToken = localStorage.getItem('authToken');
     const[review, setReview] = useState({
         titleReview: '',
         review: ''
     });
     const navigate = useNavigate()
+
+    useEffect(() =>{
+        const getMovie = async() =>{
+            try {
+                const movieFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setMovie(movieFromApi.data.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        getMovie();
+    },[movieId, storedToken]);
     const handleChange = (e) =>{
         setReview(prev =>{
             return{
@@ -19,6 +32,7 @@ export default function AddReview() {
             }
         })
     };
+    console.log(movie)
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try {
@@ -31,6 +45,7 @@ export default function AddReview() {
     return (
         <div>
             <h2>Add a review.</h2>
+            {movie && <img src={movie.translations[0].poster.og} alt='movie poster'></img>}
             <form onSubmit={handleSubmit}>
                 <div>
                 <label> Title</label>

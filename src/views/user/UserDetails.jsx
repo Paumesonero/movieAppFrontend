@@ -4,17 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 
 export default function UserDetails() {
     const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
-    const [reviewLikes, setReviewLikes] = useState(null)
+    const [allReviews, setAllReviews] = useState(null)
     const [votes, setVotes] = useState(null)
-    const{reviewId} = useParams();
-
+    const [showMore, setShowMore] = useState(false)
+   
+    // gets user's most recent reviews
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -26,6 +27,21 @@ export default function UserDetails() {
         }
         getReviews();
     },[storedToken]);
+
+    // gets all user's reviews.
+    useEffect(() => {
+        const getReviews = async () => {
+            try {
+                const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/allUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setAllReviews(reviewsFromApi.data.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getReviews();
+    },[storedToken]);
+
+    // gets users votes
     useEffect(() => {
         const getVotes = async () =>{
             try {
@@ -37,18 +53,13 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
-    // useEffect(() => {
-    //     const getNumLikes = async () =>{
-    //         try {
-    //             const reviewLikesApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/likeAmmount`, { headers: { Authorization: `Bearer ${storedToken}` } });
-    //             console.log(reviewLikes)
-    //             setReviewLikes(reviewLikesApi.data.data);
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-    //     getNumLikes();
-    // },[reviewLikes]);
+
+    const handleCheck = (e) =>{
+        setShowMore(prev =>{
+            return !prev
+        });
+    };
+
   return (
     <div>
         <NavLink to="/edit-user">Edit user</NavLink>
@@ -84,8 +95,16 @@ export default function UserDetails() {
                 </div>
             )
         })}
+        <button onClick={handleCheck}><Link to='/user/allReviews'>Show more reviews</Link></button>
+        {(allReviews && showMore) &&(
+            <div>
+            <Outlet context={[allReviews]}/> 
+            </div>
+        )}
+
         <NavLink to={`/movies/create`}>Create new Movie</NavLink>
         {!reviews && <p>Loading...</p>}
+        {!allReviews && <p>Loading...</p>}
     </div>
   )
 }
