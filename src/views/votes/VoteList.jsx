@@ -40,13 +40,13 @@ export default function VoteList() {
     };
     const handleSelect = (e) =>{
         if(e.target.value === 'date'){
-            const orderedByDate = [...filteredVotes].sort((a,b) => (b.movieId.year > a.movieId.year) ? 1 : -1)
+            const orderedByDate = [...filteredVotes].sort((a,b) => (b.movieId.year > a.movieId.year) ? 1 : -1);
             setFilteredVotes(orderedByDate);
         } else if(e.target.value === 'name'){
-            const orderedByName = [...filteredVotes].sort((a,b) => (a.movieId.name > b.movieId.name)? 1 : -1)
+            const orderedByName = [...filteredVotes].sort((a,b) => (a.movieId.name > b.movieId.name)? 1 : -1);
             setFilteredVotes(orderedByName);
         } else if(e.target.value === 'rating'){
-            const orderedByRating = [...filteredVotes].sort((a,b) => b.movieId.imdb_rating - a.movieId.imdb_rating)
+            const orderedByRating = [...filteredVotes].sort((a,b) => b.movieId.imdb_rating - a.movieId.imdb_rating);
             setFilteredVotes(orderedByRating);
         };
         console.log('this is my filtered votes', filteredVotes);
