@@ -102,6 +102,7 @@ export default function UserDetails() {
         )}
 
         <NavLink to={`/movies/create`}>Create new Movie</NavLink>
+        <NavLink to={`/user/preferences`}>See my preferences</NavLink>
         {!reviews && <p>Loading...</p>}
         {!allReviews && <p>Loading...</p>}
     </div>

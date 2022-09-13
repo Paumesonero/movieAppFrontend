@@ -10,6 +10,7 @@ import Login from './views/auth/Login';
 import IsPrivate from './components/IsPrivate';
 import UserDetails from './views/user/UserDetails';
 import EditUser from './views/user/EditUser';
+import Preferences from "./views/user/Preferences"
 import Movie from './views/movies/Movie';
 import Overview from './views/movies/Overview';
 import Reviews from './views/movies/Reviews';
@@ -33,6 +34,7 @@ function App() {
           <Route path='allReviews' element={<AllReviews/>} />
         </Route>
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>} />
+        <Route path="user/preferences" element={<Preferences/>} />
         <Route path='/movies/:movieId' element={<Movie />}>
           <Route path='overview' element={<Overview />} />
           <Route path='reviews' element={<Reviews />} />
