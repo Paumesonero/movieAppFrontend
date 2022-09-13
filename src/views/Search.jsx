@@ -18,7 +18,7 @@ export default function Search() {
         e.preventDefault();
         try {
             const searchedMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/search}`, {params});
-            navigate(`/movies/${searchedMovie.data.movieId}`)
+            navigate(`/movies/${searchedMovie.data.data.movieId}`);
         } catch (error) {
             setErrorMessage(error.response.data.error);
         }

@@ -37,9 +37,10 @@ export default function Movie() {
         }
         getReviews();
     },[storedToken, movieId]);
+
     const handleLike = async () => {
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/like`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/like`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
             // const nextMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/next`, { headers: { Authorization: `Bearer ${storedToken}` } });
         } catch (error) {
             setErrorMessage(error.response.data.error);
