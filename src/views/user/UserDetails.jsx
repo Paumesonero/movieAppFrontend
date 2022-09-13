@@ -83,6 +83,7 @@ export default function UserDetails() {
     <div>
         <NavLink to="/edit-user">Edit user</NavLink>
         {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
+        <img src={user.imageUrl} alt="profile" />
         <p>{user.biography}</p>
         <h5>My votes</h5>
         <div className='user-vote-list'>
