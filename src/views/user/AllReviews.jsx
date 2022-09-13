@@ -8,7 +8,7 @@ export default function AllReviews() {
         {allReviews && allReviews.map(el =>{
             return(
                 <div key={el._id}>
-                <img src={el.translations[0].poster.og}></img>
+                <a href={`/movies/${el.movieId}`}><img src={el.translations[0].poster.og} alt="movie poster"></img></a>
                 <p><strong>{el.titleReview}</strong></p>
                 <p>{el.review}</p>
                 </div>

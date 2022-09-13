@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import toast from 'react-hot-toast';
 // import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+const colage = require("colage");
 
 export default function Movie() {
     const [movie, setMovie] = useState("");
@@ -65,6 +66,7 @@ export default function Movie() {
                 </div>
                 <img src={movie.image.og} alt="movie-frame" />
                 <h1>{movie.name}</h1>
+                <h3><span>{colage.ge([`${movie.genres[0]}`],"en")}</span><span>{colage.ge([`${movie.genres[1]}`],"en")}</span><span>{colage.ge([`${movie.genres[2]}`],"en")}</span></h3>
                 <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
                 <Outlet context={[movie, reviews]}/>
