@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toast } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export default function EditUser() {
 const navigate = useNavigate();
@@ -12,7 +12,8 @@ const {user, logOutUser} = useContext(AuthContext);
 const [userData, setUserData] = useState({
     username: user.username,
     email: user.email,
-    biography: user.biography
+    biography: user.biography,
+    imageUrl: user.imageUrl
 })
 
 const handleChange = (e) => {
@@ -36,6 +37,22 @@ const handleSubmit = async (e) =>{
     }
 }
 
+const handleFileUpload = async(e) =>{
+    const uploadData = new FormData();
+    uploadData.append('imageUrl', e.target.files[0]);
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/user/upload`, uploadData);
+        setUserData(prev =>{
+            return{
+                ...prev,
+                imageUrl: response.data.fileUrl
+            }
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 return(
     <div>
         <h2>Edit user.</h2>
@@ -43,6 +60,7 @@ return(
             <input required type='text' name='username' value={userData.username} onChange={handleChange} />
             <input required type='email' name='email' value={userData.email} onChange={handleChange} />
             <textarea name="biography"  cols="30" rows="7" value={userData.biography} onChange={handleChange} />
+            <input type="file" onChange={(e) => handleFileUpload(e)} />
             <button type='submit'>Save changes and log out</button>
          </form>
     </div>
