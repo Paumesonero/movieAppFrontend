@@ -59,7 +59,6 @@ export default function UserDetails() {
             return !prev
         });
     };
-
   return (
     <div>
         <NavLink to="/edit-user">Edit user</NavLink>
