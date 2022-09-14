@@ -123,7 +123,7 @@ export default function Movie() {
                 <Outlet context={[movie, reviews]}/>
                 {user.role === 'admin' && (
                     <div>
-                        <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit</NavLink>
+                        <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
                         <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
                     </div>
                     
