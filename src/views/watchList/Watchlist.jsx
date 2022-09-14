@@ -9,7 +9,7 @@ export default function Watchlist() {
     useEffect(() =>{
         const getMovies = async() =>{
             try {
-                const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchlist/myWatchList`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchlist`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setMyWatchList(moviesFromApi.data.data);
             } catch (error) {
                 console.error(error);
