@@ -15,16 +15,14 @@ const [userData, setUserData] = useState({
     biography: user.biography,
     imageUrl: user.imageUrl
 });
-
 const handleChange = (e) => {
   setUserData(prev =>{
     return{
         ...prev,
          [e.target.name]: e.target.value
-         }
-      })
     }
-
+  })
+}
 const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
@@ -52,7 +50,6 @@ const handleFileUpload = async(e) =>{
         console.error(error)
     }
 }
-
 return(
     <div>
         <h2>Edit user.</h2>
@@ -65,6 +62,5 @@ return(
          </form>
     </div>
      )
-
 }
 
