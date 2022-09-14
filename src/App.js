@@ -23,7 +23,7 @@ import AllReviews from './views/user/AllReviews';
 
 function App() {
   return (
-    <div className="App">
+    <div className="m-0 box-border text-base">
       <Toaster/>
       <Routes>
         <Route path="/" element={<Home />} />

@@ -24,11 +24,13 @@ export default function VoteList() {
         };
         getVotes();
     }, [storedToken]);
+
     const handleCheck = (e) =>{
         setIgnored(prev =>{
             return !prev
         });
     };
+
     const handleSearch = (searchValue) =>{
         if(searchValue === ''){
             setFilteredVotes(myVotes);
@@ -38,6 +40,7 @@ export default function VoteList() {
         }
         console.log(filteredVotes);
     };
+
     const handleSelect = (e) =>{
         if(e.target.value === 'date'){
             const orderedByDate = [...filteredVotes].sort((a,b) => (b.movieId.year > a.movieId.year) ? 1 : -1);
@@ -63,53 +66,60 @@ export default function VoteList() {
             </select>
             <label > See ignored</label>
             <input type="checkbox" name='ignored' onChange={(e) => {handleCheck(e)}} />
+            <div className='flex flex-col gap-5 text-sm mt-4'>
             {filteredVotes && filteredVotes.map(el =>{
                 return(
                     <div key={el._id}>
                         {(el.vote || el.vote === false) &&(
-                            <div key={el._id} className='watchlist-movie' >
+                            <div key={el._id} className='flex gap-5 h-44 mb-0 items-center' >
                                 {el.vote ? (
-                                    <div className='poster-and-icon'>
-                                        <img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image' />
-                                        <FontAwesomeIcon icon={faHeart} className='heart-icon'/>
+                                    <div className='flex items-center'>
+                                        <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                                     </div>
                                 ) : (
-                                    <div className='poster-and-icon'>
-                                        <img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px' />
-                                        <FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon' />
+                                    <div className='flex items-center '>
+                                      <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                                     </div>
                                 )}
-                                <div className='movie-info'>
+                                <div className='flex flex-col w-32 justify-center gap-2'>
                                     <p><strong>Title:</strong></p>
                                     <p>{el.movieId.name}</p>
                                     <p><strong>Release Date:</strong></p>
                                     <p>{el.movieId.premiere}</p>
                                     <p><strong>Average Rating:</strong></p>
                                     <p>{el.movieId.imdb_rating}</p>
-                                    <Link to={`/addReview/${el.movieId._id}`}>Add Review</Link>
+                                    
+                                </div>
+
+                                <div className='flex flex-col justify-between h-28'>
+                                    {el.vote ? <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeart}/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCrack} /></Link>}
+                                <Link to={`/addReview/${el.movieId._id}`}>Add Review</Link>
                                 </div>
                             </div>
                         )}
                     {(ignored && el.vote === undefined) &&(
-                        <div className='watchlist-movie'>
-                            <div className='poster-and-icon'>
-                                <img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image' />
-                                <FontAwesomeIcon icon={faEyeSlash} className='ignore'/>
-                        </div>
-                        <div className='movie-info'>
+                        <div className='flex gap-5'>
+                                <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
+                        <div className='flex flex-col w-32 '>
                                 <p><strong>Title:</strong></p>
                                 <p>{el.movieId.name}</p>
                                 <p><strong>Release Date:</strong></p>
                                 <p>{el.movieId.premiere}</p>
                                 <p><strong>Average Rating:</strong></p>
                                 <p>{el.movieId.imdb_rating}</p>
-                                <Link to=''>Add Review</Link>
+                                
+                        </div>
+                        <div className='flex flex-col justify-between h-28'>
+                            {el.vote === undefined && <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faEyeSlash}/></Link> }
+                            <Link to=''>Add Review</Link>
                         </div>
                         </div>
                     )}  
                     </div>
                 )
+                
             })}
+            </div>
             {!myVotes && <p>loading...</p>}
         </div>
     )
