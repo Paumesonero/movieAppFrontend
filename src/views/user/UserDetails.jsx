@@ -81,19 +81,19 @@ export default function UserDetails() {
         <img src={user.imageUrl} alt="profile" />
         <p>{user.biography}</p>
         <h5>My votes</h5>
-        <div className='user-vote-list'>
+        <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-2'>
         {votes && votes.map(el =>{
             return(
                 <div key={el._id}>
                     {el.vote && ( 
-                        <div className='poster-and-icon'>
-                        <a href={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image' /></a>
-                        <FontAwesomeIcon icon={faHeart} className='heart-icon'/>
-                    </div>)}
+                        <div className='relative'>
+                        <Link to={`/movies/${el.movieId._id}`} className=''><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
+                        <FontAwesomeIcon icon={faHeart} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-green-600'/>
+                        </div>)}
                     {(!el.vote && !el.ignore)  && 
-                    (<div className='poster-and-icon'>
-                    <a href={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px' /></a>
-                    <FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon' />
+                    (<div className='relative'>
+                    <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
+                    <FontAwesomeIcon icon={faHeartCrack} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-red-600' />
                     </div>)}
                 </div>
             )
