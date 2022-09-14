@@ -8,23 +8,20 @@ export default function EditUser() {
 const navigate = useNavigate();
 const storedToken = localStorage.getItem('authToken');
 const {user, logOutUser} = useContext(AuthContext);
-
 const [userData, setUserData] = useState({
     username: user.username,
     email: user.email,
     biography: user.biography,
     imageUrl: user.imageUrl
 });
-
 const handleChange = (e) => {
   setUserData(prev =>{
     return{
         ...prev,
          [e.target.name]: e.target.value
-         }
-      })
     }
-
+  })
+}
 const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
@@ -52,7 +49,6 @@ const handleFileUpload = async(e) =>{
         console.error(error)
     }
 }
-
 return(
     <div>
         <h2>Edit user.</h2>
@@ -65,6 +61,5 @@ return(
          </form>
     </div>
      )
-
 }
 
