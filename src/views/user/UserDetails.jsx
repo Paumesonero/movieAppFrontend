@@ -122,8 +122,8 @@ export default function UserDetails() {
             <Outlet context={[allReviews, handleDelete]}/> 
             </div>
         )}
-
-        <NavLink to={`/movies/create`}>Create new Movie</NavLink>
+        {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
+        
         <NavLink to={`/user/preferences`}>See my preferences</NavLink>
         {!reviews && <p>Loading...</p>}
         {!allReviews && <p>Loading...</p>}

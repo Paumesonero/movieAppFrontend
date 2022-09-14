@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 export default function AddReview() {
     const {movieId} = useParams();
@@ -38,6 +39,7 @@ export default function AddReview() {
         e.preventDefault();
         try {
              await axios.post(`${process.env.REACT_APP_API_URL}/reviews/${movieId}/create`, review, { headers: { Authorization: `Bearer ${storedToken}` } });
+             toast.success('Review posted')
              navigate('/vote-list');
         } catch (error) {
            console.log(error);

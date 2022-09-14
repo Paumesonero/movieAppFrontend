@@ -45,7 +45,7 @@ export default function NewMovie() {
     return (
         <div>
             {movieToDB && <div>
-                <h1>Edit movie</h1>
+                <h1>Add movie</h1>
                 <form onSubmit={handleSubmit}>
                     <label>IMDB Id</label>
                     <input type="text" name="imdb_id" defaultValue={movieToDB.imdb_id?movieToDB.imdb_id:undefined} onChange={handleChange}/>

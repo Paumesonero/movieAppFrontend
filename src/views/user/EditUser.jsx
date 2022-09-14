@@ -64,46 +64,7 @@ return(
             <button type='submit'>Save changes and log out</button>
          </form>
     </div>
-)
+     )
 
 }
-//     const {  user } = useContext(AuthContext);
-//     const storedToken = localStorage.getItem('authToken');
-//     const navigate = useNavigate();
-//     const[currentUser, setCurrentUser] = useState(null);
-//     const handleChange = (e) => {
-//         setCurrentUser(prev =>{
-//             return{
-//                 ...prev,
-//                 [e.target.name]: e.target.value
-//             }
-//         })
-//     }
-//     const handleSubmit = async (e) =>{
-//         e.preventDefault();
-//         try {
-//             console.log(currentUser)
-//              await axios.put(`${process.env.REACT_APP_API_URL}/user/edit`, currentUser, { headers: { Authorization: `Bearer ${storedToken}` } });
-//              navigate('/user')
-//         } catch (error) {
-//             console.error(error)
-//         }
-//     }
-//     return (
-//         <div>
-//             <h2>Edit.</h2>
-//             <p>Hello {user.username}</p>
-//             <form onSubmit={handleSubmit}>
-//                 <input type="text" name='username' defaultValue={user.username} onChange={handleChange} />
-//                 <input type="email" name='email' defaultValue={user.email} onChange={handleChange} />
-//                 <textarea name="biography"  cols="30" rows="7" defaultValue={user.biography} onChange={handleChange}></textarea>
-//                 <input type="file" name='imageUrl' defaultValue={user.imageUrl} onChange={handleChange} />
-//                 <input type="text" name='existingImage' hidden  onChange={handleChange} />
-//                 <button type="submit">Edit</button>
-//             </form>
-//         </div>
-//     )
-// }
 
-
-// PENDING: need to update user somehow so changes are seen without having to logout.
