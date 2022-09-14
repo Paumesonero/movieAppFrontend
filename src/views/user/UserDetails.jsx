@@ -15,8 +15,7 @@ export default function UserDetails() {
     const [allReviews, setAllReviews] = useState(null)
     const [votes, setVotes] = useState(null)
     const [showMore, setShowMore] = useState(false)
-   // const [errorMessage, setErrorMessage] = useState(undefined);
-   
+   // const [errorMessage, setErrorMessage] = useState(undefined); 
     // gets user's most recent reviews
     useEffect(() => {
         const getReviews = async () => {
@@ -29,7 +28,6 @@ export default function UserDetails() {
         }
         getReviews();
     },[storedToken, reviews]);
-
     // gets all user's reviews.
     useEffect(() => {
         const getReviews = async () => {
@@ -42,7 +40,6 @@ export default function UserDetails() {
         }
         getReviews();
     },[storedToken, allReviews]);
-
     // gets users votes
     useEffect(() => {
         const getVotes = async () =>{
@@ -55,13 +52,11 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
-
     const handleCheck = (e) =>{
         setShowMore(prev =>{
             return !prev
         });
     };
-
     const handleDelete = async (reviewId, titleReview) => {
         try {
             const filteredAllReviews = allReviews.filter(el =>{
@@ -122,7 +117,6 @@ export default function UserDetails() {
             </div>
         )}
         {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
-        
         <NavLink to={`/user/preferences`}>See my preferences</NavLink>
         {!reviews && <p>Loading...</p>}
         {!allReviews && <p>Loading...</p>}

@@ -8,7 +8,6 @@ export default function EditUser() {
 const navigate = useNavigate();
 const storedToken = localStorage.getItem('authToken');
 const {user, logOutUser} = useContext(AuthContext);
-
 const [userData, setUserData] = useState({
     username: user.username,
     email: user.email,

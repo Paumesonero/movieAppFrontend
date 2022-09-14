@@ -1,8 +1,14 @@
+import axios from "axios";
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 export default function Preferences() {
   const { user } = useContext(AuthContext);
+  console.log(user);
+  const storedToken = localStorage.getItem('authToken');
+  const navigate = useNavigate();
   const [genres, setGenres] = useState({
     action: user.preferences.action,
     drama: user.preferences.drama,
@@ -25,8 +31,15 @@ export default function Preferences() {
       }
     });
   };
-  const handleSubmit = () => {
-
+  const handleSubmit = async () => {
+    try {
+      console.log(genres);
+      await axios.put(`${process.env.REACT_APP_API_URL}/user/preferences`, genres, { headers: { Authorization: `Bearer ${storedToken}` } });
+      toast.success('Your preferences have been udpated.');
+      // navigate('/');
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <div>
