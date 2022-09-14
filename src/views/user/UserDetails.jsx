@@ -90,15 +90,14 @@ export default function UserDetails() {
         {votes && votes.map(el =>{
             return(
                 <div key={el._id}>
-                    {el.vote &&
-                    
-                    ( <div className='poster-and-icon'>
-                        <img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image' />
+                    {el.vote && ( 
+                        <div className='poster-and-icon'>
+                        <a href={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" width='70px' className='movie-image' /></a>
                         <FontAwesomeIcon icon={faHeart} className='heart-icon'/>
                     </div>)}
                     {(!el.vote && !el.ignore)  && 
                     (<div className='poster-and-icon'>
-                    <img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px' />
+                    <a href={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie"  width='70px' /></a>
                     <FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon' />
                     </div>)}
                 </div>
