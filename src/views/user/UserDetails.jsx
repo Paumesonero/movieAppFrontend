@@ -10,11 +10,14 @@ import toast from 'react-hot-toast';
 export default function UserDetails() {
     const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
+    const [errorMessage, setErrorMessage] = useState(undefined);
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
     const [allReviews, setAllReviews] = useState(null)
     const [votes, setVotes] = useState(null)
     const [showMore, setShowMore] = useState(false)
+    const [reviewLiked, setReviewLiked] = useState(false);
+    const [numberOfLikes, setNumberOfLikes] = useState(0);
    // const [errorMessage, setErrorMessage] = useState(undefined); 
     // gets user's most recent reviews
     useEffect(() => {
@@ -42,7 +45,7 @@ export default function UserDetails() {
     },[storedToken, allReviews]);
     // gets users votes
     useEffect(() => {
-        const getVotes = async () =>{
+        const getVotes = async () => {
             try {
                 const votesFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setVotes(votesFromDB.data.data)
@@ -52,6 +55,15 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
+    // useEffect(() => {
+    //     const getNumberOfLikes = async () => {
+    //         try {
+    //             const howManyLikes = await axios.get((`${process.env.REACT_APP_API_URL}/reviewLike/${review}`, { headers: { Authorization: `Bearer ${storedToken}` } });)
+    //         } catch (error) {
+                
+    //         }
+    //     }
+    // })
     const handleCheck = (e) =>{
         setShowMore(prev =>{
             return !prev
@@ -68,60 +80,70 @@ export default function UserDetails() {
             })
             setReviews(filteredReviews)
             await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}/delete`, { headers: { Authorization: `Bearer ${storedToken}` } });
-            
             toast.error(' Review deleted!');
         } catch (error) {
             console.log(error)
         }
     };
-  return (
-    <div>
-        <NavLink to="/edit-user">Edit user</NavLink>
-        {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
-        <img src={user.imageUrl} alt="profile" />
-        <p>{user.biography}</p>
-        <h5>My votes</h5>
-        <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-2'>
-        {votes && votes.map(el =>{
-            return(
-                <div key={el._id}>
-                    {el.vote && ( 
-                        <div className='relative'>
-                        <Link to={`/movies/${el.movieId._id}`} className=''><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
-                        <FontAwesomeIcon icon={faHeart} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-green-600'/>
+    const handleLike = async (reviewId) => {
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
+        } catch (error) {
+            setErrorMessage(error.response.data.error);
+        }
+    }
+    return (
+        <div>
+            <NavLink to="/edit-user">Edit user</NavLink>
+            {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
+            <img src={user.imageUrl} alt="profile" />
+            <p>{user.biography}</p>
+            <h5>My votes</h5>
+            <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-2'>
+            {votes && votes.map(el =>{
+                return(
+                    <div key={el._id}>
+                        {el.vote && ( 
+                            <div className='relative'>
+                            <Link to={`/movies/${el.movieId._id}`} className=''><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
+                            <FontAwesomeIcon icon={faHeart} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-green-600'/>
+                            </div>)}
+                        {(!el.vote && !el.ignore)  && 
+                        (<div className='relative'>
+                        <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
+                        <FontAwesomeIcon icon={faHeartCrack} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-red-600' />
                         </div>)}
-                    {(!el.vote && !el.ignore)  && 
-                    (<div className='relative'>
-                    <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
-                    <FontAwesomeIcon icon={faHeartCrack} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-red-600' />
-                    </div>)}
-                </div>
-            )
-        })}
-        </div>
-        {!votes && <p>Loading...</p>}
-        <h5>My reviews</h5>
-        {reviews && reviews.map(el =>{
-            return(
-                <div key={el._id}>
-                <p><strong>{el.titleReview}</strong></p>
-                <p>{el.review}</p>
-                <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
-                </div>
-            )
-        })}
-        <button onClick={handleCheck}><Link to='/user/allReviews'>Show more reviews</Link></button>
-        {(allReviews && showMore) &&(
-            <div>
-            <Outlet context={[allReviews, handleDelete]}/> 
+                    </div>
+                )
+            })}
             </div>
-        )}
-        {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
-        <NavLink to={`/user/preferences`}>See my preferences</NavLink>
-        {!reviews && <p>Loading...</p>}
-        {!allReviews && <p>Loading...</p>}
-    </div>
-  )
+            {!votes && <p>Loading...</p>}
+            <h5>My reviews</h5>
+            {reviews && reviews.map(el =>{
+                return(
+                    <div key={el._id}>
+                    <NavLink to={`/movies/${el.movieId}`}><img src="" alt="" /></NavLink>
+                    <button onClick={() => handleLike(el._id)}>
+                    <FontAwesomeIcon icon={faHeart}/></button>
+                    <p>{numberOfLikes}</p>
+                    <p><strong>{el.titleReview}</strong></p>
+                    <p>{el.review}</p>
+                    <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
+                    </div>
+                )
+            })}
+            <button onClick={handleCheck}><Link to='/user/allReviews'>Show more reviews</Link></button>
+            {(allReviews && showMore) &&(
+                <div>
+                <Outlet context={[allReviews, handleDelete]}/> 
+                </div>
+            )}
+            {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
+            <NavLink to={`/user/preferences`}>See my preferences</NavLink>
+            {!reviews && <p>Loading...</p>}
+            {!allReviews && <p>Loading...</p>}
+        </div>
+    )
 }
 // PENDING: div appears when ignored, making movie posters not be equally separated.
 // loading not appearing when user doest have any reviews or votes.
