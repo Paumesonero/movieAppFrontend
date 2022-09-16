@@ -12,9 +12,8 @@ export default function UserDetails() {
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
     const {user} = useContext(AuthContext);
-    const [reviews, setReviews] = useState(null)
-    const [votes, setVotes] = useState(null)
-    console.log(reviews)
+    const [reviews, setReviews] = useState(null);
+    const [votes, setVotes] = useState(null);
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -26,7 +25,6 @@ export default function UserDetails() {
         }
         getReviews();
     },[storedToken]);
-
     useEffect(() => {
         const getVotes = async () => {
             try {
@@ -38,7 +36,6 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
-    
     const handleDelete = async (reviewId, titleReview) => {
         try {
             const filteredReviews = reviews.filter(el =>{
@@ -51,7 +48,6 @@ export default function UserDetails() {
             console.log(error)
         }
     };
-
     const handleLike = async (reviewId) => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
@@ -59,7 +55,6 @@ export default function UserDetails() {
             setErrorMessage(error.response.data.error);
         }
     }
-
     return (
         <div>
             <NavLink to="/edit-user">Edit user</NavLink>
@@ -92,7 +87,7 @@ export default function UserDetails() {
                     return(
                       <div key={el._id} className='flex gap-3'>
                           <div>
-                            <NavLink to={`/movies/${el.movieId}`}><img src={el.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
+                            {/* <NavLink to={`/movies/${el.movieId}`}><img src={el.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink> */}
                             <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(el._id)}/>
                             </div>
                             <div>
