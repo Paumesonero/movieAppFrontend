@@ -52,7 +52,7 @@ export default function Movie() {
         };
         isInWatchlist();
     });
-    const handleNextMovie = async () => {
+    const handleNextMovie = async() => {
         try {
             const nextMovie = await axios.get(`${process.env.REACT_APP_API_URL}/movies/next`, { headers: { Authorization: `Bearer ${storedToken}` } });
             navigate(`/movies/${nextMovie.data.data._id}`)

@@ -13,7 +13,7 @@ export default function VoteList() {
     const[ignored, setIgnored] = useState(false);
     const storedToken = localStorage.getItem('authToken');
     useEffect(() =>{
-        const getVotes = async() =>{
+        const getVotes = async () => {
             try {
                 const votesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/votes/myVotes`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setMyVotes(votesFromApi.data.data);
@@ -24,13 +24,11 @@ export default function VoteList() {
         };
         getVotes();
     }, [storedToken]);
-
     const handleCheck = (e) =>{
         setIgnored(prev =>{
             return !prev
         });
     };
-
     const handleSearch = (searchValue) =>{
         if(searchValue === ''){
             setFilteredVotes(myVotes);
@@ -40,7 +38,6 @@ export default function VoteList() {
         }
         console.log(filteredVotes);
     };
-
     const handleSelect = (e) =>{
         if(e.target.value === 'date'){
             const orderedByDate = [...filteredVotes].sort((a,b) => (b.movieId.year > a.movieId.year) ? 1 : -1);
