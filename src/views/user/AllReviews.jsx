@@ -47,14 +47,17 @@ const handleDelete = async (reviewId, titleReview) => {
         <h2>My reviews</h2>
         {reviews && reviews.slice(2).map(el =>{
           return(
-            <div key={el._id}>
-                    <NavLink to={`/movies/${el.movieId}`}><img src="" alt="" /></NavLink>
-                    <button onClick={() => handleLike(el._id)}>
-                    <FontAwesomeIcon icon={faHeart}/></button>
-                    <p><strong>{el.titleReview}</strong></p>
-                    <p>{el.review}</p>
-                    <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
-                    </div>
+            <div key={el._id} className='flex gap-3'>
+                          <div>
+                            <NavLink to={`/movies/${el.movieId}`}><img src={el.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
+                            <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(el._id)}/>
+                            </div>
+                            <div>
+                            <p><strong>{el.titleReview}</strong></p>
+                            <p>{el.review}</p>
+                            <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
+                            </div>
+                     </div>
           )
         })}
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

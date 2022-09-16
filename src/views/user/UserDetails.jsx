@@ -14,7 +14,7 @@ export default function UserDetails() {
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
     const [votes, setVotes] = useState(null)
-
+    console.log(reviews)
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -73,7 +73,7 @@ export default function UserDetails() {
                     <div key={el._id}>
                         {el.vote && ( 
                             <div className='relative'>
-                            <Link to={`/movies/${el.movieId._id}`} className=''><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
+                            <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 min-w-[6rem] h-36 rounded-md'/></Link>
                             <FontAwesomeIcon icon={faHeart} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-green-600'/>
                             </div>)}
                         {(!el.vote && !el.ignore)  && 
@@ -87,18 +87,23 @@ export default function UserDetails() {
             </div>
             {!votes && <p>There's no votes yet</p>}
             <h5>My reviews</h5>
-            {reviews && reviews.slice(0,2).map(el =>{
-                return(
-                    <div key={el._id}>
-                    <NavLink to={`/movies/${el.movieId}`}><img src="" alt="" /></NavLink>
-                    <button onClick={() => handleLike(el._id)}>
-                    <FontAwesomeIcon icon={faHeart}/></button>
-                    <p><strong>{el.titleReview}</strong></p>
-                    <p>{el.review}</p>
-                    <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
-                    </div>
-                )
-            })}
+            <div className='flex flex-col gap-5 mt-4'>
+                {reviews && reviews.slice(0,2).map(el =>{
+                    return(
+                      <div key={el._id} className='flex gap-3'>
+                          <div>
+                            <NavLink to={`/movies/${el.movieId}`}><img src={el.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
+                            <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(el._id)}/>
+                            </div>
+                            <div>
+                            <p><strong>{el.titleReview}</strong></p>
+                            <p>{el.review}</p>
+                            <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
+                            </div>
+                     </div>
+                    )
+                })}
+            </div>
             <Link to={'/my-reviews'}>See all my reviews</Link>
             {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
             <NavLink to={`/user/preferences`}>See my preferences</NavLink>
