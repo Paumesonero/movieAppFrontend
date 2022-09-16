@@ -30,23 +30,22 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>}>
-          <Route path='allReviews' element={<AllReviews/>} />
-        </Route>
-        <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>} />
-        <Route path="user/preferences" element={<Preferences/>} />
+        <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>}/>
+        <Route path='/my-reviews' element={<IsPrivate><AllReviews /></IsPrivate>}/>
+        <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>}/>
+        <Route path="user/preferences" element={<Preferences/>}/>
         <Route path='/movies/:movieId' element={<Movie />}>
-          <Route path='overview' element={<Overview />} />
-          <Route path='reviews' element={<Reviews />} />
+          <Route path='overview' element={<Overview />}/>
+          <Route path='reviews' element={<Reviews />}/>
         </Route>
         <Route path='/movies/create' element={<NewMovie />}></Route>
         <Route path='/movies/:movieId/edit' element={<EditMovie />}></Route>
-        <Route path='/vote-list' element={<IsPrivate><VoteList/></IsPrivate>} />
-        <Route path='/watchlist' element={<IsPrivate><Watchlist/></IsPrivate>} />
-        <Route path='/addReview/:movieId' element={<IsPrivate><AddReview /></IsPrivate>} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path='/vote-list' element={<IsPrivate><VoteList/></IsPrivate>}/>
+        <Route path='/watchlist' element={<IsPrivate><Watchlist/></IsPrivate>}/>
+        <Route path='/addReview/:movieId' element={<IsPrivate><AddReview /></IsPrivate>}/>
+        <Route path="*" element={<ErrorPage />}/>
       </Routes>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

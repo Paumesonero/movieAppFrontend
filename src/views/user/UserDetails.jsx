@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 export default function UserDetails() {
@@ -13,37 +13,20 @@ export default function UserDetails() {
     const [errorMessage, setErrorMessage] = useState(undefined);
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null)
-    const [allReviews, setAllReviews] = useState(null)
     const [votes, setVotes] = useState(null)
-    const [showMore, setShowMore] = useState(false)
-    const [reviewLiked, setReviewLiked] = useState(false);
-    const [numberOfLikes, setNumberOfLikes] = useState(0);
-   // const [errorMessage, setErrorMessage] = useState(undefined); 
-    // gets user's most recent reviews
+
     useEffect(() => {
         const getReviews = async () => {
             try {
-                const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/recentUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/allUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setReviews(reviewsFromApi.data.data);
             } catch (error) {
                 console.log(error);
             }
         }
         getReviews();
-    },[storedToken, reviews]);
-    // gets all user's reviews.
-    useEffect(() => {
-        const getReviews = async () => {
-            try {
-                const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/allUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setAllReviews(reviewsFromApi.data.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getReviews();
-    },[storedToken, allReviews]);
-    // gets users votes
+    },[storedToken]);
+
     useEffect(() => {
         const getVotes = async () => {
             try {
@@ -55,26 +38,9 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
-    // useEffect(() => {
-    //     const getNumberOfLikes = async () => {
-    //         try {
-    //             const howManyLikes = await axios.get((`${process.env.REACT_APP_API_URL}/reviewLike/${review}`, { headers: { Authorization: `Bearer ${storedToken}` } });)
-    //         } catch (error) {
-                
-    //         }
-    //     }
-    // })
-    const handleCheck = (e) =>{
-        setShowMore(prev =>{
-            return !prev
-        });
-    };
+    
     const handleDelete = async (reviewId, titleReview) => {
         try {
-            const filteredAllReviews = allReviews.filter(el =>{
-                return el.titleReview !== titleReview
-            })
-            setAllReviews(filteredAllReviews)
             const filteredReviews = reviews.filter(el =>{
                 return el.titleReview !== titleReview
             })
@@ -85,6 +51,7 @@ export default function UserDetails() {
             console.log(error)
         }
     };
+
     const handleLike = async (reviewId) => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
@@ -92,6 +59,7 @@ export default function UserDetails() {
             setErrorMessage(error.response.data.error);
         }
     }
+
     return (
         <div>
             <NavLink to="/edit-user">Edit user</NavLink>
@@ -117,35 +85,29 @@ export default function UserDetails() {
                 )
             })}
             </div>
-            {!votes && <p>Loading...</p>}
+            {!votes && <p>There's no votes yet</p>}
             <h5>My reviews</h5>
-            {reviews && reviews.map(el =>{
+            {reviews && reviews.slice(0,2).map(el =>{
                 return(
                     <div key={el._id}>
                     <NavLink to={`/movies/${el.movieId}`}><img src="" alt="" /></NavLink>
                     <button onClick={() => handleLike(el._id)}>
                     <FontAwesomeIcon icon={faHeart}/></button>
-                    <p>{numberOfLikes}</p>
                     <p><strong>{el.titleReview}</strong></p>
                     <p>{el.review}</p>
                     <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
                     </div>
                 )
             })}
-            <button onClick={handleCheck}><Link to='/user/allReviews'>Show more reviews</Link></button>
-            {(allReviews && showMore) &&(
-                <div>
-                <Outlet context={[allReviews, handleDelete]}/> 
-                </div>
-            )}
+            <Link to={'/my-reviews'}>See all my reviews</Link>
             {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
             <NavLink to={`/user/preferences`}>See my preferences</NavLink>
-            {!reviews && <p>Loading...</p>}
-            {!allReviews && <p>Loading...</p>}
+            {!reviews && <p>There's no reviews yet</p>}
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
     )
 }
 // PENDING: div appears when ignored, making movie posters not be equally separated.
-// loading not appearing when user doest have any reviews or votes.
+
 
 
