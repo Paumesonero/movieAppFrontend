@@ -13,9 +13,9 @@ export default function Preferences() {
     action: false,
     drama: false,
     fantasy: false,
-    // comedy: user.preferences.comedy,
-    // mystery: user.preferences.mystery,
-    // adventure: user.preferences.adventure,
+    comedy: false,
+    mystery: false,
+    adventure: false,
     // war: user.preferences.war,
     // scify: user.preferences.scify,
     // romance: user.preferences.romance,
@@ -31,6 +31,9 @@ export default function Preferences() {
           action: currentUser.data.data.preferences.includes("1"),
           drama: currentUser.data.data.preferences.includes("12"),
           fantasy: currentUser.data.data.preferences.includes("14"),
+          comedy: currentUser.data.data.preferences.includes("8"),
+          mystery: currentUser.data.data.preferences.includes("22"),
+          adventure: currentUser.data.data.preferences.includes("3"),
 
         });
       } catch (error) {
@@ -59,15 +62,15 @@ export default function Preferences() {
     if(genres.fantasy) {
         newPreferences.push("14");
     };
-    // if(comedy === true) {
-    //     newPreferences.push("8");
-    // };
-    // if(mystery === true) {
-    //     newPreferences.push("22");
-    // };
-    // if(adventure === true) {
-    //     newPreferences.push("3");
-    // };
+    if(genres.comedy) {
+        newPreferences.push("8");
+    };
+    if(genres.mystery) {
+        newPreferences.push("22");
+    };
+    if(genres.adventure) {
+        newPreferences.push("3");
+    };
     // if(war === true) {
     //     newPreferences.push("34");
     // };
@@ -104,6 +107,12 @@ export default function Preferences() {
           <input type="checkbox" className="checkbox" id="drama" name="drama" checked={genres.drama} onChange={(e) => handleCheck(e)} />
           <label>Fantasy</label>
           <input type="checkbox" className="checkbox" id="fantasy" name="fantasy" checked={genres.fantasy} onChange={(e) => handleCheck(e)} />
+          <label>Comedy</label>
+          <input type="checkbox" className="checkbox" id="comedy" name="comedy" checked={genres.comedy} onChange={(e) => handleCheck(e)} />
+          <label>Mystery</label>
+          <input type="checkbox" className="checkbox" id="mystery" name="mystery" checked={genres.mystery} onChange={(e) => handleCheck(e)} />
+          <label>Adventure</label>
+          <input type="checkbox" className="checkbox" id="adventure" name="adventure" checked={genres.adventure} onChange={(e) => handleCheck(e)} />
           <button type="submit">Save preferences</button>
         </form>
       </div>}
