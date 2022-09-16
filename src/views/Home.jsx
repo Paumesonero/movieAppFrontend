@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div>
+    <div className='h-screen'>
       <h1>Find something to watch!</h1>
       <form method="GET" className="searchForm">
         <Link to="/search"><input type="text" placeholder="Search"/><FontAwesomeIcon icon={faMagnifyingGlass} /></Link>

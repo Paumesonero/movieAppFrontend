@@ -61,7 +61,7 @@ export default function UserDetails() {
     }
 
     return (
-        <div>
+        <div className=''>
             <NavLink to="/edit-user">Edit user</NavLink>
             {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
             <img src={user.imageUrl} alt="profile" />

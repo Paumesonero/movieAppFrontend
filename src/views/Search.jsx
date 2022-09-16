@@ -47,7 +47,7 @@ export default function Search() {
         }
     }
     return (
-        <div>
+        <div className='h-screen'>
             <form onSubmit={handleSubmit} method="GET" className="searchForm">
                 <input type="text" placeholder="Search" value={search} onChange={handleChange}/>
                 <input type="checkbox"/>
