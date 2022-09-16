@@ -16,12 +16,12 @@ export default function Preferences() {
     comedy: false,
     mystery: false,
     adventure: false,
-    // war: user.preferences.war,
-    // scify: user.preferences.scify,
-    // romance: user.preferences.romance,
-    // history: user.preferences.history,
-    // documentary: user.preferences.documentary,
-    // crime: user.preferences.crime,
+    war: false,
+    scify: false,
+    romance: false,
+    history: false,
+    documentary: false,
+    crime: false
   });
   useEffect(() => {
     const getPreferences = async () => {
@@ -34,7 +34,12 @@ export default function Preferences() {
           comedy: currentUser.data.data.preferences.includes("8"),
           mystery: currentUser.data.data.preferences.includes("22"),
           adventure: currentUser.data.data.preferences.includes("3"),
-
+          war: currentUser.data.data.preferences.includes("34"),
+          scify: currentUser.data.data.preferences.includes("27"),
+          romance: currentUser.data.data.preferences.includes("26"),
+          history: currentUser.data.data.preferences.includes("20"),
+          documentary: currentUser.data.data.preferences.includes("11"),
+          crime: currentUser.data.data.preferences.includes("10"),
         });
       } catch (error) {
         console.log(error);
@@ -71,34 +76,35 @@ export default function Preferences() {
     if(genres.adventure) {
         newPreferences.push("3");
     };
-    // if(war === true) {
-    //     newPreferences.push("34");
-    // };
-    // if(scifi === true) {
-    //     newPreferences.push("27");
-    // };
-    // if(romance === true) {
-    //     newPreferences.push("26");
-    // };
-    // if(history === true) {
-    //     newPreferences.push("20");
-    // };
-    // if(documentary === true) {
-    //     newPreferences.push("11");
-    // };
-    // if(crime === true) {
-    //     newPreferences.push("10");
-    // };
+    if(genres.war) {
+        newPreferences.push("34");
+    };
+    if(genres.scify) {
+        newPreferences.push("27");
+    };
+    if(genres.romance) {
+        newPreferences.push("26");
+    };
+    if(genres.history) {
+        newPreferences.push("20");
+    };
+    if(genres.documentary) {
+        newPreferences.push("11");
+    };
+    if(genres.crime) {
+        newPreferences.push("10");
+    };
     try {
       await axios.put(`${process.env.REACT_APP_API_URL}/user/preferences`, newPreferences, { headers: { Authorization: `Bearer ${storedToken}` } });
       toast.success('Your preferences have been udpated.');
-      // navigate('/');
+      navigate('/');
     } catch (error) {
       console.log(error)
     }
   };
   return (
     <div>
+      <h1>How do you feel today?</h1>
       {user && <div>
         <form onSubmit={handleSubmit} action="">
           <label>Action</label>
@@ -113,10 +119,21 @@ export default function Preferences() {
           <input type="checkbox" className="checkbox" id="mystery" name="mystery" checked={genres.mystery} onChange={(e) => handleCheck(e)} />
           <label>Adventure</label>
           <input type="checkbox" className="checkbox" id="adventure" name="adventure" checked={genres.adventure} onChange={(e) => handleCheck(e)} />
+          <label>War</label>
+          <input type="checkbox" className="checkbox" id="war" name="war" checked={genres.war} onChange={(e) => handleCheck(e)} />
+          <label>Scify</label>
+          <input type="checkbox" className="checkbox" id="scify" name="scify" checked={genres.scify} onChange={(e) => handleCheck(e)} />
+          <label>Romance</label>
+          <input type="checkbox" className="checkbox" id="romance" name="romance" checked={genres.romance} onChange={(e) => handleCheck(e)} />
+          <label>History</label>
+          <input type="checkbox" className="checkbox" id="history" name="history" checked={genres.history} onChange={(e) => handleCheck(e)} />
+          <label>Documentary</label>
+          <input type="checkbox" className="checkbox" id="documentary" name="documentary" checked={genres.documentary} onChange={(e) => handleCheck(e)} />
+          <label>Crime</label>
+          <input type="checkbox" className="checkbox" id="crime" name="crime" checked={genres.crime} onChange={(e) => handleCheck(e)} />
           <button type="submit">Save preferences</button>
         </form>
       </div>}
-      <h1>How do you feel today?</h1>
     </div>
   );
 }
