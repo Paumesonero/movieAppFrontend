@@ -10,7 +10,6 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 export default function Navbar() {
   const { isLoggedIn } = useContext(AuthContext);
   const {user} = useContext(AuthContext);
-  console.log(user)
   return (
     <div className='bg-zinc-700 flex justify-around items-center  h-20 rounded-t-md  sticky bottom-0 w-full'>
       <NavLink to="/user"><FontAwesomeIcon icon={faUser} className='text-4xl text-slate-400 target:text-red-600'/></NavLink> 
