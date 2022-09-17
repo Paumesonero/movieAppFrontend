@@ -36,7 +36,6 @@ export default function VoteList() {
             const filtered = myVotes.filter(el => el.movieId.name.toLowerCase().includes((searchValue).toLowerCase()))
             setFilteredVotes(filtered);
         }
-        console.log(filteredVotes);
     };
     const handleSelect = (e) =>{
         if(e.target.value === 'date'){
@@ -49,7 +48,6 @@ export default function VoteList() {
             const orderedByRating = [...filteredVotes].sort((a,b) => b.movieId.imdb_rating - a.movieId.imdb_rating);
             setFilteredVotes(orderedByRating);
         };
-        console.log('this is my filtered votes', filteredVotes);
     };
     return (
         <div>
