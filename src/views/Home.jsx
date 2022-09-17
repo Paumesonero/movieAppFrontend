@@ -29,6 +29,12 @@ export default function Home() {
         <NavLink to={`/movies/${nextMovieId}`}><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" /></NavLink>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div> }
+      {!nextMovieId && <div>
+        <form method="GET" className="searchForm">
+          <NavLink to="/search"><input type="text" placeholder="Search"/><FontAwesomeIcon icon={faMagnifyingGlass} /></NavLink>
+        </form>
+        <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" /></NavLink>
+      </div> }
     </div>
   )
 }

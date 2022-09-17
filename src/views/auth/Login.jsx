@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 export default function Login() {
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -42,6 +42,7 @@ export default function Login() {
         <input required type="password" name="password" value={user.password} onChange={handleChange} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <button type="submit">Log in </button>
+        <p>Not a member yet? Sign up <NavLink to="/signup">here</NavLink></p>
       </form>
     </div>
   )
