@@ -33,7 +33,7 @@ export default function Watchlist() {
                 return(
                     <div key={el._id} className='watchlist-movie' >
                         <div>
-                            <a href={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie poster" width='70px' /></a>
+                        <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                         </div>
                         <div className='movie-info'>
                             <p><strong>Title:</strong></p>

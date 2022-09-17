@@ -33,7 +33,7 @@ export default function Movie() {
     useEffect(() => {
         const getReviews = async () => {
             try {
-                const reviewsFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/${movieId}/recent`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                const reviewsFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/${movieId}/allReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setReviews(reviewsFromDB.data.data)
             } catch (error) {
                 console.log(error);

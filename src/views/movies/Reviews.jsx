@@ -9,9 +9,10 @@ export default function Reviews() {
         <div>
             {reviews && <div className="reviewList">
                 {reviews.map(review => {
-                    return (<div className="eachReview" key={`${movie._id}, ${user._id}, ${review._id}`}>
+                    return (
+                    <div className="eachReview" key={`${movie._id}, ${user._id}, ${review._id}`}>
                         <div className="userProfilePicture">
-                            {/*User picture*/}
+                        <img src={review.userId.imageUrl} alt="user" />
                         </div>
                         <div className="reviewBody">
                             <h4>{review.titleReview}</h4>
