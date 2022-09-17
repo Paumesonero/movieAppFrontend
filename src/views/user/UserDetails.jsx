@@ -42,11 +42,12 @@ export default function UserDetails() {
 
     const handleDelete = async (reviewId, titleReview) => {
         try {
-            // const filteredReviews = reviews.filter(el =>{
-            //     return el.titleReview !== titleReview
-            // })
-            // setReviews(filteredReviews)
+            const filteredReviews = reviews.filter(el =>{
+                return el.titleReview !== titleReview
+            })
+            setReviews(filteredReviews)
             await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}/delete`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            await axios.delete(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } })
             toast.error(' Review deleted!');
         } catch (error) {
             setErrorMessage(error.response.data.error);
