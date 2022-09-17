@@ -13,7 +13,6 @@ const colage = require("colage");
 export default function Movie() {
     const {  user } = useContext(AuthContext);
     const [movie, setMovie] = useState("");
-    const [reviews, setReviews] = useState("");
     const {movieId} = useParams();
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
@@ -30,17 +29,7 @@ export default function Movie() {
         }
         getMovie();
     },[storedToken, movieId]);
-    useEffect(() => {
-        const getReviews = async () => {
-            try {
-                const reviewsFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/${movieId}/allReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setReviews(reviewsFromDB.data.data)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        getReviews();
-    },[storedToken, movieId]);
+    
     useEffect(() => {
         const isInWatchlist = async () => {
             try {
@@ -120,7 +109,7 @@ export default function Movie() {
                 <h3><span>{colage.ge([`${movie.genres[0]}`],"en")}</span><span>{colage.ge([`${movie.genres[1]}`],"en")}</span><span>{colage.ge([`${movie.genres[2]}`],"en")}</span></h3>
                 <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-                <Outlet context={[movie, reviews]}/>
+                <Outlet context={[movie]}/>
                 {user.role === 'admin' && (
                     <div>
                         <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
