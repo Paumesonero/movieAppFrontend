@@ -5,6 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { Link, NavLink} from 'react-router-dom';
+import ReviewCard from '../../components/ReviewCard';
 import toast from 'react-hot-toast';
 
 export default function UserDetails() {
@@ -31,7 +32,7 @@ export default function UserDetails() {
                 const votesFromDB = await axios.get(`${process.env.REACT_APP_API_URL}/movies/voteList`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setVotes(votesFromDB.data.data)
             } catch (error) {
-                console.log(error);
+                setErrorMessage(error.response.data.error);
             }
         }
         getVotes();
@@ -45,16 +46,9 @@ export default function UserDetails() {
             await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}/delete`, { headers: { Authorization: `Bearer ${storedToken}` } });
             toast.error(' Review deleted!');
         } catch (error) {
-            console.log(error)
-        }
-    };
-    const handleLike = async (reviewId) => {
-        try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
-        } catch (error) {
             setErrorMessage(error.response.data.error);
         }
-    }
+    };
     return (
         <div className=''>
             <NavLink to="/edit-user">Edit user</NavLink>
@@ -86,15 +80,7 @@ export default function UserDetails() {
                 {reviews && reviews.slice(0,2).map(el =>{
                     return(
                       <div key={el._id} className='flex gap-3'>
-                          <div>
-                            {/* <NavLink to={`/movies/${el.movieId}`}><img src={el.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink> */}
-                            <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(el._id)}/>
-                            </div>
-                            <div>
-                            <p><strong>{el.titleReview}</strong></p>
-                            <p>{el.review}</p>
-                            <button onClick={() => handleDelete(el._id, el.titleReview)}> Delete</button>
-                            </div>
+                        <ReviewCard review={el} onDelete={handleDelete} storedToken={storedToken}/>
                      </div>
                     )
                 })}
@@ -107,7 +93,7 @@ export default function UserDetails() {
         </div>
     )
 }
-// PENDING: div appears when ignored, making movie posters not be equally separated.
+
 
 
 
