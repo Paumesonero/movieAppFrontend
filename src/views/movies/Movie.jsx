@@ -33,8 +33,8 @@ export default function Movie() {
     useEffect(() => {
         const isInWatchlist = async () => {
             try {
-                const myWatchlist = await axios.get(`${process.env.REACT_APP_API_URL}/watchlist`, { headers: { Authorization: `Bearer ${storedToken}` } });
-                setInWatchlist(myWatchlist.data.data.some(vote => vote.movieId._id === movieId && vote.userId === user._id));
+                const isInWatchList = await axios.get(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/exists`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                setInWatchlist(isInWatchList.data.data);
             } catch (error) {
                 setErrorMessage(error.response.data.error);
             }
@@ -52,6 +52,11 @@ export default function Movie() {
     const handleLike = async () => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/like`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const isInWatchList = await axios.get(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/exists`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            if(isInWatchList.data.data) {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            }
+            console.log(isInWatchList.data.data);
             handleNextMovie();
         } catch (error) {
             setErrorMessage(error.response.data.error);
@@ -60,6 +65,10 @@ export default function Movie() {
     const handleDislike = async () => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/dislike`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const isInWatchList = await axios.get(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/exists`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            if(isInWatchList.data.data) {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            }
             handleNextMovie();
         } catch (error) {
             setErrorMessage(error.response.data.error);
@@ -68,6 +77,10 @@ export default function Movie() {
     const handleIgnore = async () => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/votes/${movieId}/ignore`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const isInWatchList = await axios.get(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/exists`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            if(isInWatchList.data.data) {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            }
             handleNextMovie();
         } catch (error) {
             setErrorMessage(error.response.data.error);
