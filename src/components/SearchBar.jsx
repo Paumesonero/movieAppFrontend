@@ -4,7 +4,7 @@ export default function SearchBar(props) {
     const{onSearch} = props
   return (
     <div>
-        <input type="text" placeholder='Search movies' onChange={(e) => onSearch(e.target.value)} />
+        <input type="text" placeholder='Search' onChange={(e) => onSearch(e.target.value)} />
     </div>
   )
 }

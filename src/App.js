@@ -20,6 +20,7 @@ import Watchlist from './views/watchList/Watchlist';
 import VoteList from './views/votes/VoteList';
 import AddReview from './views/reviews/AddReview';
 import AllReviews from './views/user/AllReviews';
+import UserList from './views/user/UserList';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path='/user' element={<IsPrivate><UserDetails/></IsPrivate>}/>
-        <Route path='/my-reviews' element={<IsPrivate><AllReviews /></IsPrivate>}/>
+        <Route path='/user-list' element={<IsPrivate><UserList/></IsPrivate>} />
+        <Route path='/my-reviews' element={<IsPrivate><AllReviews /></IsPrivate>}/> 
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>}/>
         <Route path="user/preferences" element={<Preferences/>}/>
         <Route path='/movies/:movieId' element={<Movie />}>

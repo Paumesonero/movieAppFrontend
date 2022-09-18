@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Home() {
   const storedToken = localStorage.getItem('authToken');
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [nextMovieId, setNextMovieId] = useState("");
+  const {user} = useContext(AuthContext);
   useEffect(() => {
     const getNextMovie = async () => {
       try {
@@ -35,6 +37,7 @@ export default function Home() {
         </form>
         <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" /></NavLink>
       </div> }
+      {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
     </div>
   )
 }
