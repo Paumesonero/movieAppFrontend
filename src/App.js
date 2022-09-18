@@ -21,10 +21,11 @@ import VoteList from './views/votes/VoteList';
 import AddReview from './views/reviews/AddReview';
 import AllReviews from './views/user/AllReviews';
 import UserList from './views/user/UserList';
+import UserOptions from './views/user/UserOptions';
 
 function App() {
   return (
-    <div className="m-0 box-border text-base">
+    <div className="m-0 box-border text-base bg-gray-900 text-gray-200 ">
       <Toaster/>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,6 +36,7 @@ function App() {
         <Route path='/user-list' element={<IsPrivate><UserList/></IsPrivate>} />
         <Route path='/my-reviews' element={<IsPrivate><AllReviews /></IsPrivate>}/> 
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>}/>
+        <Route path='/options' element={<IsPrivate><UserOptions/></IsPrivate>}/>
         <Route path="user/preferences" element={<Preferences/>}/>
         <Route path='/movies/:movieId' element={<Movie />}>
           <Route path='overview' element={<Overview />}/>

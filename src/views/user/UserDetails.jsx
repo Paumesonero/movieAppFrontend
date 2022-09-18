@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { Link, NavLink} from 'react-router-dom';
 import ReviewCard from '../../components/ReviewCard';
@@ -51,13 +52,19 @@ export default function UserDetails() {
         }
     };
     return (
-        <div className=''>
-            <NavLink to="/edit-user">Edit user</NavLink>
-            {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
-            <img src={user.imageUrl} alt="profile" />
-            <p>{user.biography}</p>
-            <h5>My votes</h5>
-            <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-2'>
+        <div>
+            <div className="background-img h-72 mb-10 absolute">
+                <div className='flex justify-end mr-4 text-3xl relative top-4'>
+                  <NavLink to='/options'><FontAwesomeIcon icon={faBars}/></NavLink>
+                </div>
+                <div className='flex flex-col ml-8'>
+                    <img src={user.imageUrl} alt="profile" className='profile-img w-28' />
+                    <p className='absolute top-44'><strong>{user.username}</strong></p>
+                    <p className='relative top-0 w-4/5'>{user.biography}</p>
+                </div>
+            </div>
+            <h5 className='text-2xl mb-3 ml-3 font-semibold'>My votes</h5>
+            <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-3'>
             {votes && votes.map(el =>{
                 return(
                     <div key={el._id}>
@@ -76,24 +83,28 @@ export default function UserDetails() {
             })}
             </div>
             {!votes && <p>There's no votes yet</p>}
-            <h5>My reviews</h5>
+            <h5 className='text-2xl mt-4 ml-3 font-semibold'>My reviews</h5>
             <div className='flex flex-col gap-5 mt-4'>
                 {reviews && reviews.slice(0,2).map(el =>{
                     return(
-                      <div key={el._id} className='flex gap-3'>
+                      <div key={el._id}>
                         <ReviewCard review={el} onDelete={handleDelete} storedToken={storedToken}/>
                      </div>
                     )
                 })}
             </div>
-            <Link to={'/my-reviews'}>See all my reviews</Link>
-            <NavLink to={`/user/preferences`}>See my preferences</NavLink>
-            {user && user.role === 'admin' && <NavLink to='/user-list'>See users</NavLink>}
+            
             {!reviews && <p>There's no reviews yet</p>}
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
     )
 }
+//in burger menu:
+//  <Link to={'/my-reviews'} className='text-center relative mt-3'>See all my reviews</Link>
+//             {user && user.role === 'admin' && <NavLink to='/user-list'>See users</NavLink>} 
+            // <NavLink to={`/user/preferences`}>See my preferences</NavLink>
+            //       <NavLink to="/edit-user">Edit user</NavLink>
+            //       {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
 
 
 
