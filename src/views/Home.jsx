@@ -23,7 +23,7 @@ export default function Home() {
   },[storedToken])
   return (
     <div id="homePage" className="bg-[url('https://i.redd.it/4fxxbm4opjd31.jpg')] h-screen text-center">
-      <h1 className="text-gray-200 pt-40 pr-52 font-bold">Find a movie</h1>
+      <h1 className="text-gray-200 pt-32 pr-52 font-bold">Find a movie</h1>
       {nextMovieId && <div>
         <form method="GET" className="mx-10">
           <NavLink to="/search"><input type="text" placeholder="Search" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900"/><FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-12 left-32 text-gray-200"/></NavLink>

@@ -47,21 +47,20 @@ export default function Search() {
         }
     }
     return (
-        <div className='h-screen'>
-            <form onSubmit={handleSubmit} method="GET" className="searchForm">
-                <input type="text" placeholder="Search" value={search} onChange={handleChange}/>
-                <input type="checkbox"/>
-                <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <div className='h-screen flex flex-col justify-evenly bg-gray-900 text-center'>
+            <form onSubmit={handleSubmit} method="GET" className="searchForm top-48 mx-10">
+                <input type="text" placeholder="Movie title" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900" value={search} onChange={handleChange}/>
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-12 left-48 text-gray-200"/>
+                <button type="submit" className="mt-2 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Search in APP</button>
             </form>
-            <form onSubmit={handleAPINameSubmit} method="GET" className="searchForm">
-                <input type="text" placeholder="Search in API" value={searchAPIName} onChange={handleChangeAPIName}/>
-                <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            <form onSubmit={handleAPINameSubmit} method="GET" className="searchForm mx-10">
+                <input type="text" placeholder="Movie title" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900" value={searchAPIName} onChange={handleChangeAPIName}/>
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-12 left-48 text-gray-200"/>
+                <button type="submit" className="mt-2 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Search in API</button>
             </form>
-            <form onSubmit={handleAPIImdbIdSubmit} method="GET" className="searchForm">
-                <input type="text" placeholder="Search in API" value={searchAPIImdbId} onChange={handleChangeAPIImdbId}/>
-                <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
+            <form onSubmit={handleAPIImdbIdSubmit} method="GET" className="searchForm mx-10">
+                <input type="text" placeholder="Movie IMDB-ID" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900" value={searchAPIImdbId} onChange={handleChangeAPIImdbId}/>
+                <button type="submit" className="mt-2 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Search in API</button>
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </form>
         </div>
