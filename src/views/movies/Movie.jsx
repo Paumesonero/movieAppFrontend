@@ -113,8 +113,8 @@ export default function Movie() {
                     <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
                     <button onClick={() => handleDislike()} className="voteButtons"><FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon'/></button>
                     <button onClick={() => handleIgnore()} className="voteButtons"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
-                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="voteButtons"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/>Watch later</button>}
-                    {inWatchlist && <button onClick={() => handleNextMovie()} className="voteButtons"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/>Keep in Watchlist</button>}
+                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="voteButtons">Watch later</button>}
+                    {inWatchlist && <button onClick={() => handleNextMovie()} className="voteButtons">Keep in Watchlist</button>}
                 </div>
                 <img src={movie.image.og} alt="movie-frame" />
                 <h1>{movie.name}</h1>

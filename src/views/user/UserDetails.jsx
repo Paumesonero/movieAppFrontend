@@ -15,7 +15,6 @@ export default function UserDetails() {
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null);
     const [votes, setVotes] = useState(null);
-
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -27,7 +26,6 @@ export default function UserDetails() {
         }
         getReviews();
     },[storedToken]);
-
     useEffect(() => {
         const getVotes = async () => {
             try {
@@ -39,7 +37,6 @@ export default function UserDetails() {
         }
         getVotes();
     },[storedToken]);
-
     const handleDelete = async (reviewId, titleReview) => {
         try {
             const filteredReviews = reviews.filter(el =>{
@@ -53,7 +50,6 @@ export default function UserDetails() {
             setErrorMessage(error.response.data.error);
         }
     };
-    
     return (
         <div className=''>
             <NavLink to="/edit-user">Edit user</NavLink>
