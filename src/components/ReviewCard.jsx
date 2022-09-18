@@ -10,26 +10,24 @@ export default function ReviewCard(props) {
     const {review, onDelete, storedToken} = props;
     const [isLiked, setIsLiked] = useState(false);
     const [likeNumber, setLikeNumber] = useState(0)
-
     useEffect(() => {
         const getIfIsLiked = async () => {
             try {
                 const reviewIsLiked = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/isLiked/${review._id}`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setIsLiked(reviewIsLiked.data.data);
             } catch (error) {
-                console.log(error)
+                setErrorMessage(error.response.data.error);
             }
         }
         getIfIsLiked();
     },[isLiked,storedToken,review._id]);
-
     useEffect(() =>{
         const getNumber = async () =>{
             try {
                 const reviewLikeNum = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/${review._id}`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setLikeNumber(reviewLikeNum.data.data)
             } catch (error) {
-                console.log(error)
+                setErrorMessage(error.response.data.error);
             }
         }
         getNumber();
@@ -40,20 +38,18 @@ export default function ReviewCard(props) {
             !isLiked && setLikeNumber(prev => prev +1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
-            console.log(error)
+            setErrorMessage(error.response.data.error);
         }
     };
-
     const handleRemoveLike = async (reviewId) => {
         try {
             await axios.delete(`${process.env.REACT_APP_API_URL}/reviewLike/remove/${reviewId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
             isLiked && setLikeNumber(prev => prev -1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
-            console.log(error)
+            setErrorMessage(error.response.data.error);
         }
     };
-
     return (
         <div>
             <div>

@@ -122,7 +122,7 @@ export default function Movie() {
                 <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
                 <Outlet context={[movie]}/>
-                {user.role === 'admin' && (
+                {user && user.role === 'admin' && (
                     <div>
                         <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
                         <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>

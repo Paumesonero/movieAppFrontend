@@ -16,7 +16,7 @@ export default function MovieReviewCard(props) {
                 const reviewIsLiked = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/isLiked/${review._id}`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setIsLiked(reviewIsLiked.data.data);
             } catch (error) {
-                console.log(error)
+                setErrorMessage(error.response.data.error);
             }
         }
         getIfIsLiked();
@@ -28,7 +28,7 @@ export default function MovieReviewCard(props) {
                 const reviewLikeNum = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/${review._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
                 setLikeNumber(reviewLikeNum.data.data)
             } catch (error) {
-                console.log(error)
+                setErrorMessage(error.response.data.error);
             }
         }
         getNumber();
@@ -40,7 +40,7 @@ export default function MovieReviewCard(props) {
             !isLiked && setLikeNumber(prev => prev +1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
-            console.log(error)
+            setErrorMessage(error.response.data.error);
         }
     };
 
@@ -50,11 +50,12 @@ export default function MovieReviewCard(props) {
             isLiked && setLikeNumber(prev => prev -1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
-            console.log(error)
+            setErrorMessage(error.response.data.error);
         }
     };
   return (
     <div>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <div className="userProfilePicture">
              <img src={review.userId.imageUrl} alt="user" />
             {!isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(review._id)}/>}

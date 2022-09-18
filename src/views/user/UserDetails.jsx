@@ -92,7 +92,7 @@ export default function UserDetails() {
             </div>
             <Link to={'/my-reviews'}>See all my reviews</Link>
             <NavLink to={`/user/preferences`}>See my preferences</NavLink>
-            {user.role === 'admin' && <NavLink to='/user-list'>See users</NavLink>}
+            {user && user.role === 'admin' && <NavLink to='/user-list'>See users</NavLink>}
             {!reviews && <p>There's no reviews yet</p>}
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
