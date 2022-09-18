@@ -57,7 +57,7 @@ export default function ReviewCard(props) {
     return (
         <div>
             <div>
-                <NavLink to={`/movies/${review.movieId}`}><img src={review.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
+                <NavLink to={`/movies/${review.movieId._id}`}><img src={review.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
                 {!isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(review._id)}/>}
                 {isLiked && <FontAwesomeIcon icon={faHeartCrack} onClick={() => handleRemoveLike(review._id)}/>}
                 <p>{likeNumber}</p>
