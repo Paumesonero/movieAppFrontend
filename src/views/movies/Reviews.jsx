@@ -9,8 +9,6 @@ export default function Reviews() {
     const storedToken = localStorage.getItem('authToken');
     const [reviews, setReviews] = useState('')
     const {user} = useContext(AuthContext);
-    console.log(movie._id)
-
     useEffect(() => {
         const getReviews = async () => {
             try {

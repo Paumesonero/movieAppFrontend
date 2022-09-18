@@ -37,7 +37,7 @@ export default function Home() {
         </form>
         <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" /></NavLink>
       </div> }
-      {user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
+      {user && user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
     </div>
   )
 }
