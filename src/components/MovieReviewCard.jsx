@@ -26,7 +26,6 @@ export default function MovieReviewCard(props) {
         const getNumber = async () =>{
             try {
                 const reviewLikeNum = await axios.get(`${process.env.REACT_APP_API_URL}/reviewLike/${review._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-                console.log(reviewLikeNum.data.data)
                 setLikeNumber(reviewLikeNum.data.data)
             } catch (error) {
                 console.log(error)

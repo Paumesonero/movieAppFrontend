@@ -55,8 +55,7 @@ export default function Movie() {
             const isInWatchList = await axios.get(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/exists`, { headers: { Authorization: `Bearer ${storedToken}` } });
             if(isInWatchList.data.data) {
                 await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
-            }
-            console.log(isInWatchList.data.data);
+            };
             handleNextMovie();
         } catch (error) {
             setErrorMessage(error.response.data.error);
