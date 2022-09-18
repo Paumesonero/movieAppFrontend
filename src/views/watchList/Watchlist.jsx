@@ -9,7 +9,7 @@ export default function Watchlist() {
     useEffect(() =>{
         const getMovies = async() =>{
             try {
-                const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchlist`, { headers: { Authorization: `Bearer ${storedToken}` } });
+                const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchList`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setMyWatchList(moviesFromApi.data.data);
             } catch (error) {
                 console.error(error);
@@ -19,16 +19,17 @@ export default function Watchlist() {
     },[storedToken]);
     const handleRemove = async (movieId) => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/watchlist/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
-            const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchlist`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchList`, { headers: { Authorization: `Bearer ${storedToken}` } });
             setMyWatchList(moviesFromApi.data.data);
         } catch (error) {
             setErrorMessage(error.response.data.error);
         }
     }
     return (
-        <div >
+        <div>
             <h2>Your Watchlist</h2>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             {myWatchList && myWatchList.map(el =>{
                 return(
                     <div key={el._id} className='watchlist-movie' >
