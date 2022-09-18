@@ -32,10 +32,10 @@ export default function Home() {
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div> }
       {!nextMovieId && <div>
-        <form method="GET" className="searchForm">
-          <NavLink to="/search"><input type="text" placeholder="Search"/><FontAwesomeIcon icon={faMagnifyingGlass} /></NavLink>
+        <form method="GET" className="searchForm mx-10">
+        <NavLink to="/search"><input type="text" placeholder="Search" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900"/><FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-12 left-32 text-gray-200"/></NavLink>
         </form>
-        <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" className=""/></NavLink>
+        <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" className="w-40 mx-auto"/></NavLink>
       </div> }
       {user && user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
     </div>

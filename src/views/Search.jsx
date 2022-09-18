@@ -60,6 +60,7 @@ export default function Search() {
             </form>
             <form onSubmit={handleAPIImdbIdSubmit} method="GET" className="searchForm mx-10">
                 <input type="text" placeholder="Movie IMDB-ID" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900" value={searchAPIImdbId} onChange={handleChangeAPIImdbId}/>
+                <FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-12 left-48 text-gray-200"/>
                 <button type="submit" className="mt-2 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Search in API</button>
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </form>
