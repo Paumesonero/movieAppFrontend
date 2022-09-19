@@ -12,7 +12,7 @@
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: gray;
+    background: linear-gradient(to right, transparent, mistyrose);
     opacity: .4;
     background-image: url('https://i.redd.it/4fxxbm4opjd31.jpg');
     background-position: top;
