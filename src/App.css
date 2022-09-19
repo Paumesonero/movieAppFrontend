@@ -17,3 +17,17 @@
     background-image: url('https://i.redd.it/4fxxbm4opjd31.jpg');
     background-position: top;
 }
+
+.selected {
+    border-bottom: 3px solid darkgrey;
+    padding-bottom: 10px;
+    font-weight: 700;
+}
+
+.notSelected {
+    padding-bottom: 10px;
+}
+
+#reviewToggle {
+    margin: 10px 20px;
+}

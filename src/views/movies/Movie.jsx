@@ -111,8 +111,8 @@ export default function Movie() {
                     <img src={movie.translations[0].poster.og} className="h-5/6 object-cover" alt="poster" />
                 </div>
                 <div id="watchLaterButtons">
-                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="absolute top-4 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-2 text-white py-1 px-2 rounded">Watch later <FontAwesomeIcon icon={faClipboardList} className='text-xl text-slate-200'/></button>}
-                    {inWatchlist && <button onClick={() => handleNextMovie()} className="WatchLaterButton">Keep in Watchlist</button>}
+                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="absolute top-12 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-2 text-white py-1 px-2 rounded">Watch later <FontAwesomeIcon icon={faClipboardList} className='text-xl text-slate-200'/></button>}
+                    {inWatchlist && <button onClick={() => handleNextMovie()} className="absolute top-12 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-2 text-white py-1 px-2 rounded">Keep in Watchlist</button>}
                 </div>
                 <div id="voteButtons" className="relative bottom-36 flex flex-row justify-between mx-5">
                     <button onClick={() => handleDislike()} className="dislike-btn rounded-full h-16 w-16 border-0 bg-[#FF2F61]/40 text-3xl"><FontAwesomeIcon icon={faRemove} className='remove-icon'/></button>
@@ -128,15 +128,17 @@ export default function Movie() {
                     <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[0]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[1]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[2]}`],"en")}</span>
                 </div>
                 <div className="relative bottom-40 ml-5">
-                    <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
-                    <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-                    <Outlet context={[movie]}/>
-                    {user && user.role === 'admin' && (
-                    <div>
-                        <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
-                        <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
-                    </div>
-                    )}
+                    <NavLink isActive className={(element) => element.isActive ? "selected" : "notSelected"} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
+                    <NavLink id="reviewToggle" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+                    <div className="relative -bottom-6">
+                        <Outlet context={[movie]}/>
+                        {user && user.role === 'admin' && (
+                        <div>
+                            <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
+                            <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
+                        </div>
+                        )}
+                    </div>     
                 </div>
             </div>}
         </div>
