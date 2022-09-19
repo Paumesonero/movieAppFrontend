@@ -10,7 +10,6 @@ import ReviewCard from '../../components/ReviewCard';
 import toast from 'react-hot-toast';
 
 export default function UserDetails() {
-    const { isLoggedIn, logOutUser } = useContext(AuthContext);
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
     const {user} = useContext(AuthContext);
@@ -99,12 +98,7 @@ export default function UserDetails() {
         </div>
     )
 }
-//in burger menu:
-//  <Link to={'/my-reviews'} className='text-center relative mt-3'>See all my reviews</Link>
-//             {user && user.role === 'admin' && <NavLink to='/user-list'>See users</NavLink>} 
-            // <NavLink to={`/user/preferences`}>See my preferences</NavLink>
-            //       <NavLink to="/edit-user">Edit user</NavLink>
-            //       {isLoggedIn && <button onClick={() => logOutUser()}>Log out</button>}
+  
 
 
 
