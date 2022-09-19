@@ -9,7 +9,6 @@ export default function MovieReviewCard(props) {
     const {review, storedToken} = props;
     const [isLiked, setIsLiked] = useState(false);
     const [likeNumber, setLikeNumber] = useState(0)
-
     useEffect(() => {
         const getIfIsLiked = async () => {
             try {
@@ -21,7 +20,6 @@ export default function MovieReviewCard(props) {
         }
         getIfIsLiked();
     },[isLiked,storedToken,review._id]);
-
     useEffect(() =>{
         const getNumber = async () =>{
             try {
@@ -33,7 +31,6 @@ export default function MovieReviewCard(props) {
         }
         getNumber();
     },[storedToken, review._id, likeNumber])
-
     const handleLike = async (reviewId) => {
         try {
             await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/add/${reviewId}`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });    

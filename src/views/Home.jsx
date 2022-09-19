@@ -22,7 +22,7 @@ export default function Home() {
     getNextMovie();
   },[storedToken])
   return (
-    <div id="homePage" className="bg-[url('https://i.redd.it/4fxxbm4opjd31.jpg')] h-screen text-center">
+    <div id="homePage" className="background-img h-screen text-center">
       <h1 className="text-gray-200 pt-32 pr-52 font-bold">Find a movie</h1>
       {nextMovieId && <div>
         <form method="GET" className="mx-10">

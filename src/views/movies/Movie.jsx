@@ -6,8 +6,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import toast from 'react-hot-toast';
-import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+import { faRemove } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 const colage = require("colage");
 
 export default function Movie() {
@@ -29,7 +30,6 @@ export default function Movie() {
         }
         getMovie();
     },[storedToken, movieId]);
-    
     useEffect(() => {
         const isInWatchlist = async () => {
             try {
@@ -104,31 +104,42 @@ export default function Movie() {
     };
     return (
         <div>
-            {movie && <div>
+            {movie && <div className="bg-slate-900">
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                <div>
-                    <img src={movie.translations[0].poster.og} alt="poster" />
+                <img src="https://storage-asset.msi.com/event/mb/2016/for_honor/images/topblack.png" alt="fade" className="absolute h-screen" />
+                <div className="max-h-full max-w-full h-screen">
+                    <img src={movie.translations[0].poster.og} className="h-5/6 object-cover" alt="poster" />
                 </div>
-                <div id="voteButtons">
-                    <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
-                    <button onClick={() => handleDislike()} className="voteButtons"><FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon'/></button>
-                    <button onClick={() => handleIgnore()} className="voteButtons"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
-                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="voteButtons">Watch later</button>}
-                    {inWatchlist && <button onClick={() => handleNextMovie()} className="voteButtons">Keep in Watchlist</button>}
+                <div id="watchLaterButtons">
+                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="absolute top-12 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-2 text-white py-1 px-2 rounded">Watch later <FontAwesomeIcon icon={faClipboardList} className='text-xl text-slate-200'/></button>}
+                    {inWatchlist && <button onClick={() => handleNextMovie()} className="absolute top-12 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-2 text-white py-1 px-2 rounded">Keep in Watchlist</button>}
                 </div>
-                <img src={movie.image.og} alt="movie-frame" />
-                <h1>{movie.name}</h1>
-                <h3><span>{colage.ge([`${movie.genres[0]}`],"en")}</span><span>{colage.ge([`${movie.genres[1]}`],"en")}</span><span>{colage.ge([`${movie.genres[2]}`],"en")}</span></h3>
-                <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
-                <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-                <Outlet context={[movie]}/>
-                {user && user.role === 'admin' && (
-                    <div>
-                        <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
-                        <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
-                    </div>
-                    
-                )}
+                <div id="voteButtons" className="relative bottom-36 flex flex-row justify-between mx-5">
+                    <button onClick={() => handleDislike()} className="dislike-btn rounded-full h-16 w-16 border-0 bg-[#FF2F61]/40 text-3xl"><FontAwesomeIcon icon={faRemove} className='remove-icon'/></button>
+                    <button onClick={() => handleIgnore()} className="rounded-full h-16 w-16 border-0 bg-[#F0EB78]/40 text-3xl"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
+                    <button onClick={() => handleLike()} className="rounded-full h-16 w-16 border-0 bg-[#7ED360]/40 text-3xl "><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>                    
+                </div>
+                <img src={movie.image.og} className="relative bottom-28" alt="movie-frame" />
+                <div className="relative bottom-52 flex flex-row items-baseline">
+                    <img src={movie.translations[0].poster.og}  className="h-40 border-solid border-2 rounded-lg mx-4 border-1 border-gray-200" alt="poster" />
+                    <h1 className="text-2xl font-bold">{movie.name}</h1>
+                </div>
+                <div className="h-8 flex flex-row justify-around relative bottom-48">
+                    <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[0]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[1]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[2]}`],"en")}</span>
+                </div>
+                <div className="relative bottom-40 ml-5">
+                    <NavLink isActive className={(element) => element.isActive ? "selected" : "notSelected"} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
+                    <NavLink id="reviewToggle" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+                    <div className="relative -bottom-6">
+                        <Outlet context={[movie]}/>
+                        {user && user.role === 'admin' && (
+                        <div>
+                            <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
+                            <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
+                        </div>
+                        )}
+                    </div>     
+                </div>
             </div>}
         </div>
     )

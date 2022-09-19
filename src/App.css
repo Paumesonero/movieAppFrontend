@@ -5,18 +5,29 @@
 .background-img {
     position: relative;
     isolation: isolate;
-
 }
 
 .background-img::after {
     content: '';
-
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: gray;
+    background: linear-gradient(to right, transparent, mistyrose);
     opacity: .4;
     background-image: url('https://i.redd.it/4fxxbm4opjd31.jpg');
     background-position: top;
-    clip-path: polygon(0 0%, 100% 0, 100% 25%, 0 100%);
+}
+
+.selected {
+    border-bottom: 3px solid darkgrey;
+    padding-bottom: 10px;
+    font-weight: 700;
+}
+
+.notSelected {
+    padding-bottom: 10px;
+}
+
+#reviewToggle {
+    margin: 10px 20px;
 }
