@@ -104,23 +104,26 @@ export default function Movie() {
     };
     return (
         <div>
-            {movie && <div>
+            {movie && <div className="bg-slate-900">
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 <img src="https://www.seekpng.com/png/full/847-8470273_white-fade-to-transparent-background.png" alt="fade" className="absolute h-screen" />
                 <div className="max-h-full max-w-full h-screen">
                     <img src={movie.translations[0].poster.og} className="h-5/6 object-cover" alt="poster" />
                 </div>
                 <div id="watchLaterButtons">
-                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="absolute top-4 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/80 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Watch later <FontAwesomeIcon icon={faClipboardList} className='text-xl text-slate-200'/></button>}
+                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="absolute top-4 right-5 mt-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-sm border-2 text-white py-1 px-2 rounded">Watch later <FontAwesomeIcon icon={faClipboardList} className='text-xl text-slate-200'/></button>}
                     {inWatchlist && <button onClick={() => handleNextMovie()} className="WatchLaterButton">Keep in Watchlist</button>}
                 </div>
                 <div id="voteButtons">
-                    <button onClick={() => handleDislike()} className="rounded-full h-16 w-16 border-0 bg-[#FFFFFF]/40 mx-o my-2 text-2xl"><FontAwesomeIcon icon={faRemove} className='remove-icon'/></button>
-                    <button onClick={() => handleIgnore()} className="rounded-full h-16 w-16 border-0 bg-[#FFFFFF]/40 mx-o my-2 text-2xl"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
-                    <button onClick={() => handleLike()} className="rounded-full h-16 w-16 border-0 bg-[#FFFFFF]/40 mx-o my-2 text-2xl"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>                    
+                    <button onClick={() => handleDislike()} className="dislike-btn rounded-full h-16 w-16 border-0 bg-[#FF2F61]/40 mx-o my-2 text-3xl absolute bottom-20 left-5"><FontAwesomeIcon icon={faRemove} className='remove-icon'/></button>
+                    <button onClick={() => handleIgnore()} className="rounded-full h-16 w-16 border-0 bg-[#F0EB78]/40 mx-o my-2 text-3xl absolute bottom-20 left-40"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
+                    <button onClick={() => handleLike()} className="rounded-full h-16 w-16 border-0 bg-[#7ED360]/40 mx-o my-2 text-3xl absolute bottom-20 right-5"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>                    
                 </div>
-                <img src={movie.image.og} alt="movie-frame" />
-                <h1>{movie.name}</h1>
+                <img src={movie.image.og} className="mb-10" alt="movie-frame" />
+                <div className="absolute -bottom-80 flex flex-row items-baseline">
+                    <img src={movie.translations[0].poster.og}  className="h-40 border-solid border-2 rounded-lg mx-4 border-1 border-gray-200" alt="poster" />
+                    <h1 className="text-2xl font-bold">{movie.name}</h1>
+                </div>               
                 <h3><span>{colage.ge([`${movie.genres[0]}`],"en")}</span><span>{colage.ge([`${movie.genres[1]}`],"en")}</span><span>{colage.ge([`${movie.genres[2]}`],"en")}</span></h3>
                 <NavLink active="true" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                 <NavLink className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
