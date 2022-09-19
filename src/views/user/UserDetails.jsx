@@ -58,8 +58,8 @@ export default function UserDetails() {
                 </div>
                 <div className='flex flex-col ml-8'>
                     <img src={user.imageUrl} alt="profile" className='profile-img w-28' />
-                    <p className='absolute top-44'><strong>{user.username}</strong></p>
-                    <p className='relative top-0 w-4/5'>{user.biography}</p>
+                    <p className='absolute top-48'><strong>{user.username}</strong></p>
+                    <p className='relative top-5 w-4/5'>{user.biography}</p>
                 </div>
             </div>
             <h5 className='text-2xl mb-3 ml-3 font-semibold'>My votes</h5>
