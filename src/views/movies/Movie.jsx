@@ -106,7 +106,7 @@ export default function Movie() {
         <div>
             {movie && <div className="bg-slate-900">
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                <img src="https://www.seekpng.com/png/full/847-8470273_white-fade-to-transparent-background.png" alt="fade" className="absolute h-screen" />
+                <img src="https://storage-asset.msi.com/event/mb/2016/for_honor/images/topblack.png" alt="fade" className="absolute h-screen" />
                 <div className="max-h-full max-w-full h-screen">
                     <img src={movie.translations[0].poster.og} className="h-5/6 object-cover" alt="poster" />
                 </div>
