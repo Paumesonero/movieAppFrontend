@@ -69,7 +69,7 @@ export default function UserDetails() {
                     <div key={el._id}>
                         {el.vote && ( 
                             <div className='relative'>
-                            <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-22 min-w-[6rem] h-36 rounded-md'/></Link>
+                            <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-2 min-w-[6rem] h-36 rounded-md'/></Link>
                             <FontAwesomeIcon icon={faHeart} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-green-600'/>
                             </div>)}
                         {(!el.vote && !el.ignore)  && 

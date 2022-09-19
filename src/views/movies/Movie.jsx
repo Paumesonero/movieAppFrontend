@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import toast from 'react-hot-toast';
-import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+import { faRemove } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const colage = require("colage");
 
@@ -29,7 +29,6 @@ export default function Movie() {
         }
         getMovie();
     },[storedToken, movieId]);
-    
     useEffect(() => {
         const isInWatchlist = async () => {
             try {
@@ -110,11 +109,11 @@ export default function Movie() {
                     <img src={movie.translations[0].poster.og} alt="poster" />
                 </div>
                 <div id="voteButtons">
-                    <button onClick={() => handleLike()} className="voteButtons"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
-                    <button onClick={() => handleDislike()} className="voteButtons"><FontAwesomeIcon icon={faHeartCrack} className='crack-heart-icon'/></button>
-                    <button onClick={() => handleIgnore()} className="voteButtons"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
-                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="voteButtons">Watch later</button>}
-                    {inWatchlist && <button onClick={() => handleNextMovie()} className="voteButtons">Keep in Watchlist</button>}
+                    <button onClick={() => handleLike()} className="rounded-full h-16 w-16 border-0 bg-[#FFFFFF]/40 mx-o my-2 text-2xl"><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>
+                    <button onClick={() => handleDislike()} className="rounded-full h-16 w-16 border-0 bg-[#FFFFFF]/40 mx-o my-2 text-2xl"><FontAwesomeIcon icon={faRemove} className='remove-icon'/></button>
+                    <button onClick={() => handleIgnore()} className="rounded-full h-16 w-16 border-0 bg-[#FFFFFF]/40 mx-o my-2 text-2xl"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
+                    {!inWatchlist && <button onClick={() => handleWatchlist()} className="WatchLaterButton">Watch later</button>}
+                    {inWatchlist && <button onClick={() => handleNextMovie()} className="WatchLaterButton">Keep in Watchlist</button>}
                 </div>
                 <img src={movie.image.og} alt="movie-frame" />
                 <h1>{movie.name}</h1>
