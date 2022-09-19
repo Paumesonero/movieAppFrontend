@@ -128,7 +128,7 @@ export default function Movie() {
                     <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[0]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[1]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[2]}`],"en")}</span>
                 </div>
                 <div className="relative bottom-40 ml-5">
-                    <NavLink isActive className={(element) => element.isActive ? "selected" : "notSelected"} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
+                    <NavLink isactive="true" className={(element) => element.isActive ? "selected" : "notSelected"} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
                     <NavLink id="reviewToggle" className={(element) => element.isActive ? "selected" : ""} to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
                     <div className="relative -bottom-6">
                         <Outlet context={[movie]}/>
