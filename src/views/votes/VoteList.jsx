@@ -47,7 +47,13 @@ export default function VoteList() {
         } else if(e.target.value === 'rating'){
             const orderedByRating = [...filteredVotes].sort((a,b) => b.movieId.imdb_rating - a.movieId.imdb_rating);
             setFilteredVotes(orderedByRating);
-        };
+        }else if(e.target.value === 'like'){
+            const orderedByLike =[...filteredVotes].sort((a,b) =>(b.vote - a.vote));
+            setFilteredVotes(orderedByLike)
+        } else if(e.target.value === 'disLike'){
+            const orderedBydisLike =[...filteredVotes].sort((a,b) =>(a.vote - b.vote));
+            setFilteredVotes(orderedBydisLike)
+        }
     };
     return (
         <div>
@@ -57,11 +63,13 @@ export default function VoteList() {
             </div>
             <div className='mt-8 ml-5'>
             <p><strong>Categories:</strong></p>
-                <div className='flex gap-8 mt-3'>
-                    <button onClick={handleSelect} value='date'>Last released</button>
-                    <button onClick={handleSelect} value='rating'>Top rated</button>
-                    <button onClick={handleSelect} value='name'>By name</button>
-                    <button onClick={handleCheck} value='ignored'>{ignored ? <p className='text-teal-600'>Ignored</p>: <p>Ignored</p>}</button>
+                <div className='flex overflow-x-auto gap-8 mr-3 min-h-[4rem] items-center '>
+                    <button onClick={handleSelect} value='date' className='min-w-[35%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Last released</button>
+                    <button onClick={handleSelect} value='rating' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Top rated</button>
+                    <button onClick={handleSelect} value='name' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>By name</button>
+                    <button onClick={handleCheck} value='ignored' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>{ignored ? <p className='text-amber-400'>Ignored</p>: <p>Ignored</p>}</button>
+                    <button onClick={handleSelect} value='like' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Liked</button>
+                    <button onClick={handleSelect} value='disLike' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>DisLiked</button>
                 </div>
             </div>
             <div className='flex flex-col gap-5 text-sm mt-4 ml-5'>
@@ -91,7 +99,7 @@ export default function VoteList() {
 
                                 <div className='flex flex-col justify-between h-28 items-end'>
                                     {el.vote ? <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeart} className='text-3xl text-lime-700 mr-3'/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCrack} className='text-3xl text-red-700 mr-3' /></Link>}
-                                <Link to={`/addReview/${el.movieId._id}`} className='border-2 border-teal-600 border-opacity-50 px-3 py-px'>Add Review</Link>
+                                <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-teal-600'>Add Review</Link>
                                 </div>
                             </div>
                         )}
