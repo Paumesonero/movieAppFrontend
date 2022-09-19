@@ -53,9 +53,9 @@ return(
     <div>
         <h2>Edit user.</h2>
          <form onSubmit={handleSubmit}>
-            <input required type='text' name='username' value={userData.username} onChange={handleChange} />
+            <input required type='text' name='username' maxLength='15' value={userData.username} onChange={handleChange} />
             <input required type='email' name='email' value={userData.email} onChange={handleChange} />
-            <textarea name="biography"  cols="30" rows="7" value={userData.biography} onChange={handleChange} />
+            <textarea name="biography"  cols="30" rows="7" maxLength='135' value={userData.biography} onChange={handleChange} />
             <input type="file" onChange={(e) => handleFileUpload(e)} />
             <button type='submit'>Save changes and log out</button>
          </form>
