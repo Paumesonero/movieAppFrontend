@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
@@ -37,7 +38,7 @@ export default function Home() {
         </form>
         <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" className="w-40 mx-auto"/></NavLink>
       </div> }
-      {user && user.role === 'admin' && <NavLink to={`/movies/create`}>Create new Movie</NavLink>}
+      {user && user.role === 'admin' && <NavLink to={`/movies/create`}><FontAwesomeIcon icon={faCirclePlus} className="left-48 text-gray-200"/></NavLink>}
     </div>
   )
 }

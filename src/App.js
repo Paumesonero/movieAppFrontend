@@ -25,7 +25,7 @@ import UserOptions from './views/user/UserOptions';
 
 function App() {
   return (
-    <div className="m-0 box-border text-base bg-gray-900 text-gray-200 mb-14">
+    <div className="m-0 box-border text-base bg-gray-900 text-gray-200">
       <Toaster/>
       <Routes>
         <Route path="/" element={<Home />} />

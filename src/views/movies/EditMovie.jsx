@@ -49,9 +49,9 @@ export default function EditMovie() {
         <div>
             {movieToDB && <div>
                 <h1>Edit movie</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="flex flex-col searchForm top-48 mx-10">
                     <label>IMDB Id</label>
-                    <input type="text" name="imdb_id" defaultValue={movieToDB.imdb_id?movieToDB.imdb_id:undefined} onChange={handleChange}/>
+                    <input className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900" type="text" name="imdb_id" defaultValue={movieToDB.imdb_id?movieToDB.imdb_id:undefined} onChange={handleChange}/>
                     <label>Title</label>
                     <input type="text" name="name" value={movieToDB.name?movieToDB.name:""} onChange={handleChange}/>
                     <label>Year</label>
