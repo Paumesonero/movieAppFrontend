@@ -33,7 +33,7 @@ export default function MovieReviewCard(props) {
     },[storedToken, review._id, likeNumber])
     const handleLike = async (reviewId) => {
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/add/${reviewId}`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });    
+            await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });    
             !isLiked && setLikeNumber(prev => prev +1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
@@ -43,7 +43,7 @@ export default function MovieReviewCard(props) {
 
     const handleRemoveLike = async (reviewId) => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/reviewLike/remove/${reviewId}`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            await axios.delete(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
             isLiked && setLikeNumber(prev => prev -1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
