@@ -125,7 +125,7 @@ export default function Movie() {
                     <h1 className="text-2xl font-bold">{movie.name}</h1>
                 </div>
                 <div className="h-8 flex flex-row justify-around relative bottom-48">
-                    <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[0]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[1]}`],"en")}</span> <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[2]}`],"en")}</span>
+                    {movie.genres[0] && <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[0]}`],"en")}</span>} {movie.genres[1] && <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[1]}`],"en")}</span>} {movie.genres[2] && <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[2]}`],"en")}</span>}
                 </div>
                 <div className="relative bottom-40 ml-5">
                     <NavLink isactive="true" className={(element) => element.isActive ? "selected" : "notSelected"} to={`/movies/${movieId}/overview`}>About Movie</NavLink>
