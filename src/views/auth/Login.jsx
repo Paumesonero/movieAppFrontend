@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate, NavLink } from 'react-router-dom';
 
@@ -40,17 +41,22 @@ export default function Login() {
       <div className='background-img polygon h-64'></div>
       <form onSubmit={handleSubmit} className=' h-64 flex flex-col items-center gap-4 justify-center '>
         <div className='flex flex-col w-3/4'>
-          <label><strong className='relative'>Email</strong></label>
-          <FontAwesomeIcon icon={faEnvelope} className='relative top-8 right-32 text-xl' />
-          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg' />
+          <label><strong className='relative top-5'>Email</strong></label>
+          <div>
+          <FontAwesomeIcon icon={faEnvelope} className='relative top-[2.3rem] left-3 text-2xl' />
+          </div>
+          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
         </div>
         <div className='flex flex-col w-3/4'>
-          <label><strong>Password</strong></label>
-          <input required type="password" name="password" value={user.password} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-2xl focus:outline-teal-600' />
+          <label><strong className='relative top-5'>Password</strong></label>
+          <div>
+          <FontAwesomeIcon icon={faLock} className='relative top-[2.3rem] left-3 text-2xl' />
+          </div>
+          <input required type="password" name="password" value={user.password} onChange={handleChange} className='rounded h-11 px-12 w-full text-gray-200 bg-gray-700 text-2xl focus:outline-teal-600' />
         </div>
-        <button type="submit" className='border-2 px-[7.5rem] py-3 mt-3 bg-teal-600 border-teal-600 rounded'> <strong className='text-lg'>Log in</strong> </button>
+        <button type="submit" className='border-2 px-[7.5rem] py-3 mt-3 bg-[#65B3AD] border-[#65B3AD] rounded'> <strong className='text-lg text-gray-700'>Log in</strong> </button>
         <div className='w-3/4'>
-          <p className='ml-1'><strong>Not a member yet? Sign up</strong>  <NavLink to="/signup"><strong className='text-teal-600'>here</strong></NavLink></p>
+          <p className='ml-1'><strong>Not a member yet? Sign up</strong>  <NavLink to="/signup"><strong className='text-[#65B3AD]'>here</strong></NavLink></p>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
         
