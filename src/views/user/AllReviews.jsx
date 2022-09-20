@@ -14,7 +14,7 @@ export default function AllReviews() {
             const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/allUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
             setReviews(reviewsFromApi.data.data);
         } catch (error) {
-            console.log(error);
+            setErrorMessage(error.response.data.error);
         }
     }
     getReviews();
@@ -30,7 +30,7 @@ const handleDelete = async (reviewId, titleReview) => {
       await axios.delete(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } })
       toast.error(' Review deleted!');
   } catch (error) {
-      console.log(error)
+      setErrorMessage(error.response.data.error);
   }
 };
   return (

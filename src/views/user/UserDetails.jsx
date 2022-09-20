@@ -21,7 +21,7 @@ export default function UserDetails() {
                 const reviewsFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/allUserReviews`, { headers: { Authorization: `Bearer ${storedToken}` } });
                 setReviews(reviewsFromApi.data.data);
             } catch (error) {
-                console.log(error);
+                setErrorMessage(error.response.data.error);
             }
         }
         getReviews();
@@ -52,7 +52,7 @@ export default function UserDetails() {
     };
     return (
         <div>
-            <div className="background-img h-72 mb-10 absolute">
+            <div className="background-img h-72 mb-10 absolute polygon">
                 <div className='flex justify-end mr-4 text-3xl relative top-4'>
                   <NavLink to='/options'><FontAwesomeIcon icon={faBars}/></NavLink>
                 </div>

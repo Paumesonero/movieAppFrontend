@@ -18,6 +18,10 @@
     background-position: top;
 }
 
+.polygon::after {
+    clip-path: polygon(0 0%, 100% 0, 100% 25%, 0 100%);
+}
+
 .selected {
     border-bottom: 3px solid darkgrey;
     padding-bottom: 10px;
