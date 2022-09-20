@@ -133,9 +133,9 @@ export default function Movie() {
                     <div className="relative -bottom-6">
                         <Outlet context={[movie]}/>
                         {user && user.role === 'admin' && (
-                        <div>
-                            <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`}>Edit movie</NavLink>
-                            <button onClick={handleDelete} method="DELETE" type="submit">Delete</button>
+                        <div className="flex justify-evenly">
+                            <NavLink state={{myState:"edit",movie:movie}} to={`/movies/${movieId}/edit`} className="mt-2 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-xl border-4 text-white py-1 px-2 rounded">Edit movie</NavLink>
+                            <button onClick={handleDelete} method="DELETE" type="submit" className="mt-2 flex-shrink-0 bg-[#FF2F61]/60 hover:bg-teal-700 border-[#FF2F61] hover:border-teal-700 text-xl border-2 text-white py-1 px-2 rounded">Delete</button>
                         </div>
                         )}
                     </div>     
