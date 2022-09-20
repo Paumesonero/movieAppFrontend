@@ -11,7 +11,8 @@ export default function Navbar() {
   // const { isLoggedIn } = useContext(AuthContext);
   // const {user} = useContext(AuthContext);
   return (
-    <div className=' bg-zinc-700 flex justify-around items-center  h-14 rounded-t-md fixed bottom-0 w-full'>
+    
+      <div className=' bg-zinc-700 flex justify-around items-center  h-14  fixed bottom-0 w-full'>
       <NavLink to="/user"><FontAwesomeIcon icon={faUser} className='text-2xl text-slate-200 target:text-red-600'/></NavLink> 
       <NavLink to='/'><FontAwesomeIcon icon={faHouse} className='text-2xl text-slate-200'/></NavLink>
       <NavLink to='/watchlist'><FontAwesomeIcon icon={faClipboardList} className='text-2xl text-slate-200'/></NavLink>
@@ -26,5 +27,7 @@ export default function Navbar() {
         <li><button onClick={() => navigate(-1)}>Go back</button></li>
       </ul> */}
     </div>
+    
+    
   )
 }
