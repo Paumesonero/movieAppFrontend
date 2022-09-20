@@ -80,11 +80,11 @@ export default function VoteList() {
                             <div key={el._id} className='flex gap-5 h-44 mb-0 items-center' >
                                 {el.vote ? (
                                     <div className='flex items-center'>
-                                        <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
+                                        <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                                     </div>
                                 ) : (
                                     <div className='flex items-center '>
-                                      <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
+                                      <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                                     </div>
                                 )}
                                 <div className='flex flex-col w-32 justify-center gap-2'>
@@ -98,14 +98,14 @@ export default function VoteList() {
                                 </div>
 
                                 <div className='flex flex-col justify-between h-28 items-end'>
-                                    {el.vote ? <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeart} className='text-3xl text-lime-700 mr-3'/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCrack} className='text-3xl text-red-700 mr-3' /></Link>}
+                                    {el.vote ? <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faHeart} className='text-3xl text-lime-700 mr-3'/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCrack} className='text-3xl text-red-700 mr-3' /></Link>}
                                 <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-teal-600'>Add Review</Link>
                                 </div>
                             </div>
                         )}
                     {(ignored && el.vote === undefined) &&(
                         <div className='flex gap-5'>
-                                <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
+                                <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                         <div className='flex flex-col w-32 '>
                                 <p><strong className='text-teal-600'>Title:</strong></p>
                                 <p>{el.movieId.name}</p>
@@ -113,10 +113,9 @@ export default function VoteList() {
                                 <p>{el.movieId.premiere}</p>
                                 <p><strong className='text-teal-600'>Average Rating:</strong></p>
                                 <p>{el.movieId.imdb_rating}</p>
-                                
                         </div>
                         <div className='flex flex-col justify-between h-28 items-end'>
-                            {el.vote === undefined && <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faEyeSlash} className='text-3xl text-amber-400 '/></Link> }
+                            {el.vote === undefined && <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faEyeSlash} className='text-3xl text-amber-400 '/></Link> }
                             <Link to={`/addReview/${el.movieId._id}`}>Add Review</Link>
                         </div>
                         </div>

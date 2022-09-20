@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar'
 
 export default function Watchlist() {
@@ -20,7 +20,6 @@ export default function Watchlist() {
         }
         getMovies();
     },[storedToken]);
-
     const handleSearch = (searchValue) =>{
         if(searchValue === ''){
             setFilteredWatchlist(myWatchList);
@@ -29,7 +28,6 @@ export default function Watchlist() {
             setFilteredWatchlist(filtered);
         }
     };
-
     const handleRemove = async (movieId) => {
         try {
             await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
@@ -39,8 +37,6 @@ export default function Watchlist() {
             setErrorMessage(error.response.data.error);
         }
     }
-
-    
     const handleSelect = (e) =>{
         console.log()
         if(e.target.value === 'date'){
@@ -54,7 +50,6 @@ export default function Watchlist() {
             setFilteredWatchlist(orderedByRating);
         };
     }
-
     return (
         <div className=''>
             <div className='relative top-3 flex flex-col gap-3'>
@@ -68,14 +63,13 @@ export default function Watchlist() {
                     <button onClick={handleSelect} value='rating'>Top rated</button>
                     <button onClick={handleSelect} value='name'>By name</button>
                 </div>
-
             </div>
             <div className='flex flex-col gap-10 mt-14'>
             {filteredWatchlist && filteredWatchlist.map(el =>{
                 return(
                     <div key={el._id} className='flex gap-4 ml-5' >
                         <div>
-                        <Link to={`/movies/${el.movieId._id}`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44 rounded-lg' /></Link>  
+                        <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44 rounded-lg' /></NavLink>  
                         </div>
                         <div className='flex flex-col gap-3'>
                             <div>
