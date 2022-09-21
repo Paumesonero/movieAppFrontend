@@ -52,7 +52,7 @@ export default function UserDetails() {
         }
     };
     return (
-        <div className='h-max mb-14'>
+        <div className='h-max mb-14 min-h-screen'>
             <div className="background-img h-72 mb-10 absolute polygon">
                 <div className='flex justify-end mr-4 text-3xl relative top-4'>
                   <NavLink to='/options'><FontAwesomeIcon icon={faBars}/></NavLink>
@@ -92,7 +92,7 @@ export default function UserDetails() {
             </div>
             {!votes && <p>There's no votes yet</p>}
             <h5 className='text-2xl mt-4 ml-3 font-semibold'>My reviews</h5>
-            <div className='flex flex-col gap-5 mt-4'>
+            <div className='flex flex-col mt-4'>
                 {reviews && reviews.slice(0,2).map(el =>{
                     return(
                       <div key={el._id}>
