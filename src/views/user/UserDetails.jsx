@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { Link, NavLink} from 'react-router-dom';
 import ReviewCard from '../../components/ReviewCard';
@@ -67,7 +68,7 @@ export default function UserDetails() {
             </div>
             <h5 className='text-2xl mb-3 ml-3 font-semibold'>My votes</h5>
             <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-3'>
-            {votes && votes.map(el =>{
+            {votes && votes.slice(0, 26).map(el =>{
                 return(
                     <div key={el._id}>
                         {el.vote && ( 
@@ -83,6 +84,11 @@ export default function UserDetails() {
                     </div>
                 )
             })}
+            <div className='flex flex-col justify-center items-center  w-2 min-w-[6rem] h-36 rounded-md border-2 border-dashed border-[#65B3AD] mr-2'>
+                <NavLink to='/vote-list' className='flex flex-col text-[#65B3AD]'>See more
+                <FontAwesomeIcon icon={faPlus} />
+                </NavLink>
+            </div>
             </div>
             {!votes && <p>There's no votes yet</p>}
             <h5 className='text-2xl mt-4 ml-3 font-semibold'>My reviews</h5>
