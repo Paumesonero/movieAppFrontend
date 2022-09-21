@@ -46,10 +46,10 @@ export default function AddReview() {
         } 
     }
     return (
-        <div>
+        <div className='h-screen mb-14'>
             <h2>Add a review.</h2>
             {movie && <img src={movie.translations[0].poster.og} alt='movie poster'></img>}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className=''>
                 <div>
                 <label> Title</label>
                 <input type="text" name='titleReview' placeholder='Title' value={review.titleReview} onChange={handleChange} />

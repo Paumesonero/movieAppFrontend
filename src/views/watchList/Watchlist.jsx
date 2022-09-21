@@ -51,7 +51,7 @@ export default function Watchlist() {
         };
     }
     return (
-        <div className=''>
+        <div className='h-scren min-h-screen'>
             <div className='relative top-3 flex flex-col gap-3'>
                 <h2 className='  text-2xl font-bold ml-5 '>Find your <span className='text-teal-600'>movies</span></h2>
                 <SearchBar onSearch={ handleSearch}/>
@@ -64,7 +64,7 @@ export default function Watchlist() {
                     <button onClick={handleSelect} value='name'>By name</button>
                 </div>
             </div>
-            <div className='flex flex-col gap-10 mt-14'>
+            <div className='flex flex-col gap-10 mt-14 mb-14'>
             {filteredWatchlist && filteredWatchlist.map(el =>{
                 return(
                     <div key={el._id} className='flex gap-4 ml-5' >
@@ -85,7 +85,7 @@ export default function Watchlist() {
                                 <p>{el.movieId.imdb_rating}</p>
                             </div>
                             <div className='flex w-max '>
-                            <button onClick={() => handleRemove(el.movieId._id)} className='relative left-36 border-2 border-teal-600 border-opacity-50 px-3 py-px '>Remove</button>
+                            <button onClick={() => handleRemove(el.movieId._id)} className='relative bottom-4 left-36 border-2 border-teal-600 border-opacity-50 px-3 py-px '>Remove</button>
                             </div>
                             
                         </div>

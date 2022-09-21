@@ -51,15 +51,18 @@ export default function UserDetails() {
         }
     };
     return (
-        <div>
+        <div className='h-max mb-14'>
             <div className="background-img h-72 mb-10 absolute polygon">
                 <div className='flex justify-end mr-4 text-3xl relative top-4'>
                   <NavLink to='/options'><FontAwesomeIcon icon={faBars}/></NavLink>
                 </div>
                 <div className='flex flex-col ml-8'>
-                    <img src={user.imageUrl} alt="profile" className='profile-img w-28' />
-                    <p className='absolute top-48'><strong>{user.username}</strong></p>
-                    <p className='relative top-5 w-4/5'>{user.biography}</p>
+                    <img src={user.imageUrl} alt="profile" className='profile-img' />
+                    <div className='relative bottom-8 mb-4'>
+                        <p className='relative top-3'><strong>{user.username}</strong></p>
+                        <p className='relative top-5 w-4/5'>{user.biography}</p>
+                    </div>
+                    
                 </div>
             </div>
             <h5 className='text-2xl mb-3 ml-3 font-semibold'>My votes</h5>

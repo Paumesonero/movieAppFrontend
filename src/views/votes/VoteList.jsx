@@ -56,7 +56,7 @@ export default function VoteList() {
         }
     };
     return (
-        <div>
+        <div className='mb-14 min-h-screen'>
             <div className='relative top-5 flex flex-col gap-3'>
                 <h2 className='text-2xl font-bold ml-5 '> <span className='text-teal-600'>Vote</span> List</h2>
                 <SearchBar onSearch={ handleSearch} />
@@ -69,13 +69,13 @@ export default function VoteList() {
                     <button onClick={handleSelect} value='name' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>By name</button>
                     <button onClick={handleCheck} value='ignored' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>{ignored ? <p className='text-amber-400'>Ignored</p>: <p>Ignored</p>}</button>
                     <button onClick={handleSelect} value='like' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Liked</button>
-                    <button onClick={handleSelect} value='disLike' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>DisLiked</button>
+                    <button onClick={handleSelect} value='disLike' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Disliked</button>
                 </div>
             </div>
-            <div className='flex flex-col gap-5 text-sm mt-4 ml-5'>
+            <div className='flex flex-col gap-2 text-sm mt-4 ml-5'>
             {filteredVotes && filteredVotes.map(el =>{
                 return(
-                    <div key={el._id}>
+                    <div key={el._id} className='mb-5'>
                         {(el.vote || el.vote === false) &&(
                             <div key={el._id} className='flex gap-5 h-44 mb-0 items-center' >
                                 {el.vote ? (
@@ -116,7 +116,7 @@ export default function VoteList() {
                         </div>
                         <div className='flex flex-col justify-between h-28 items-end'>
                             {el.vote === undefined && <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faEyeSlash} className='text-3xl text-amber-400 '/></Link> }
-                            <Link to={`/addReview/${el.movieId._id}`}>Add Review</Link>
+                            <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-teal-600'>Add Review</Link>
                         </div>
                         </div>
                     )}  

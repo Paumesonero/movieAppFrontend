@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import profilePng from '../../images/profile-icon.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -40,20 +43,46 @@ export default function Signup() {
     }
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input required type="text" name="username" value={user.username} onChange={handleChange} />
-        <label>Email</label>
-        <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
-        <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
-        <label>Repeat the password</label>
-        <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
+    <div className='h-screen'>
+      <div className='background-img polygon h-64'></div>
+      <form onSubmit={handleSubmit} className='mt-24 h-64 flex flex-col items-center justify-center '>
+        <div className='flex flex-col w-3/4'>
+          <label><strong className='relative top-5'>Username</strong></label>
+          <div>
+          <FontAwesomeIcon icon={faUser} className='relative top-[2.3rem] left-3 text-2xl' />
+          </div>
+          <input required type="text" name="username" value={user.username} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+        </div>
+        <div className='flex flex-col w-3/4'>
+          <label><strong className='relative top-5'>Email</strong></label>
+          <div>
+          <FontAwesomeIcon icon={faEnvelope} className='relative top-[2.3rem] left-3 text-2xl' />
+          </div>
+          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+        </div>
+        <div className='flex flex-col w-3/4'>
+          <label><strong className='relative top-5'>Password</strong></label>
+          <div>
+          <FontAwesomeIcon icon={faLock} className='relative top-[2.3rem] left-3 text-2xl' />
+          </div>
+          <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+        </div>
+        <div className='flex flex-col w-3/4'>
+          <label><strong className='relative top-5'>Confirm password</strong></label>
+          <div>
+          <FontAwesomeIcon icon={faLock} className='relative top-[2.3rem] left-3 text-2xl' />
+          </div>
+          <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+        </div>
+        <button type="submit" className='border-2 px-[6.9rem] py-3 mb-2 mt-7 bg-[#65B3AD] border-[#65B3AD] rounded'><strong className='text-lg text-gray-700'>Register</strong></button>
+        <div className='w-3/4'>
+        <p className='ml-1'> <strong>Already have an Account? click</strong>  {<NavLink to='/login'><strong className='text-[#65B3AD]'>here</strong></NavLink>}</p>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Register</button>
+      </div>
       </form>
-      <p>Already have an Account? click {<NavLink to='/login'>Here</NavLink>}</p>
+      
+     
+      
     </div>
   )
 }

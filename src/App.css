@@ -1,5 +1,7 @@
 .profile-img {
     clip-path: circle();
+    width: 8rem;
+    height: 10rem;
 }
 
 .background-img {
