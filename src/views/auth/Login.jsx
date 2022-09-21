@@ -37,7 +37,7 @@ export default function Login() {
     }
   }
   return (
-    <div className='h-screen'>
+    <div className='h-screen min-h-screen'>
       <div className='background-img polygon h-64'></div>
       <form onSubmit={handleSubmit} className=' h-64 flex flex-col items-center gap-4 justify-center '>
         <div className='flex flex-col w-3/4'>

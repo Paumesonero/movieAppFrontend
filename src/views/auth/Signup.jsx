@@ -43,7 +43,7 @@ export default function Signup() {
     }
   };
   return (
-    <div className='h-screen'>
+    <div className='min-h-screen'>
       <div className='background-img polygon h-64'></div>
       <form onSubmit={handleSubmit} className='mt-24 h-64 flex flex-col items-center justify-center '>
         <div className='flex flex-col w-3/4'>
