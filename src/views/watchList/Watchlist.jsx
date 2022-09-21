@@ -64,7 +64,7 @@ export default function Watchlist() {
                     <button onClick={handleSelect} value='name'>By name</button>
                 </div>
             </div>
-            <div className='flex flex-col gap-10 mt-14 mb-14'>
+            <div className='flex flex-col  mt-14 mb-14'>
             {filteredWatchlist && filteredWatchlist.map(el =>{
                 return(
                     <div key={el._id} className='flex gap-4 ml-5' >
