@@ -66,7 +66,7 @@ export default function UserDetails() {
                     
                 </div>
             </div>
-            <h5 className='text-2xl mb-3 ml-3 font-semibold'>My votes</h5>
+            <h5 className='text-2xl mb-3 ml-3 font-semibold'>My <span className='text-[#65B3AD]'>votes</span> </h5>
             <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-3'>
             {votes && votes.slice(0, 26).map(el =>{
                 return(
@@ -91,7 +91,7 @@ export default function UserDetails() {
             </div>
             </div>
             {!votes && <p>There's no votes yet</p>}
-            <h5 className='text-2xl mt-4 ml-3 font-semibold'>My reviews</h5>
+            <h5 className='text-2xl mt-4 ml-3 font-semibold'>My <span className='text-[#65B3AD]'>reviews</span></h5>
             <div className='flex flex-col mt-4'>
                 {reviews && reviews.slice(0,2).map(el =>{
                     return(
