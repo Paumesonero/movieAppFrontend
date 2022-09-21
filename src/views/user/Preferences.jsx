@@ -103,8 +103,8 @@ export default function Preferences() {
     }
   };
   return (
-    <div>
-      <h1>How do you feel today?</h1>
+    <div className="h-screen">
+      <h1 className='text-2xl font-bold ml-10 pt-10'>How do you <span className='text-[#65B3AD]'>feel</span> today?</h1>
       {user && <div>
         <form onSubmit={handleSubmit} action="">
           <label>Action</label>
@@ -131,7 +131,9 @@ export default function Preferences() {
           <input type="checkbox" className="checkbox" id="documentary" name="documentary" checked={genres.documentary} onChange={(e) => handleCheck(e)} />
           <label>Crime</label>
           <input type="checkbox" className="checkbox" id="crime" name="crime" checked={genres.crime} onChange={(e) => handleCheck(e)} />
-          <button type="submit">Save preferences</button>
+          <div className="flex justify-center">
+            <button type="submit" className="mb-36 mt-8 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-xl border-4 text-white py-1 px-2 rounded w-28">Save</button>
+          </div>
         </form>
       </div>}
     </div>

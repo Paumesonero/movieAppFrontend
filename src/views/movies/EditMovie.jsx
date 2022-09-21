@@ -21,13 +21,11 @@ export default function EditMovie() {
         people1: movie.people[0].name,
         department2: movie.people[1].department,
         people2: movie.people[1].name,
-        department3: movie.people[2].department,
-        people3: movie.people[2].name,
         imdb_rating: movie.imdb_rating,
         imdb_vote: movie.imdb_vote,
         poster1: movie.translations[0].poster.og,
         overview: movie.translations[0].overview,
-    });
+    },[]);
     const handleChange = (e) => {
         setMovieToDB(prev => {
             return {
@@ -69,12 +67,10 @@ export default function EditMovie() {
                     </div>
                     <label className="mt-5"><strong>Cast & Crew:</strong></label>
                     <div className="peopleAndRoleForm">
-                        <input type="text" name="department1" value={movieToDB.department1? movieToDB.department1:""} className='rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
-                        <input type="text" name="people1" value={movieToDB.people1? movieToDB.people1:""} className='mt-1 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
-                        <input type="text" name="department2" value={movieToDB.department2? movieToDB.department2:""} className='mt-5 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
-                        <input type="text" name="people2" value={movieToDB.people2? movieToDB.people2:""} className='mt-1 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
-                        <input type="text" name="department3" value={movieToDB.department3? movieToDB.department3:""} className='mt-5 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
-                        <input type="text" name="people3" value={movieToDB.people3? movieToDB.people3:""} className='mt-1 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
+                        <input type="text" name="department1" defaultValue={movieToDB.department1? movieToDB.department1:""} className='rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
+                        <input type="text" name="people1" defaultValue={movieToDB.people1? movieToDB.people1:""} className='mt-1 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
+                        <input type="text" name="department2" defaultValue={movieToDB.department2? movieToDB.department2:""} className='mt-5 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
+                        <input type="text" name="people2" defaultValue={movieToDB.people2? movieToDB.people2:""} className='mt-1 rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
                     </div>
                     <label className="mt-5"><strong>IMDB rating:</strong></label>
                     <input type="number" name="imdb_rating" defaultValue={movieToDB.imdb_rating?movieToDB.imdb_rating:undefined} className='rounded h-11 px-3 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' onChange={handleChange}/>
