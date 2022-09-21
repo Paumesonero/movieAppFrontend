@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCircleCheck  } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCircleXmark  } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar';
@@ -58,7 +58,7 @@ export default function VoteList() {
     return (
         <div className='mb-14 min-h-screen'>
             <div className='relative top-5 flex flex-col gap-3'>
-                <h2 className='text-2xl font-bold ml-5 '> <span className='text-teal-600'>Vote</span> List</h2>
+                <h2 className='text-2xl font-bold ml-5 '> <span className='text-[#65B3AD]'>Vote</span> List</h2>
                 <SearchBar onSearch={ handleSearch} />
             </div>
             <div className='mt-8 ml-5'>
@@ -98,7 +98,7 @@ export default function VoteList() {
                                 </div>
 
                                 <div className='flex flex-col justify-between h-28 items-end'>
-                                    {el.vote ? <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faHeart} className='text-3xl text-lime-700 mr-3'/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCrack} className='text-3xl text-red-700 mr-3' /></Link>}
+                                    {el.vote ? <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faHeartCircleCheck} className='text-3xl text-[#65B3AD] mr-3'/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCircleXmark} className='text-3xl text-red-700 mr-3' /></Link>}
                                 <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-teal-600'>Add Review</Link>
                                 </div>
                             </div>
@@ -107,16 +107,16 @@ export default function VoteList() {
                         <div className='flex gap-5'>
                                 <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
                         <div className='flex flex-col w-32 '>
-                                <p><strong className='text-teal-600'>Title:</strong></p>
+                                <p><strong className='text-[#65B3AD]'>Title:</strong></p>
                                 <p>{el.movieId.name}</p>
-                                <p><strong className='text-teal-600'>Release Date:</strong></p>
+                                <p><strong className='text-[#65B3AD]'>Release Date:</strong></p>
                                 <p>{el.movieId.premiere}</p>
-                                <p><strong className='text-teal-600'>Average Rating:</strong></p>
+                                <p><strong className='text-[#65B3AD]'>Average Rating:</strong></p>
                                 <p>{el.movieId.imdb_rating}</p>
                         </div>
                         <div className='flex flex-col justify-between h-28 items-end'>
                             {el.vote === undefined && <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faEyeSlash} className='text-3xl text-amber-400 '/></Link> }
-                            <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-teal-600'>Add Review</Link>
+                            <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-[#65B3AD]'>Add Review</Link>
                         </div>
                         </div>
                     )}  

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink} from 'react-router-dom';
-// import { AuthContext } from '../context/AuthContext';
+ //import { AuthContext } from '../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -9,11 +9,12 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navbar() {
   // const { isLoggedIn } = useContext(AuthContext);
-  // const {user} = useContext(AuthContext);
+  //  const {user} = useContext(AuthContext);
   return (
     
       <div className=' bg-zinc-700 flex justify-around items-center  h-14  fixed bottom-0 w-full'>
-      <NavLink to="/user"><FontAwesomeIcon icon={faUser} className='text-2xl text-slate-200 target:text-red-600'/></NavLink> 
+      {/* {isLoggedIn && <NavLink to='/user'><img src={user.imageUrl} alt='user' className='profile-img-round w-10 h-14'/></NavLink>} */}
+      <NavLink to="/user"><FontAwesomeIcon icon={faUser} className='text-2xl text-slate-200 target:text-red-600'/></NavLink>
       <NavLink to='/'><FontAwesomeIcon icon={faHouse} className='text-2xl text-slate-200'/></NavLink>
       <NavLink to='/watchlist'><FontAwesomeIcon icon={faClipboardList} className='text-2xl text-slate-200'/></NavLink>
       <NavLink to='vote-list'><FontAwesomeIcon icon={faThumbsUp} className='text-2xl text-slate-200'/></NavLink>

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeartCrack } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 export default function MovieReviewCard(props) {
