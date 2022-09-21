@@ -38,7 +38,7 @@ export default function Home() {
         </form>
         <NavLink to='/login'><img src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" className="w-40 mx-auto"/></NavLink>
       </div> }
-      {user && user.role === 'admin' && <NavLink to={`/movies/create`}><FontAwesomeIcon icon={faCirclePlus} className="left-48 text-gray-200"/></NavLink>}
+      {user && user.role === 'admin' && <NavLink to={`/movies/create`}><FontAwesomeIcon icon={faCirclePlus} className='absolute right-10 bottom-24 text-7xl text-[#65B3AD]'/></NavLink>}
     </div>
   )
 }
