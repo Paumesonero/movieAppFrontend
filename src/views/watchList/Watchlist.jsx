@@ -53,7 +53,7 @@ export default function Watchlist() {
     return (
         <div className='h-scren min-h-screen'>
             <div className='relative top-3 flex flex-col gap-3'>
-                <h2 className='  text-2xl font-bold ml-5 '>Find your <span className='text-teal-600'>movies</span></h2>
+                <h2 className='text-2xl font-bold ml-5 '>Find your <span className='text-teal-600'>movies</span></h2>
                 <SearchBar onSearch={ handleSearch}/>
             </div>
             <div className='mt-8 ml-5'>
