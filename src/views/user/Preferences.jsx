@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Checkbox from "../../components/Checkbox";
 
 export default function Preferences() {
   const { user } = useContext(AuthContext);
@@ -107,8 +108,9 @@ export default function Preferences() {
       <h1 className='text-2xl font-bold ml-10 pt-10'>How do you <span className='text-[#65B3AD]'>feel</span> today?</h1>
       {user && <div>
         <form onSubmit={handleSubmit} action="">
-          <label>Action</label>
-          <input type="checkbox" className="checkbox" id="action" name="action" checked={genres.action} onChange={(e) => handleCheck(e)} />
+          <Checkbox label="action" genres={genres} handleCheck={handleCheck} />
+          {/* <label>Action</label>
+          <input type="checkbox" className="checkbox" id="action" name="action" checked={genres.action} onChange={(e) => handleCheck(e)} /> */}
           <label>Drama</label>
           <input type="checkbox" className="checkbox" id="drama" name="drama" checked={genres.drama} onChange={(e) => handleCheck(e)} />
           <label>Fantasy</label>
