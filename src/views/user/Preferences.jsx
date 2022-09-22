@@ -117,7 +117,7 @@ export default function Preferences() {
   };
   return (
     <div className="min-h-screen">
-      <h1 className='text-2xl font-bold ml-10 pt-10'>How do you <span className='text-[#65B3AD]'>feel</span> today?</h1>
+      <h1 className='mb-4 text-2xl font-bold ml-10 pt-10'>How do you <span className='text-[#65B3AD]'>feel</span> today?</h1>
       {user && <div>
         <form onSubmit={handleSubmit} className="flex flex-wrap justify-evenly">
           <Checkbox image={actionImg} checked={genres.action} label="action" genres={genres} handleCheck={handleCheck} />
