@@ -37,8 +37,7 @@ export default function Watchlist() {
             setErrorMessage(error.response.data.error);
         }
     }
-    const handleSelect = (e) =>{
-        console.log()
+    const handleSelect = (e) => {
         if(e.target.value === 'date'){
             const orderedByDate = [...myWatchList].sort((a,b) => (b.movieId.year > a.movieId.year) ? 1 : -1);
             setFilteredWatchlist(orderedByDate);
