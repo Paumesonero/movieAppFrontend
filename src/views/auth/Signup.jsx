@@ -80,9 +80,6 @@ export default function Signup() {
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </div>
       </form>
-      
-     
-      
     </div>
   )
 }

@@ -28,6 +28,7 @@ export default function Preferences() {
     const getPreferences = async () => {
       try {
         const currentUser = await axios.get(`${process.env.REACT_APP_API_URL}/user/loggedInUser`, { headers: { Authorization: `Bearer ${storedToken}` } });
+        console.log(currentUser.data.data.preferences);
         setGenres({
           action: currentUser.data.data.preferences.includes("1"),
           drama: currentUser.data.data.preferences.includes("12"),
@@ -95,8 +96,9 @@ export default function Preferences() {
     if(genres.crime) {
         newPreferences.push("10");
     };
+    console.log(newPreferences);
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/user/preferences`, newPreferences, { headers: { Authorization: `Bearer ${storedToken}` } });
+      await axios.put(`${process.env.REACT_APP_API_URL}/user/preferences`, {newPreferences}, { headers: { Authorization: `Bearer ${storedToken}` } });
       toast.success('Your preferences have been udpated.');
       navigate('/');
     } catch (error) {
@@ -108,7 +110,7 @@ export default function Preferences() {
       <h1 className='text-2xl font-bold ml-10 pt-10'>How do you <span className='text-[#65B3AD]'>feel</span> today?</h1>
       {user && <div>
         <form onSubmit={handleSubmit} action="">
-          <Checkbox label="action" genres={genres} handleCheck={handleCheck} />
+          <Checkbox checked={genres.action} label="action" genres={genres} handleCheck={handleCheck} />
           {/* <label>Action</label>
           <input type="checkbox" className="checkbox" id="action" name="action" checked={genres.action} onChange={(e) => handleCheck(e)} /> */}
           <label>Drama</label>
