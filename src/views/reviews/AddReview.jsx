@@ -54,11 +54,11 @@ export default function AddReview() {
             <form onSubmit={handleSubmit} className=' h-64 flex flex-col items-center gap-4 justify-center '>
                 <div className='flex flex-col w-3/4'>
                     <label><strong className='text-xl'>Title</strong></label>
-                    <input type="text" name='titleReview' value={review.titleReview} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-3 focus:outline-teal-600' />
+                    <input type="text" name='titleReview' maxLength='35' value={review.titleReview} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-3 focus:outline-teal-600' />
                 </div>
                 <div className='flex flex-col w-3/4'>
                     <label> <strong className='text-xl'>Description</strong></label>
-                    <textarea name="review"  cols="30" rows="7" defaultValue={review.review} onChange={handleChange} className='rounded text-gray-200 bg-gray-700 px-3 focus:outline-teal-600' />
+                    <textarea name="review"  cols="15" rows="7" defaultValue={review.review} onChange={handleChange} className='rounded text-gray-200 bg-gray-700 px-3 focus:outline-teal-600' />
                 </div>
                 <button type='submit' className='border-2 px-[7.5rem] py-3 mt-3 bg-[#65B3AD] border-[#65B3AD] rounded'> <strong className='text-lg text-gray-700'>Post</strong></button>
             </form>

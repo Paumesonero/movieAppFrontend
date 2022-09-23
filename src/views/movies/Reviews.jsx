@@ -20,13 +20,15 @@ export default function Reviews() {
     },[storedToken, movie._id]);
 
     return (
-        <div>
+        <div className='flex flex-col items-center gap-6 mr-3'>
             {reviews && reviews.map(review => {
                     return (
-                    <div className="" key={`${review._id}`}>
+                    <div className="flex, flex-col gap-5" key={`${review._id}`}>
                         <MovieReviewCard review={review} storedToken={storedToken} />
+                        <hr className='relative top-5 mb-4' />
                     </div>)
                 })}
+                
         </div>
     )
 }

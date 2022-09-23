@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeartCircleCheck  } from '@fortawesome/free-solid-svg-icons';
-import { faHeartCircleXmark  } from '@fortawesome/free-solid-svg-icons';
+import { faHeart  } from '@fortawesome/free-solid-svg-icons';
+import { faRemove  } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar';
@@ -67,7 +67,7 @@ export default function VoteList() {
                     <button onClick={handleSelect} value='date' className='min-w-[35%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Last released</button>
                     <button onClick={handleSelect} value='rating' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Top rated</button>
                     <button onClick={handleSelect} value='name' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>By name</button>
-                    <button onClick={handleCheck} value='ignored' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>{ignored ? <p className='text-amber-400'>Ignored</p>: <p>Ignored</p>}</button>
+                    <button onClick={handleCheck} value='ignored' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>{ignored ? <p className='text-[#65B3AD]'>Ignored</p>: <p>Ignored</p>}</button>
                     <button onClick={handleSelect} value='like' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Liked</button>
                     <button onClick={handleSelect} value='disLike' className='min-w-[25%] h-1/3 border-2 px-2 py-1 rounded-2xl bg-zinc-700 border-zinc-700'>Disliked</button>
                 </div>
@@ -88,18 +88,29 @@ export default function VoteList() {
                                     </div>
                                 )}
                                 <div className='flex flex-col w-32 justify-center gap-2'>
-                                    <p><strong className='text-teal-600'>Title:</strong></p>
+                                    <p><strong className='text-[#65B3AD]'>Title:</strong></p>
                                     <p>{el.movieId.name}</p>
-                                    <p><strong className='text-teal-600'>Release Date:</strong></p>
+                                    <p><strong className='text-[#65B3AD]'>Release Date:</strong></p>
                                     <p>{el.movieId.premiere}</p>
-                                    <p><strong className='text-teal-600'>Average Rating:</strong></p>
+                                    <p><strong className='text-[#65B3AD]'>Average Rating:</strong></p>
                                     <p>{el.movieId.imdb_rating}</p>
                                     
                                 </div>
 
                                 <div className='flex flex-col justify-between h-28 items-end'>
-                                    {el.vote ? <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faHeartCircleCheck} className='text-3xl text-[#65B3AD] mr-3'/></Link> : <Link to={`/movies/${el.movieId._id}`} ><FontAwesomeIcon icon={faHeartCircleXmark} className='text-3xl text-red-700 mr-3' /></Link>}
-                                <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-teal-600'>Add Review</Link>
+                                    {el.vote ? 
+                                         <Link to={`/movies/${el.movieId._id}/overview`} >
+                                            <div className='rounded-full border-1 w-9 bg-[#7ED360]/70 text-3xl relative top-[1rem] right-[0.8rem]'>
+                                                 <FontAwesomeIcon icon={faHeart} className="text-base relative bottom-[0.2rem] left-[0.62rem]"/>    
+                                            </div>
+                                         
+                                         </Link> : 
+                                         <Link to={`/movies/${el.movieId._id}`} >
+                                            <div className='rounded-full border-1 w-9 bg-[#FF2F61]/70 text-3xl relative top-[1rem] right-[0.8rem]'>
+                                                 <FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.78rem]"/>    
+                                            </div>
+                                         </Link>}
+                                         <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-[#65B3AD]'>Add Review</Link>
                                 </div>
                             </div>
                         )}
@@ -115,7 +126,12 @@ export default function VoteList() {
                                 <p>{el.movieId.imdb_rating}</p>
                         </div>
                         <div className='flex flex-col justify-between h-28 items-end'>
-                            {el.vote === undefined && <Link to={`/movies/${el.movieId._id}/overview`} ><FontAwesomeIcon icon={faEyeSlash} className='text-3xl text-amber-400 '/></Link> }
+                            {el.vote === undefined && 
+                            <Link to={`/movies/${el.movieId._id}/overview`} >
+                                <div className='rounded-full border-1 w-9 bg-[#F0EB78]/70 text-3xl relative top-[1rem] right-[0.8rem]'>
+                                     <FontAwesomeIcon icon={faEyeSlash} className="text-base relative bottom-[0.3rem] left-[0.5rem]"/>    
+                                 </div>
+                            </Link> }
                             <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-[#65B3AD]'>Add Review</Link>
                         </div>
                         </div>

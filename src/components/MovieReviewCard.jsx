@@ -52,17 +52,20 @@ export default function MovieReviewCard(props) {
   return (
     <div className='flex gap-3 ml-3'>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <div className='flex flex-col items-center'>
-                <img src={review.userId.imageUrl} alt="user" className='profile-img-round max-w-[4rem] min-w-[4rem]' />
+            <div className='flex flex-col items-center gap-1'>
+                <img src={review.userId.imageUrl} alt="user" className='profile-img-round max-w-[4rem] min-w-[4rem] h-[5.5rem]'/>
+                <p>{review.userId.username}</p>
+            </div>
+        <div className="flex flex-col gap-4">
+            <h4> <strong className='text-lg text-[#65B3AD]'>{review.titleReview}</strong></h4>
+            <p className=''>{review.review}</p>
+            <div className='flex items-center gap-2'>
                 {!isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(review._id)} />}
                 {isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleRemoveLike(review._id)} className='text-[#65B3AD]'/>}
                 {isLiked && <p className='text-[#65B3AD]'>{likeNumber}</p>}
                 {!isLiked && <p>{likeNumber}</p>}
-                
             </div>
-        <div className="reviewBody">
-            <h4> <strong className='text-lg text-[#65B3AD]'>{review.titleReview}</strong></h4>
-            <p>{review.review}</p>
+            
          </div> 
     </div>
   )
