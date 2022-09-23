@@ -77,7 +77,6 @@ export default function UserDetails() {
                             <div className='rounded-full border-1 w-9 bg-[#7ED360]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
                             <FontAwesomeIcon icon={faHeart} className="text-base relative bottom-[0.2rem] left-[0.62rem]"/>    
                             </div>
-                            {/* <FontAwesomeIcon icon={faHeartCircleCheck} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-[#65B3AD]'/> */}
                             </div>)}
                         {(!el.vote && !el.ignore)  && 
                         (<div className='relative'>
