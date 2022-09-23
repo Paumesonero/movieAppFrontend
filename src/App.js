@@ -38,7 +38,7 @@ function App() {
         <Route path='/edit-user' element={<IsPrivate><EditUser/></IsPrivate>}/>
         <Route path='/options' element={<IsPrivate><UserOptions/></IsPrivate>}/>
         <Route path="user/preferences" element={<Preferences/>}/>
-        <Route path='/movies/:movieId' element={<Movie />}>
+        <Route path='/movies/:movieId' element={<Movie/>}>
           <Route path='overview' element={<Overview />}/>
           <Route path='reviews' element={<Reviews />}/>
         </Route>

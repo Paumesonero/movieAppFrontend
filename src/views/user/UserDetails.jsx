@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeartCircleCheck  } from '@fortawesome/free-solid-svg-icons';
-import { faHeartCircleXmark  } from '@fortawesome/free-solid-svg-icons';
+import { faHeart  } from '@fortawesome/free-solid-svg-icons';
+import { faRemove  } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -66,20 +66,25 @@ export default function UserDetails() {
                     
                 </div>
             </div>
-            <h5 className='text-2xl mb-3 ml-3 font-semibold'>My <span className='text-[#65B3AD]'>votes</span> </h5>
-            <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-3'>
+            <h5 className='text-2xl mb-3 ml-5 font-semibold'>My <span className='text-[#65B3AD]'>votes</span> </h5>
+            <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-6'>
             {votes && votes.slice(0, 26).map(el =>{
                 return(
                     <div key={el._id}>
                         {el.vote && ( 
                             <div className='relative'>
                             <Link to={`/movies/${el.movieId._id}/overview`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-2 min-w-[6rem] h-36 rounded-md'/></Link>
-                            <FontAwesomeIcon icon={faHeartCircleCheck} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-[#65B3AD]'/>
+                            <div className='rounded-full border-1 w-9 bg-[#7ED360]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
+                            <FontAwesomeIcon icon={faHeart} className="text-base relative bottom-[0.2rem] left-[0.62rem]"/>    
+                            </div>
+                            {/* <FontAwesomeIcon icon={faHeartCircleCheck} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-[#65B3AD]'/> */}
                             </div>)}
                         {(!el.vote && !el.ignore)  && 
                         (<div className='relative'>
                         <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-22 min-w-[6rem] h-36 rounded-md'/></Link>
-                        <FontAwesomeIcon icon={faHeartCircleXmark} className='absolute top-[8rem] right-[-0.5rem] text-3xl text-red-600' />
+                        <div className='rounded-full border-1 w-9 bg-[#FF2F61]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
+                            <FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.8rem]"/>    
+                         </div>
                         </div>)}
                     </div>
                 )
@@ -91,8 +96,8 @@ export default function UserDetails() {
             </div>
             </div>
             {!votes && <p>There's no votes yet</p>}
-            <h5 className='text-2xl mt-4 ml-3 font-semibold'>My <span className='text-[#65B3AD]'>reviews</span></h5>
-            <div className='flex flex-col mt-4'>
+            <h5 className='text-2xl mt-4 ml-5 font-semibold'>My <span className='text-[#65B3AD]'>reviews</span></h5>
+            <div className='flex flex-col mt-4 ml-4 mr-4'>
                 {reviews && reviews.slice(0,2).map(el =>{
                     return(
                       <div key={el._id}>
