@@ -65,7 +65,6 @@ export default function MovieReviewCard(props) {
                 {isLiked && <p className='text-[#65B3AD]'>{likeNumber}</p>}
                 {!isLiked && <p>{likeNumber}</p>}
             </div>
-            
          </div> 
     </div>
   )

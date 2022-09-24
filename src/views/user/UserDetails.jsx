@@ -80,7 +80,7 @@ export default function UserDetails() {
                             </div>)}
                         {(!el.vote && !el.ignore)  && 
                         (<div className='relative'>
-                        <Link to={`/movies/${el.movieId._id}`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-22 min-w-[6rem] h-36 rounded-md'/></Link>
+                        <Link to={`/movies/${el.movieId._id}/overview`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-22 min-w-[6rem] h-36 rounded-md'/></Link>
                         <div className='rounded-full border-1 w-9 bg-[#FF2F61]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
                             <FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.8rem]"/>    
                          </div>

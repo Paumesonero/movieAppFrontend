@@ -55,7 +55,7 @@ export default function ReviewCard(props) {
     return (
         <div className='flex ml-3 mb-16 mr-3'>
             <div className='flex flex-col items-center gap-2'>
-                <NavLink to={`/movies/${review.movieId._id}`}><img src={review.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
+                <NavLink to={`/movies/${review.movieId._id}/overview`}><img src={review.movieId.translations[0].poster.og} alt="movie poster" className='w-12 min-w-[3rem] h-16 rounded-md' /></NavLink>
                 {!isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(review._id)} />}
                 {isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleRemoveLike(review._id)} className='text-[#65B3AD]'/>}
                 {!isLiked && <p>{likeNumber}</p>}
