@@ -65,7 +65,7 @@ export default function ReviewCard(props) {
             <div className='ml-3'>
                 <p><strong className='text-lg text-[#65B3AD]'>{review.titleReview}</strong></p>
                 <p>{review.review}</p>
-                <button onClick={() => onDelete(review._id, review.titleReview)} className='relative mt-3 left-52 border-2 border-teal-600 border-opacity-50 px-3 py-px'> Delete</button>
+                <button onClick={() => onDelete(review._id, review.titleReview)} className='relative mt-3 left-52 border-2 border-[#65B3AD] border-opacity-50 px-3 py-px'> Delete</button>
                 <hr className='relative top-6 w-56 opacity-25'/>
             </div>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

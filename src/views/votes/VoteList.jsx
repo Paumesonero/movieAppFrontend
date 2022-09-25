@@ -58,7 +58,7 @@ export default function VoteList() {
     return (
         <div className='mb-14 min-h-screen'>
             <div className='relative top-5 flex flex-col gap-3'>
-                <h2 className='text-2xl font-bold ml-5 '> <span className='text-[#65B3AD]'>Vote</span> List</h2>
+                <h2 className='text-2xl font-bold ml-5 mt-6'> <span className='text-[#65B3AD]'>Vote</span> List</h2>
                 <SearchBar onSearch={ handleSearch} />
             </div>
             <div className='mt-8 ml-5'>

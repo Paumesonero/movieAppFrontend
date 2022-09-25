@@ -65,18 +65,18 @@ return(
                  <div>
                     <FontAwesomeIcon icon={faUser} className='relative top-[2.3rem] left-3 text-2xl' />
                  </div>
-                <input required type='text' name='username' maxLength='15' value={userData.username} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+                <input required type='text' name='username' maxLength='15' value={userData.username} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
             </div>
             <div className='flex flex-col w-3/4'>
                 <label><strong className='relative top-5'>Email</strong></label>
                 <div>
                     <FontAwesomeIcon icon={faEnvelope} className='relative top-[2.3rem] left-3 text-2xl' />
                  </div>
-                <input required type='email' name='email' value={userData.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+                <input required type='email' name='email' value={userData.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
             </div>
             <div className='flex flex-col w-3/4'>
                 <label><strong className=''>Biography</strong></label>
-                <textarea name="biography"  cols="30" rows="5" maxLength='130' value={userData.biography} onChange={handleChange} className='rounded  w-full text-gray-200 bg-gray-700 text-lg px-2 py-2 focus:outline-teal-600' />
+                <textarea name="biography"  cols="30" rows="5" maxLength='130' value={userData.biography} onChange={handleChange} className='rounded  w-full text-gray-200 bg-gray-700 text-lg px-2 py-2 focus:outline-[#65B3AD]' />
             </div>
             <div className='flex flex-col w-3/4'>
                 <label for='profile' className=' border-2 w-3/4 mt-2 text-center px-9 py-3 bg-[#65B3AD] border-[#65B3AD] rounded text-gray-700'><strong>Choose a photo</strong></label>

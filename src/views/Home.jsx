@@ -23,11 +23,11 @@ export default function Home() {
     getNextMovie();
   },[storedToken])
   return (
-    <div id="homePage" className="background-img h-screen text-center">
-      <h1 className="text-gray-200 pt-32 pr-52 font-bold">Find a movie</h1>
+    <div id="homePage" className="background-img h-screen">
+      <h1 className="text-gray-200 ml-10 mb-2 pt-32 font-bold text-xl">Find a movie</h1>
       {nextMovieId && <div>
         <form method="GET" className="mx-10">
-          <NavLink to="/search"><input type="text" placeholder="Search" className="appearance-none block w-full bg-gray-700 text-gray-400 border border-gray-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-900"/><FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-12 left-32 text-gray-200"/></NavLink>
+          <NavLink to="/search"><input type="text" placeholder="Search" className="bg-zinc-700 h-10 rounded-xl px-3 w-full focus:outline-[#65B3AD] text-lg"/><FontAwesomeIcon icon={faMagnifyingGlass} className="relative -top-8 left-72 text-gray-200"/></NavLink>
         </form>
         <NavLink to={`/movies/${nextMovieId}/overview`}><img className="w-40 mx-auto" src="https://cdn-icons-png.flaticon.com/512/122/122662.png" alt="main-btn" /></NavLink>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

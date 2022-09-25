@@ -51,28 +51,28 @@ export default function Signup() {
           <div>
           <FontAwesomeIcon icon={faUser} className='relative top-[2.3rem] left-3 text-2xl' />
           </div>
-          <input required type="text" name="username" value={user.username} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+          <input required type="text" name="username" value={user.username} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
         </div>
         <div className='flex flex-col w-3/4'>
           <label><strong className='relative top-5'>Email</strong></label>
           <div>
           <FontAwesomeIcon icon={faEnvelope} className='relative top-[2.3rem] left-3 text-2xl' />
           </div>
-          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
         </div>
         <div className='flex flex-col w-3/4'>
           <label><strong className='relative top-5'>Password</strong></label>
           <div>
           <FontAwesomeIcon icon={faLock} className='relative top-[2.3rem] left-3 text-2xl' />
           </div>
-          <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+          <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
         </div>
         <div className='flex flex-col w-3/4'>
           <label><strong className='relative top-5'>Confirm password</strong></label>
           <div>
           <FontAwesomeIcon icon={faLock} className='relative top-[2.3rem] left-3 text-2xl' />
           </div>
-          <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+          <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
         </div>
         <button type="submit" className='border-2 px-[6.9rem] py-3 mb-2 mt-7 bg-[#65B3AD] border-[#65B3AD] rounded'><strong className='text-lg text-gray-700'>Register</strong></button>
         <div className='w-3/4'>

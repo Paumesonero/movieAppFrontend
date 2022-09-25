@@ -45,14 +45,14 @@ export default function Login() {
           <div>
           <FontAwesomeIcon icon={faEnvelope} className='relative top-[2.3rem] left-3 text-2xl' />
           </div>
-          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-teal-600' />
+          <input required type="email" name="email" value={user.email} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-12 focus:outline-[#65B3AD]' />
         </div>
         <div className='flex flex-col w-3/4'>
           <label><strong className='relative top-5'>Password</strong></label>
           <div>
             <FontAwesomeIcon icon={faLock} className='relative top-[2.3rem] left-3 text-2xl' />
           </div>
-          <input required type="password" name="password" value={user.password} onChange={handleChange} className='rounded h-11 px-12 w-full text-gray-200 bg-gray-700 text-lg focus:outline-teal-600' />
+          <input required type="password" name="password" value={user.password} onChange={handleChange} className='rounded h-11 px-12 w-full text-gray-200 bg-gray-700 text-lg focus:outline-[#65B3AD]' />
         </div>
         <button type="submit" className='border-2 px-[7.5rem] py-3 mt-3 bg-[#65B3AD] border-[#65B3AD] rounded'> <strong className='text-lg text-gray-700'>Log in</strong> </button>
         <div className='w-3/4'>

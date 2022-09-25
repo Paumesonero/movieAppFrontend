@@ -52,7 +52,7 @@ export default function Watchlist() {
     return (
         <div className='h-scren min-h-screen'>
             <div className='relative top-3 flex flex-col gap-3'>
-                <h2 className='text-2xl font-bold ml-5 '>Find your <span className='text-teal-600'>movies</span></h2>
+                <h2 className='text-2xl font-bold ml-5 mt-8 '>Find your <span className='text-[#65B3AD]'>movies</span></h2>
                 <SearchBar onSearch={ handleSearch}/>
             </div>
             <div className='mt-8 ml-5'>
@@ -72,19 +72,19 @@ export default function Watchlist() {
                         </div>
                         <div className='flex flex-col gap-3'>
                             <div>
-                                <p><strong className='text-teal-600'>Title:</strong></p>
+                                <p><strong className='text-[#65B3AD]'>Title:</strong></p>
                                 <p>{el.movieId.name}</p>
                             </div>
                             <div>
-                                <p><strong className='text-teal-600'>Release Date:</strong></p>
+                                <p><strong className='text-[#65B3AD]'>Release Date:</strong></p>
                                 <p>{el.movieId.premiere}</p>
                             </div>
                             <div>
-                                <p><strong className='text-teal-600'>Average Rating:</strong></p>
+                                <p><strong className='text-[#65B3AD]'>Average Rating:</strong></p>
                                 <p>{el.movieId.imdb_rating}</p>
                             </div>
                             <div className='flex w-max '>
-                            <button onClick={() => handleRemove(el.movieId._id)} className='relative bottom-4 left-36 border-2 border-teal-600 border-opacity-50 px-3 py-px '>Remove</button>
+                            <button onClick={() => handleRemove(el.movieId._id)} className='relative bottom-4 left-36 border-2 border-[#65B3AD] border-opacity-50 px-3 py-px '>Remove</button>
                             </div>
                             
                         </div>
