@@ -48,7 +48,7 @@ export default function AddReview() {
     return (
         <div className='h-screen mb-14'>
             <div className='background-img polygon h-64 flex justify-center items-start'>
-                <h2 className='text-3xl mt-10'><strong>Add a <span className='text-[#65B3AD]'>review.</span> </strong> </h2>
+                <h2 className='text-3xl mt-10'><strong>Add a <span className='text-[#65B3AD]'>review</span> </strong> </h2>
             </div>
             {movie && <img src={movie.translations[0].poster.og} alt='movie poster' className='w-28 rounded-xl ml-5 relative bottom-32'></img>}
             <form onSubmit={handleSubmit} className=' h-64 flex flex-col items-center gap-4 justify-center '>
@@ -57,10 +57,10 @@ export default function AddReview() {
                     <input type="text" name='titleReview' maxLength='35' value={review.titleReview} onChange={handleChange} className='rounded h-11 w-full text-gray-200 bg-gray-700 text-lg px-3 focus:outline-[#65B3AD]' />
                 </div>
                 <div className='flex flex-col w-3/4'>
-                    <label> <strong className='text-xl'>Description</strong></label>
+                    <label> <strong className='text-xl'>Your review</strong></label>
                     <textarea name="review"  cols="15" rows="7" defaultValue={review.review} onChange={handleChange} className='rounded text-gray-200 bg-gray-700 px-3 focus:outline-[#65B3AD]' />
                 </div>
-                <button type='submit' className='border-2 px-[7.5rem] py-3 mt-3 bg-[#65B3AD] border-[#65B3AD] rounded'> <strong className='text-lg text-gray-700'>Post</strong></button>
+                <button type='submit' className='border-2 px-[7.5rem] py-3 mt-3 bg-[#65B3AD] border-[#65B3AD] rounded'> <strong className='text-lg text-gray-700'>Save</strong></button>
             </form>
         </div>
     );

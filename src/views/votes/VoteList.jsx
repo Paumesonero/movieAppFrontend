@@ -59,7 +59,7 @@ export default function VoteList() {
     };
     return (
         <div className='mb-14 min-h-screen'>
-            <div className='relative top-5 flex flex-col gap-3'>
+            <div className='relative top-5 flex flex-col gap-1'>
                 <h2 className='text-2xl font-bold ml-5 mt-6'> <span className='text-[#65B3AD]'>Vote</span> List</h2>
                 <SearchBar onSearch={ handleSearch} />
             </div>
@@ -85,14 +85,15 @@ export default function VoteList() {
                                         <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></Link>  
                                     </div>
                                 ) : (
-                                    <div className='flex items-center '>
-                                      <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 h-44' /></Link>  
+                                    <div className='flex items-center'>
+                                      <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie" className='w-24 h-36 rounded-xl my-2 mx-2' /></Link>  
                                     </div>
                                 )}
-                                <div className='flex flex-col w-32 justify-center'>
+                                <div className='flex flex-col w-40 justify-center'>
                                     <p className="text-xl"><strong>{el.movieId.name}</strong></p>
                                     <p className="mb-2">({el.movieId.year})</p>
-                                    <p><span className="mr-1"><FontAwesomeIcon icon={faMedal}/></span>{el.movieId.imdb_rating}</p>
+                                    {el.movieId.people[0].name && <p className="text-base mb-2"><strong>{el.movieId.people[0].name}</strong></p>}
+                                    <p><span className="mr-1"><FontAwesomeIcon icon={faMedal}/></span>{el.movieId.imdb_rating} <span className="ml-2"><FontAwesomeIcon icon={faUsers}/> </span>{el.movieId.imdb_vote}</p>
                                 </div>
                                 <div className='flex flex-col justify-between h-40 items-end'>
                                     {el.vote ? 
@@ -112,15 +113,13 @@ export default function VoteList() {
                         )}
                     {(ignored && el.vote === undefined) &&(
                         <div className='flex gap-5'>
-                                <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
-                        <div className='flex flex-col w-32 '>
-                                <p><strong className='text-[#65B3AD]'>Title:</strong></p>
-                                <p>{el.movieId.name}</p>
-                                <p><strong className='text-[#65B3AD]'>Release Date:</strong></p>
-                                <p>{el.movieId.premiere}</p>
-                                <p><strong className='text-[#65B3AD]'>Average Rating:</strong></p>
-                                <p>{el.movieId.imdb_rating}</p>
-                        </div>
+                                <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></Link>  
+                                <div className='flex flex-col w-40 justify-center'>
+                                    <p className="text-xl"><strong>{el.movieId.name}</strong></p>
+                                    <p className="mb-2">({el.movieId.year})</p>
+                                    {el.movieId.people[0].name && <p className="text-base mb-2"><strong>{el.movieId.people[0].name}</strong></p>}
+                                    <p><span className="mr-1"><FontAwesomeIcon icon={faMedal}/></span>{el.movieId.imdb_rating} <span className="ml-2"><FontAwesomeIcon icon={faUsers}/> </span>{el.movieId.imdb_vote}</p>
+                                </div>
                         <div className='flex flex-col justify-between h-28 items-end'>
                             {el.vote === undefined && 
                             <Link to={`/movies/${el.movieId._id}/overview`} >
@@ -128,7 +127,7 @@ export default function VoteList() {
                                      <FontAwesomeIcon icon={faEyeSlash} className="text-base relative bottom-[0.3rem] left-[0.5rem]"/>    
                                  </div>
                             </Link> }
-                            <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-[#65B3AD]'>Add Review</Link>
+                            <Link to={`/addReview/${el.movieId._id}`} className='mb-2 mr-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 border-4 text-white py-1 px-2 rounded'>+Review</Link>
                         </div>
                         </div>
                     )}  
