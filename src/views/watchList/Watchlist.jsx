@@ -56,17 +56,17 @@ export default function Watchlist() {
                 <SearchBar onSearch={ handleSearch}/>
             </div>
             <div className='mt-8 ml-5'>
-                <p><strong>Categories:</strong></p>
+                <p><strong>Sorted by:</strong></p>
                 <div className='flex gap-8 mt-3'>
                     <button onClick={handleSelect} value='date'>Last released</button>
                     <button onClick={handleSelect} value='rating'>Top rated</button>
                     <button onClick={handleSelect} value='name'>By name</button>
                 </div>
             </div>
-            <div className='flex flex-col  mt-14 mb-14'>
+            <div className='flex flex-col gap-2 text-sm mt-4 ml-5'>
             {filteredWatchlist && filteredWatchlist.map(el =>{
                 return(
-                    <div key={el._id} className='flex gap-4 ml-5' >
+                    <div key={el._id} className='flex gap-5 mb-5 bg-zinc-700 rounded-xl mr-5' >
                         <div>
                         <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44 rounded-lg' /></NavLink>  
                         </div>
