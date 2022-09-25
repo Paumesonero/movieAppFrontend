@@ -28,7 +28,6 @@ export default function Reviews() {
                         <hr className='relative top-5 mb-4' />
                     </div>)
                 })}
-                
         </div>
     )
 }
