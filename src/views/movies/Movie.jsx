@@ -122,7 +122,7 @@ export default function Movie() {
                 <img src={movie.image.og} className="relative bottom-28" alt="movie-frame" />
                 <div className="relative bottom-52 flex flex-row items-baseline">
                     <img src={movie.translations[0].poster.og}  className="h-40 border-solid border-2 rounded-lg mx-4 border-1 border-gray-200" alt="poster" />
-                    <h1 className="text-2xl font-bold">{movie.name}</h1>
+                    <h1 className="text-2xl font-bold relative bottom-6">{movie.name}</h1>
                 </div>
                 <div className="h-8 flex flex-row justify-around relative bottom-48">
                     {movie.genres[0] && <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[0]}`],"en")}</span>} {movie.genres[1] && <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[1]}`],"en")}</span>} {movie.genres[2] && <span className="flex-shrink-0 bg-gray-700 text-center  leading-7 text-sm text-white px-5 rounded-2xl">{colage.ge([`${movie.genres[2]}`],"en")}</span>}
