@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart  } from '@fortawesome/free-solid-svg-icons';
 import { faRemove  } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar';
 
@@ -75,42 +77,36 @@ export default function VoteList() {
             <div className='flex flex-col gap-2 text-sm mt-4 ml-5'>
             {filteredVotes && filteredVotes.map(el =>{
                 return(
-                    <div key={el._id} className='mb-5'>
+                    <div key={el._id} className='mb-5 bg-zinc-700 rounded-xl mr-5'>
                         {(el.vote || el.vote === false) &&(
-                            <div key={el._id} className='flex gap-5 h-44 mb-0 items-center' >
+                            <div key={el._id} className='flex gap-5 h-40 mb-0 items-center' >
                                 {el.vote ? (
                                     <div className='flex items-center'>
-                                        <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
+                                        <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></Link>  
                                     </div>
                                 ) : (
                                     <div className='flex items-center '>
-                                      <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44' /></Link>  
+                                      <Link to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie" className='w-28 h-44' /></Link>  
                                     </div>
                                 )}
-                                <div className='flex flex-col w-32 justify-center gap-2'>
-                                    <p><strong className='text-[#65B3AD]'>Title:</strong></p>
-                                    <p>{el.movieId.name}</p>
-                                    <p><strong className='text-[#65B3AD]'>Release Date:</strong></p>
-                                    <p>{el.movieId.premiere}</p>
-                                    <p><strong className='text-[#65B3AD]'>Average Rating:</strong></p>
-                                    <p>{el.movieId.imdb_rating}</p>
-                                    
+                                <div className='flex flex-col w-32 justify-center'>
+                                    <p className="text-xl"><strong>{el.movieId.name}</strong></p>
+                                    <p className="mb-2">({el.movieId.year})</p>
+                                    <p><span className="mr-1"><FontAwesomeIcon icon={faMedal}/></span>{el.movieId.imdb_rating}</p>
                                 </div>
-
-                                <div className='flex flex-col justify-between h-28 items-end'>
+                                <div className='flex flex-col justify-between h-40 items-end'>
                                     {el.vote ? 
                                          <Link to={`/movies/${el.movieId._id}/overview`} >
-                                            <div className='rounded-full border-1 w-9 bg-[#7ED360]/70 text-3xl relative top-[1rem] right-[0.8rem]'>
+                                            <div className='rounded-full border-1 w-9 bg-[#65B3AD]/70 text-3xl relative top-[1rem] right-[0.8rem]'>
                                                  <FontAwesomeIcon icon={faHeart} className="text-base relative bottom-[0.2rem] left-[0.62rem]"/>    
                                             </div>
-                                         
                                          </Link> : 
                                          <Link to={`/movies/${el.movieId._id}`} >
                                             <div className='rounded-full border-1 w-9 bg-[#FF2F61]/70 text-3xl relative top-[1rem] right-[0.8rem]'>
                                                  <FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.78rem]"/>    
                                             </div>
                                          </Link>}
-                                         <Link to={`/addReview/${el.movieId._id}`} className='border-b-2 border-[#65B3AD]'>Add Review</Link>
+                                         <Link to={`/addReview/${el.movieId._id}`} className='mb-2 mr-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 border-4 text-white py-1 px-2 rounded'>+Review</Link>
                                 </div>
                             </div>
                         )}

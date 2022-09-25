@@ -117,7 +117,7 @@ export default function Movie() {
                 <div id="voteButtons" className="relative bottom-36 flex flex-row justify-between mx-5">
                     <button onClick={() => handleDislike()} className="dislike-btn rounded-full h-16 w-16 border-0 bg-[#FF2F61]/40 text-3xl"><FontAwesomeIcon icon={faRemove} className='remove-icon'/></button>
                     <button onClick={() => handleIgnore()} className="rounded-full h-16 w-16 border-0 bg-[#F0EB78]/40 text-3xl"><FontAwesomeIcon icon={faEyeSlash} className='eye-slash-icon'/></button>
-                    <button onClick={() => handleLike()} className="rounded-full h-16 w-16 border-0 bg-[#7ED360]/40 text-3xl "><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>                    
+                    <button onClick={() => handleLike()} className="rounded-full h-16 w-16 border-0 bg-[#65B3AD]/40 text-3xl "><FontAwesomeIcon icon={faHeart} className='heart-icon'/></button>                    
                 </div>
                 <img src={movie.image.og} className="relative bottom-28" alt="movie-frame" />
                 <div className="relative bottom-52 flex flex-row items-baseline">

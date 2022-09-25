@@ -63,30 +63,25 @@ export default function UserDetails() {
                         <p className='relative top-3'><strong>{user.username}</strong></p>
                         <p className='relative top-5 w-4/5'>{user.biography}</p>
                     </div>
-                    
                 </div>
             </div>
             <h5 className='text-2xl mb-3 ml-5 font-semibold'>My <span className='text-[#65B3AD]'>votes</span> </h5>
             <div className='flex overflow-x-auto gap-3 h-40 min-h-[10rem] ml-6'>
             {votes && votes.slice(0, 26).map(el =>{
-                return(
-                    <div key={el._id}>
-                        {el.vote && ( 
-                            <div className='relative'>
+                return(<div key={el._id}>
+                        {el.vote && (<div className='relative'>
                             <Link to={`/movies/${el.movieId._id}/overview`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-2 min-w-[6rem] h-36 rounded-md'/></Link>
-                            <div className='rounded-full border-1 w-9 bg-[#7ED360]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
+                            <div className='rounded-full border-1 w-9 bg-[#65B3AD]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
                             <FontAwesomeIcon icon={faHeart} className="text-base relative bottom-[0.2rem] left-[0.62rem]"/>    
-                            </div>
-                            </div>)}
-                        {(!el.vote && !el.ignore)  && 
-                        (<div className='relative'>
+                        </div>
+                    </div>)}
+                    {(!el.vote && !el.ignore)  && (<div className='relative'>
                         <Link to={`/movies/${el.movieId._id}/overview`}><img src={el.movieId.translations[0].poster.og} alt="movie" className='w-22 min-w-[6rem] h-36 rounded-md'/></Link>
                         <div className='rounded-full border-1 w-9 bg-[#FF2F61]/70 text-3xl absolute top-[7.4rem] right-[-0.5rem]'>
                             <FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.8rem]"/>    
-                         </div>
-                        </div>)}
-                    </div>
-                )
+                        </div>
+                    </div>)}
+                </div>)
             })}
             <div className='flex flex-col justify-center items-center  w-2 min-w-[6rem] h-36 rounded-md border-2 border-dashed border-[#65B3AD] mr-2'>
                 <NavLink to='/vote-list' className='flex flex-col text-[#65B3AD]'>See more
