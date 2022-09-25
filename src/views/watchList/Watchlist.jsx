@@ -70,11 +70,11 @@ export default function Watchlist() {
             <div className='flex flex-col gap-2 text-sm mt-4 ml-5 mb-14'>
             {filteredWatchlist && filteredWatchlist.map(el =>{
                 return(
-                    <div key={el._id} className='flex gap-5 mb-5 bg-zinc-700 rounded-xl mr-5' >
+                    <div key={el._id} className='flex gap-2 mb-5 bg-zinc-700 rounded-xl mr-5' >
                         <div>
                         <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></NavLink>  
                         </div>
-                        <div className='flex flex-col gap-3 justify-center'>
+                        <div className='flex flex-col gap-3 justify-center w-44'>
                                 <div className='flex flex-col w-40 justify-center'>
                                     <p className="text-xl"><strong>{el.movieId.name}</strong></p>
                                     <p className="mb-2">({el.movieId.year})</p>
@@ -82,7 +82,7 @@ export default function Watchlist() {
                                     <p><span className="mr-1"><FontAwesomeIcon icon={faMedal}/></span>{el.movieId.imdb_rating} <span className="ml-2"><FontAwesomeIcon icon={faUsers}/> </span>{el.movieId.imdb_vote}</p>
                                 </div>
                         </div>
-                        <button onClick={() => handleRemove(el.movieId._id)}><FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.78rem]"/></button>
+                        <button onClick={() => handleRemove(el.movieId._id)}><FontAwesomeIcon icon={faRemove} className="rounded-full h-8 w-8 border-0 bg-[#FF2F61]/40 text-base"/></button>
                     </div>
                 )
             })}
