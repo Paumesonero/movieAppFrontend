@@ -2,6 +2,10 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faRemove  } from '@fortawesome/free-solid-svg-icons';
 
 export default function Watchlist() {
     const[myWatchList, setMyWatchList] = useState(null)
@@ -63,31 +67,22 @@ export default function Watchlist() {
                     <button onClick={handleSelect} value='name'>By name</button>
                 </div>
             </div>
-            <div className='flex flex-col gap-2 text-sm mt-4 ml-5'>
+            <div className='flex flex-col gap-2 text-sm mt-4 ml-5 mb-14'>
             {filteredWatchlist && filteredWatchlist.map(el =>{
                 return(
                     <div key={el._id} className='flex gap-5 mb-5 bg-zinc-700 rounded-xl mr-5' >
                         <div>
-                        <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-28 h-44 rounded-lg' /></NavLink>  
+                        <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></NavLink>  
                         </div>
-                        <div className='flex flex-col gap-3'>
-                            <div>
-                                <p><strong className='text-[#65B3AD]'>Title:</strong></p>
-                                <p>{el.movieId.name}</p>
-                            </div>
-                            <div>
-                                <p><strong className='text-[#65B3AD]'>Release Date:</strong></p>
-                                <p>{el.movieId.premiere}</p>
-                            </div>
-                            <div>
-                                <p><strong className='text-[#65B3AD]'>Average Rating:</strong></p>
-                                <p>{el.movieId.imdb_rating}</p>
-                            </div>
-                            <div className='flex w-max '>
-                            <button onClick={() => handleRemove(el.movieId._id)} className='relative bottom-4 left-36 border-2 border-[#65B3AD] border-opacity-50 px-3 py-px '>Remove</button>
-                            </div>
-                            
+                        <div className='flex flex-col gap-3 justify-center'>
+                                <div className='flex flex-col w-40 justify-center'>
+                                    <p className="text-xl"><strong>{el.movieId.name}</strong></p>
+                                    <p className="mb-2">({el.movieId.year})</p>
+                                    {el.movieId.people[0].name && <p className="text-base mb-2"><strong>{el.movieId.people[0].name}</strong></p>}
+                                    <p><span className="mr-1"><FontAwesomeIcon icon={faMedal}/></span>{el.movieId.imdb_rating} <span className="ml-2"><FontAwesomeIcon icon={faUsers}/> </span>{el.movieId.imdb_vote}</p>
+                                </div>
                         </div>
+                        <button onClick={() => handleRemove(el.movieId._id)}><FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.78rem]"/></button>
                     </div>
                 )
             })}
