@@ -23,7 +23,7 @@ export default function Watchlist() {
             }
         }
         getMovies();
-    },[storedToken]);
+    },[storedToken, myWatchList]);
     const handleSearch = (searchValue) =>{
         if(searchValue === ''){
             setFilteredWatchlist(myWatchList);
