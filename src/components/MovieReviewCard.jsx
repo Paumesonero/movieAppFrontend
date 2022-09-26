@@ -8,6 +8,7 @@ export default function MovieReviewCard(props) {
     const {review, storedToken} = props;
     const [isLiked, setIsLiked] = useState(false);
     const [likeNumber, setLikeNumber] = useState(0)
+    // Gets from database a boolean, true if you've liked the review or false if you haven't
     useEffect(() => {
         const getIfIsLiked = async () => {
             try {
@@ -19,6 +20,7 @@ export default function MovieReviewCard(props) {
         }
         getIfIsLiked();
     },[isLiked,storedToken,review._id]);
+    //Gets the number of likes of a review.
     useEffect(() =>{
         const getNumber = async () =>{
             try {

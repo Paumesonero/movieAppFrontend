@@ -13,7 +13,7 @@ export default function AddReview() {
         review: ''
     });
     const navigate = useNavigate()
-
+    //Searches the movie with a certain ID and sets the state variable 'movie'
     useEffect(() =>{
         const getMovie = async() =>{
             try {

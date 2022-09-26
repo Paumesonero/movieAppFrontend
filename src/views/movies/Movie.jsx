@@ -19,6 +19,7 @@ export default function Movie() {
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [inWatchlist, setInWatchlist] = useState(false);
     const navigate = useNavigate();
+    // gets movie from database
     useEffect(() => {
         const getMovie = async () => {
             try {
@@ -30,6 +31,7 @@ export default function Movie() {
         }
         getMovie();
     },[storedToken, movieId]);
+    // Gets a boolean from database, true if it is in your watchlist  or false if it isn't
     useEffect(() => {
         const isInWatchlist = async () => {
             try {

@@ -3,12 +3,11 @@ import axios from 'axios';
 import SearchBar from '../../components/SearchBar';
 import toast from 'react-hot-toast';
 
-
 export default function UserList() {
     const[users, setUsers] = useState(null)
     const[filteredUsers, setFilteredUsers] = useState(null)
     const storedToken = localStorage.getItem('authToken');
-   
+   //Gets all users from the databse
     useEffect(() => {
         const getUsers = async () => {
             try {

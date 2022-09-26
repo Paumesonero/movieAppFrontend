@@ -9,7 +9,7 @@ export default function AllReviews() {
   const[reviews, setReviews] = useState(null)
   const[filteredReviews, setFilteredReviews] = useState(null);
   const[errorMessage, setErrorMessage] = useState(undefined);
-
+  //Gets all reviews a user has posted
   useEffect(() => {
     const getReviews = async () => {
         try {
@@ -22,7 +22,7 @@ export default function AllReviews() {
     }
     getReviews();
 },[storedToken]);
-
+//Deletes a review from database, it also deletes all the reviewlikes from that review
 const handleDelete = async (reviewId, titleReview) => {
   try {
     const filteredReviews = reviews.filter(el =>{
@@ -36,7 +36,6 @@ const handleDelete = async (reviewId, titleReview) => {
       setErrorMessage(error.response.data.error);
   }
 };
-
 const handleSearch = (searchValue) =>{
   if(searchValue === ''){
       setFilteredReviews(reviews);

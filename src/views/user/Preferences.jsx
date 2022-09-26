@@ -36,6 +36,7 @@ export default function Preferences() {
     documentary: false,
     crime: false
   });
+  // Gets the current user and checks its preferences, preferences are declared through a number in db
   useEffect(() => {
     const getPreferences = async () => {
       try {
@@ -121,41 +122,17 @@ export default function Preferences() {
       {user && <div>
         <form onSubmit={handleSubmit} className="flex flex-wrap justify-evenly">
           <Checkbox image={actionImg} checked={genres.action} label="action" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Action</label>
-          <input type="checkbox" className="checkbox" id="action" name="action" checked={genres.action} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={dramaImg} checked={genres.drama} label="drama" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Drama</label>
-          <input type="checkbox" className="checkbox" id="drama" name="drama" checked={genres.drama} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={fantasyImg} checked={genres.fantasy} label="fantasy" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Fantasy</label>
-          <input type="checkbox" className="checkbox" id="fantasy" name="fantasy" checked={genres.fantasy} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={comedyImg} checked={genres.comedy} label="comedy" genres={genres.comedy} handleCheck={handleCheck} />
-          {/* <label>Comedy</label>
-          <input type="checkbox" className="checkbox" id="comedy" name="comedy" checked={genres.comedy} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={mysteryImg} checked={genres.mystery} label="mystery" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Mystery</label>
-          <input type="checkbox" className="checkbox" id="mystery" name="mystery" checked={genres.mystery} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={adventureImg} checked={genres.adventure} label="adventure" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Adventure</label>
-          <input type="checkbox" className="checkbox" id="adventure" name="adventure" checked={genres.adventure} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={warImg} checked={genres.war} label="war" genres={genres} handleCheck={handleCheck} />
-          {/* <label>War</label>
-          <input type="checkbox" className="checkbox" id="war" name="war" checked={genres.war} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={scifyImg} checked={genres.scify} label="scify" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Scify</label>
-          <input type="checkbox" className="checkbox" id="scify" name="scify" checked={genres.scify} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={romanceImg} checked={genres.romance} label="romance" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Romance</label>
-          <input type="checkbox" className="checkbox" id="romance" name="romance" checked={genres.romance} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={historyImg} checked={genres.history} label="history" genres={genres} handleCheck={handleCheck} />
-          {/* <label>History</label>
-          <input type="checkbox" className="checkbox" id="history" name="history" checked={genres.history} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={documentaryImg} checked={genres.documentary} label="documentary" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Documentary</label>
-          <input type="checkbox" className="checkbox" id="documentary" name="documentary" checked={genres.documentary} onChange={(e) => handleCheck(e)} /> */}
           <Checkbox image={crimeImg} checked={genres.crime} label="crime" genres={genres} handleCheck={handleCheck} />
-          {/* <label>Crime</label>
-          <input type="checkbox" className="checkbox" id="crime" name="crime" checked={genres.crime} onChange={(e) => handleCheck(e)} /> */}
           <div className="flex justify-center">
             <button type="submit" className="mb-36 mt-8 flex-shrink-0 bg-[#65B3AD] hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 text-xl border-4 text-white py-1 px-2 rounded w-28">Save</button>
           </div>
