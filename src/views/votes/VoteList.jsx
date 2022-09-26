@@ -107,7 +107,7 @@ export default function VoteList() {
                                                  <FontAwesomeIcon icon={faRemove} className="text-base relative bottom-[0.3rem] left-[0.78rem]"/>    
                                             </div>
                                          </Link>}
-                                         <Link to={`/addReview/${el.movieId._id}`} className='mb-2 mr-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 border-4 text-white py-1 px-2 rounded'>+Review</Link>
+                                         <Link to={`/addReview/${el.movieId._id}`} className='mb-2 mr-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD]/40 over:border-teal-700 border-4 text-white py-1 px-2 rounded'>+Review</Link>
                                 </div>
                             </div>
                         )}
@@ -127,13 +127,12 @@ export default function VoteList() {
                                      <FontAwesomeIcon icon={faEyeSlash} className="text-base relative bottom-[0.3rem] left-[0.5rem]"/>    
                                  </div>
                             </Link> }
-                            <Link to={`/addReview/${el.movieId._id}`} className='mb-2 mr-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD] hover:border-teal-700 border-4 text-white py-1 px-2 rounded'>+Review</Link>
+                            <Link to={`/addReview/${el.movieId._id}`} className='mb-2 mr-2 flex-shrink-0 bg-[#65B3AD]/70 hover:bg-teal-700 border-[#65B3AD]/40 hover:border-teal-700 border-4 text-white py-1 px-2 rounded'>+Review</Link>
                         </div>
                         </div>
                     )}  
                     </div>
                 )
-                
             })}
             </div>
             {!myVotes && <p>loading...</p>}

@@ -12,6 +12,7 @@ export default function Watchlist() {
     const[filteredWatchlist, setFilteredWatchlist] = useState(null)
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
+    const [removedInWatchlist, setRemovedInWatchlist] = useState(undefined);
     useEffect(() =>{
         const getMovies = async() =>{
             try {
@@ -23,7 +24,7 @@ export default function Watchlist() {
             }
         }
         getMovies();
-    },[storedToken, myWatchList]);
+    },[storedToken, removedInWatchlist]);
     const handleSearch = (searchValue) =>{
         if(searchValue === ''){
             setFilteredWatchlist(myWatchList);
@@ -34,7 +35,8 @@ export default function Watchlist() {
     };
     const handleRemove = async (movieId) => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            const removed = await axios.delete(`${process.env.REACT_APP_API_URL}/watchList/${movieId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
+            setRemovedInWatchlist(removed);
             const moviesFromApi = await axios.get(`${process.env.REACT_APP_API_URL}/watchList`, { headers: { Authorization: `Bearer ${storedToken}` } });
             setMyWatchList(moviesFromApi.data.data);
         } catch (error) {
