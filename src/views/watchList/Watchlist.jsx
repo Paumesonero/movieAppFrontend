@@ -13,6 +13,7 @@ export default function Watchlist() {
     const storedToken = localStorage.getItem('authToken');
     const [errorMessage, setErrorMessage] = useState(undefined);
     const [removedInWatchlist, setRemovedInWatchlist] = useState(undefined);
+    //Gets the movies a user has selected as watch later
     useEffect(() =>{
         const getMovies = async() =>{
             try {

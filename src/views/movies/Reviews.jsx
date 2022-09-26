@@ -7,6 +7,7 @@ export default function Reviews() {
     const [movie] = useOutletContext();
     const storedToken = localStorage.getItem('authToken');
     const [reviews, setReviews] = useState('')
+    //Gets all reviews about a certain movie
     useEffect(() => {
         const getReviews = async () => {
             try {

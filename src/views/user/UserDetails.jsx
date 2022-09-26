@@ -16,6 +16,7 @@ export default function UserDetails() {
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState(null);
     const [votes, setVotes] = useState(null);
+    //Gets all reviews a user has posted
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -27,6 +28,7 @@ export default function UserDetails() {
         }
         getReviews();
     },[storedToken]);
+    //Gets all Votes a user has done
     useEffect(() => {
         const getVotes = async () => {
             try {

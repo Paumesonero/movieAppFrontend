@@ -12,7 +12,6 @@ export default function UserOptions() {
         <div className='flex justify-end mr-4 text-3xl relative top-4'>
          <NavLink to='/user'><FontAwesomeIcon icon={faXmark}/></NavLink>
         </div>
-       
         <div className='flex flex-col items-center justify-evenly h-3/4 '>
             <NavLink to={`/user/preferences`} className='text-3xl border-b border-[#65B3AD] px-2'>Preferences</NavLink>
             <NavLink to="/edit-user" className='text-3xl border-b border-[#65B3AD] px-2 '>Edit user</NavLink>

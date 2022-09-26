@@ -37,7 +37,6 @@ const handleSubmit = async (e) =>{
         console.error(error)
     }
 }
-
 const handleFileUpload = async(e) =>{
     const uploadData = new FormData();
     uploadData.append('imageUrl', e.target.files[0]);
