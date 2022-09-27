@@ -4,10 +4,9 @@
 
 This application is called MovieFetch. It is used to get movie recommendations based on user preferences and vote history.
 
-> Add a picture (logo, design, actual screen, gif, etc, whichever you prefer.)
-![](./public/images/movie.png)
-![](./public/images/preferences.png)
-![](./public/images/votes.png)
+![](./public/images/movie.jpg)
+![](./public/images/preferences.jpg)
+![](./public/images/votes.jpg)
 
 ---
 ## Instructions
