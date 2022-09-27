@@ -1,10 +1,10 @@
-# Project's name
+# MOVIE FETCH
 
 ## Description
 
 This application is called MovieFetch. It is used to get movie recommendations based on user preferences and vote history.
 
-![](./public/images/movie.jpg)
+![](public/images/movie.jpg)
 ![](./public/images/preferences.jpg)
 ![](./public/images/votes.jpg)
 
