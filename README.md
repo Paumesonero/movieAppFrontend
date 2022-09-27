@@ -5,8 +5,6 @@
 This application is called MovieFetch. It is used to get movie recommendations based on user preferences and vote history.
 
 ![](./public/images/movie.jpg)
-![](../src/public/images/preferences.jpg)
-![](src/public/images/votes.jpg)
 
 ---
 ## Instructions
