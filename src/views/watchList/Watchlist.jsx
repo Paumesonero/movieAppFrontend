@@ -75,7 +75,7 @@ export default function Watchlist() {
                 return(
                     <div key={el._id} className='flex gap-2 mb-5 bg-zinc-700 rounded-xl mr-5' >
                         <div>
-                        <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></NavLink>  
+                            <NavLink to={`/movies/${el.movieId._id}/overview`} > <img src={el.movieId.translations[0].poster.og} alt="movie"  className='w-24 h-36 rounded-xl my-2 mx-2' /></NavLink>  
                         </div>
                         <div className='flex flex-col gap-3 justify-center w-44'>
                                 <div className='flex flex-col w-40 justify-center'>
@@ -90,7 +90,7 @@ export default function Watchlist() {
                 )
             })}
             </div>
-             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
     )
 }

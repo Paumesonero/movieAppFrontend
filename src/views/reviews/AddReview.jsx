@@ -25,7 +25,6 @@ export default function AddReview() {
         }
         getMovie();
     },[movieId, storedToken]);
-
     const handleChange = (e) =>{
         setReview(prev =>{
             return{
@@ -34,7 +33,6 @@ export default function AddReview() {
             }
         })
     };
-    
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try {

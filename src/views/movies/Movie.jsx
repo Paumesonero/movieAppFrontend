@@ -12,7 +12,7 @@ import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 const colage = require("colage");
 
 export default function Movie() {
-    const {  user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [movie, setMovie] = useState("");
     const {movieId} = useParams();
     const storedToken = localStorage.getItem('authToken');
