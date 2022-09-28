@@ -51,7 +51,6 @@ const handleSearch = (searchValue) =>{
         <p><strong className='ml-6 relative top-3'>Movie title:</strong> </p>
         <SearchBar onSearch={ handleSearch}/>
       </div>
-        
         {filteredReviews && filteredReviews.map(el =>{
           return(
             <div key={el._id} className='flex gap-3'>

@@ -34,14 +34,13 @@ export default function MovieReviewCard(props) {
     },[storedToken, review._id, likeNumber])
     const handleLike = async (reviewId) => {
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });    
+            await axios.post(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/add`, {}, { headers: { Authorization: `Bearer ${storedToken}` } });
             !isLiked && setLikeNumber(prev => prev +1)
             setIsLiked(prev => {return !prev})
         } catch (error) {
             setErrorMessage(error.response.data.error);
         }
     };
-
     const handleRemoveLike = async (reviewId) => {
         try {
             await axios.delete(`${process.env.REACT_APP_API_URL}/reviewLike/${reviewId}/remove`, { headers: { Authorization: `Bearer ${storedToken}` } });
@@ -51,20 +50,20 @@ export default function MovieReviewCard(props) {
             setErrorMessage(error.response.data.error);
         }
     };
-  return (
-    <div className='flex w-full py-3 px-3 mb-8 gap-2 bg-zinc-700 rounded-xl mr-5'>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <div className='flex flex-col items-center'>
-                <img src={review.userId.imageUrl} alt="user" className='profile-img-round max-w-[4rem] min-w-[3rem] h-[5.5rem]'/>
-                {!isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(review._id)} />}
-                {isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleRemoveLike(review._id)} className='text-[#65B3AD]'/>}
-                {isLiked && <p className='text-[#65B3AD]'>{likeNumber}</p>}
-                {!isLiked && <p>{likeNumber}</p>}
+    return (
+        <div className='flex w-full py-3 px-3 mb-8 gap-2 bg-zinc-700 rounded-xl mr-5'>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                <div className='flex flex-col items-center'>
+                    <img src={review.userId.imageUrl} alt="user" className='profile-img-round max-w-[4rem] min-w-[3rem] h-[5.5rem]'/>
+                    {!isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(review._id)} />}
+                    {isLiked && <FontAwesomeIcon icon={faHeart} onClick={() => handleRemoveLike(review._id)} className='text-[#65B3AD]'/>}
+                    {isLiked && <p className='text-[#65B3AD]'>{likeNumber}</p>}
+                    {!isLiked && <p>{likeNumber}</p>}
+                </div>
+            <div className="flex flex-col">
+                <h4> <strong className='text-lg text-[#65B3AD]'>{review.titleReview}</strong><span> ({review.userId.username})</span></h4>
+                <p className=''>{review.review}</p>
             </div>
-        <div className="flex flex-col">
-            <h4> <strong className='text-lg text-[#65B3AD]'>{review.titleReview}</strong><span> ({review.userId.username})</span></h4>
-            <p className=''>{review.review}</p>
-         </div>
-    </div>
-  )
+        </div>
+    )
 }
